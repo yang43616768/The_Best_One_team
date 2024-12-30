@@ -1,6 +1,9 @@
 from setting import *
 import pygame
 import map
+from player import *
+from npc import *
+from wall import *
 
 class SceneManager:
     def __init__(self, window):
@@ -21,13 +24,14 @@ class SceneManager:
         return WindowsSettings.height * WindowsSettings.OutdoorScale
     
     def update_camera(self, object):
-        if class(object)==Player:
-            self.camera.center = object.rect.center
-        elif class(object)==NPC:
-            self.camera.center = object.rect.center
-        elif class(object)==Wall:
-            self.camera.center = object.rect.center
-        pass
+        if isinstance(object, Player):
+            object.draw(self.window)
+        elif isinstance(object, NPC):
+            object.draw(self.window)
+        elif isinstance(object, Wall):
+            object.draw(self.window)
+        else:
+            pass
 
     def render(self):
         for i in range(SceneSettings.tileXnum):
