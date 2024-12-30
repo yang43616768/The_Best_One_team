@@ -1,6 +1,9 @@
 from setting import *
 import pygame
 import map
+from player import *
+from npc import *
+from wall import *
 
 class SceneManager:
     def __init__(self, window):
