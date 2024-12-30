@@ -20,7 +20,7 @@ class SceneManager:
     def get_height(self):
         return WindowsSettings.height * WindowsSettings.OutdoorScale
     
-    def update_camera(self, player):
+    def update_camera(self, object):
         pass
 
     def render(self):

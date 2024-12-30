@@ -5,6 +5,7 @@ import sys
 from setting import *
 from map import *
 from SceneManager import *
+from player import *
 
 def draw_screen(window, background_path):
     background = pygame.image.load(background_path)
@@ -36,8 +37,12 @@ def main():
     # Stage 1 - Teaching Section
     pygame.display.set_caption("Learn To Start")
     #......进行教学关背景渲染与墙体生成，并将npc和玩家位置初始化
-run_game()
+    scene_manager = SceneManager(window)
+    scene_manager.tick(30)
+    scene_manager.render()
 
+    player = Player(100, 100)
+    walls = []
 
 
     waiting = True
@@ -46,6 +51,8 @@ run_game()
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-        Player.update(walls)
+        player.update(walls)
+        scene_manager.render()
+        pygame.display.flip()
 if __name__ == "__main__":
     main()
