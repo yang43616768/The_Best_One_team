@@ -1,11 +1,14 @@
 from setting import *
 import pygame
 
+
 class Player(pygame.sprite.Sprite):
-    def __init__(self,x,y):
+    def __init__(self, x, y):
         super().__init__()
         self.image = pygame.image.load(Gamepath.player)
-        self.image = pygame.transform.scale(self.image, (PlayerSettings.width, PlayerSettings.height))
+        self.image = pygame.transform.scale(
+            self.image, (PlayerSettings.playerWidth, PlayerSettings.playerHeight)
+        )
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
@@ -15,7 +18,7 @@ class Player(pygame.sprite.Sprite):
         self.attack = PlayerSettings.playerAttack
         self.moves = PlayerSettings.PlayerMoves
 
-    def update(self,walls):
+    def update(self, walls):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
             self.rect.x -= self.speed
@@ -43,3 +46,9 @@ class Player(pygame.sprite.Sprite):
             self.rect.y = 0
         if self.rect.y > WindowsSettings.height - PlayerSettings.playerHeight:
             self.rect.y = WindowsSettings.height - PlayerSettings.playerHeight
+    def check_interaction(self,npc):
+        distance = pygame.math.Vector2(self.rect.center).distance_to(npc.rect.center)
+        if distance<=20:
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_e]:
+                npc.trigger_dialogue()
