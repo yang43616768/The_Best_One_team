@@ -46,9 +46,13 @@ class Player(pygame.sprite.Sprite):
             self.rect.y = 0
         if self.rect.y > WindowsSettings.height - PlayerSettings.playerHeight:
             self.rect.y = WindowsSettings.height - PlayerSettings.playerHeight
+
     def check_interaction(self,npc):
         distance = pygame.math.Vector2(self.rect.center).distance_to(npc.rect.center)
         if distance<=20:
             keys = pygame.key.get_pressed()
             if keys[pygame.K_e]:
                 npc.trigger_dialogue()
+    
+    def draw(self,window):
+        window.blit(self.image, self.rect)

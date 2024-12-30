@@ -13,5 +13,9 @@ class NPC(pygame.sprite.Sprite):
         self.y = y
         self.rect = self.image.get_rect()
         self.rect.topleft = (x,y)
+        self.name = name
     def trigger_dialogue(self):
-        if name == 
+        if self.name == 'Alice':
+            print("Alice: Hi, I am Alice.")
+    def draw(self,window):
+        window.blit(self.image, self.rect)

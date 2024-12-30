@@ -21,7 +21,7 @@ class SceneSettings:
 
 
 class Gamepath:
-    player = r".\assets\player\1.png"
+    player = r".\assets\images\player.png"
 
     groundTiles = [
         r".\assets\tiles\ground1.png",

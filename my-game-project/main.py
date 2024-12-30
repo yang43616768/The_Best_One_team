@@ -1,7 +1,8 @@
 import pygame
 import random
 import sys
-
+from npc import *
+from wall import *
 from setting import *
 from map import *
 from SceneManager import *
@@ -32,17 +33,23 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-    player = Player(100,100)
-    walls = []
+
+    pygame.display.set_caption("Learn To Start")
+    player = Player(150,150)
+    walls = pygame.sprite.Group()
+    walls.add(Wall(100,100,2,2))
+    walls.add(Wall(200,200,2,2))
     # Stage 1 - Teaching Section
     pygame.display.set_caption("Learn To Start")
-    #......进行教学关背景渲染与墙体生成，并将npc和玩家位置初始化
     scene_manager = SceneManager(window)
     scene_manager.tick(30)
     scene_manager.render()
+    pygame.display.flip()
 
+    npc1 = NPC(200,200,r".\assets\images\player.png",'Alice')
     player = Player(100, 100)
-    walls = []
+
+
 
 
     waiting = True
@@ -51,8 +58,15 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-        player.update(walls)
-        scene_manager.render()
-        pygame.display.flip()
+
+            player.update(walls)
+
+            scene_manager.update_camera(player)
+            scene_manager.update_camera(npc1)
+            scene_manager.update_camera(walls)
+
+            pygame.display.flip()
+            player.check_interaction(npc1)
+
 if __name__ == "__main__":
     main()
