@@ -21,6 +21,12 @@ class SceneManager:
         return WindowsSettings.height * WindowsSettings.OutdoorScale
     
     def update_camera(self, object):
+        if class(object)==Player:
+            self.camera.center = object.rect.center
+        elif class(object)==NPC:
+            self.camera.center = object.rect.center
+        elif class(object)==Wall:
+            self.camera.center = object.rect.center
         pass
 
     def render(self):
