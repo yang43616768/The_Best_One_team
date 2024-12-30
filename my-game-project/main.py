@@ -1,10 +1,12 @@
 import pygame
 import random
 import sys
-from setting import *
-from player import *
 
-def draw_screen(window,background_path):
+from setting import *
+from map import *
+from SceneManager import *
+
+def draw_screen(window, background_path):
     background = pygame.image.load(background_path)
     window.blit(background, (0, 0))
     font = pygame.font.Font(None, 36)
@@ -34,6 +36,10 @@ def main():
     # Stage 1 - Teaching Section
     pygame.display.set_caption("Learn To Start")
     #......进行教学关背景渲染与墙体生成，并将npc和玩家位置初始化
+run_game()
+
+
+
     waiting = True
     while waiting:
         for event in pygame.event.get():
