@@ -61,6 +61,8 @@ def main():
 
             player.update(walls)
 
+            window.fill((0, 0, 0))
+            scene_manager.render()
             scene_manager.update_camera(player)
             scene_manager.update_camera(npc1)
             scene_manager.update_camera(walls)
