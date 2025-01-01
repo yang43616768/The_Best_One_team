@@ -58,9 +58,9 @@ def stage1(window):
             window.fill((0, 0, 0))
 
             scene_manager.render()
-            scene_manager.update_camera(player)
-            scene_manager.update_camera(npc1)
-            scene_manager.update_camera(walls)
+            scene_manager.location(player)
+            scene_manager.location(npc1)
+            scene_manager.location(walls)
 
 
             pygame.display.flip()

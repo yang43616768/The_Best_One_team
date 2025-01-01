@@ -2,8 +2,8 @@ from enum import Enum
 
 class WindowsSettings:
     name = 'My Game'
-    width = 1280
-    height = 720
+    width = 1500
+    height = 900
     OutdoorScale = 1.5
 
 class PlayerSettings:
@@ -15,9 +15,9 @@ class PlayerSettings:
     PlayerDefense = 3
     PlayerMoves = 3
 class SceneSettings:
-    tileXnum = 48
-    tileYnum = 27
-    tileWidth = tileHeight = 40
+    tileXnum = 60
+    tileYnum = 36
+    tileWidth = tileHeight = 25
 
 
 class Gamepath:
