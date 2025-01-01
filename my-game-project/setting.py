@@ -4,7 +4,7 @@ class WindowsSettings:
     name = 'My Game'
     width = 1500
     height = 900
-    OutdoorScale = 1.5
+    OutdoorScale = 2
 
 class PlayerSettings:
     playerSpeed = 5
