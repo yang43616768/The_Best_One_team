@@ -57,13 +57,13 @@ class SceneManager:
 
     def tick(self, fps):
         self.clock.tick(fps)
-    
+
     def get_width(self):
         return WindowsSettings.width * WindowsSettings.OutdoorScale
-    
+
     def get_height(self):
         return WindowsSettings.height * WindowsSettings.OutdoorScale
-    
+
     def location(self, obj):
         if isinstance(obj, pygame.sprite.Group):
             obj.draw(self.window)

@@ -57,6 +57,5 @@ class Player(pygame.sprite.Sprite):
                 npc.trigger_dialogue(npc.name)
         elif distance >=50 or keys[pygame.K_ESCAPE]:
             npc.close_dialogue()
-
     def draw(self,window):
         window.blit(self.image, self.rect)
