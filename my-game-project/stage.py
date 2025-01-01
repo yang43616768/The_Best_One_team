@@ -53,7 +53,7 @@ def stage1(window):
                 else:
                     npc1.handle_input(event)
 
-            player.update(walls)
+            player.update(walls,npc1.dialogue_active)
 
             window.fill((0, 0, 0))
 

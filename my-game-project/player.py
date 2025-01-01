@@ -18,40 +18,42 @@ class Player(pygame.sprite.Sprite):
         self.attack = PlayerSettings.playerAttack
         self.moves = PlayerSettings.PlayerMoves
 
-    def update(self, walls):
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_a]:
-            self.rect.x -= self.speed
-        if keys[pygame.K_d]:
-            self.rect.x += self.speed
-        if keys[pygame.K_w]:
-            self.rect.y -= self.speed
-        if keys[pygame.K_s]:
-            self.rect.y += self.speed
-        for wall in walls:
-            if self.rect.colliderect(wall.rect):
-                if keys[pygame.K_a]:
-                    self.rect.x += self.speed
-                if keys[pygame.K_d]:
-                    self.rect.x -= self.speed
-                if keys[pygame.K_w]:
-                    self.rect.y += self.speed
-                if keys[pygame.K_s]:
-                    self.rect.y -= self.speed
-        if self.rect.x < 0:
-            self.rect.x = 0
-        if self.rect.x > WindowsSettings.width - PlayerSettings.playerWidth:
-            self.rect.x = WindowsSettings.width - PlayerSettings.playerWidth
-        if self.rect.y < 0:
-            self.rect.y = 0
-        if self.rect.y > WindowsSettings.height - PlayerSettings.playerHeight:
-            self.rect.y = WindowsSettings.height - PlayerSettings.playerHeight
+    def update(self, walls,dialogue_active):
+        if not dialogue_active:
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_a]:
+                self.rect.x -= self.speed
+            if keys[pygame.K_d]:
+                self.rect.x += self.speed
+            if keys[pygame.K_w]:
+                self.rect.y -= self.speed
+            if keys[pygame.K_s]:
+                self.rect.y += self.speed
+            for wall in walls:
+                if self.rect.colliderect(wall.rect):
+                    if keys[pygame.K_a]:
+                        self.rect.x += self.speed
+                    if keys[pygame.K_d]:
+                        self.rect.x -= self.speed
+                    if keys[pygame.K_w]:
+                        self.rect.y += self.speed
+                    if keys[pygame.K_s]:
+                        self.rect.y -= self.speed
+            if self.rect.x < 0:
+                self.rect.x = 0
+            if self.rect.x > WindowsSettings.width - PlayerSettings.playerWidth:
+                self.rect.x = WindowsSettings.width - PlayerSettings.playerWidth
+            if self.rect.y < 0:
+                self.rect.y = 0
+            if self.rect.y > WindowsSettings.height - PlayerSettings.playerHeight:
+                self.rect.y = WindowsSettings.height - PlayerSettings.playerHeight
 
     def check_interaction(self,npc):
         distance = pygame.math.Vector2(self.rect.center).distance_to(npc.rect.center)
         keys = pygame.key.get_pressed()
+
         if distance <= 20:
-            if keys[pygame.K_e]:
+            if keys[pygame.K_e] and not npc.dialogue_active:
                 npc.trigger_dialogue(npc.name)
         elif distance >=50 or keys[pygame.K_ESCAPE]:
             npc.close_dialogue()

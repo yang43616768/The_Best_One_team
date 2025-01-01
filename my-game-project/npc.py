@@ -20,7 +20,7 @@ class NPC(pygame.sprite.Sprite):
         self.dialogue_text = ''
         self.player_input = ''
         self.messages: List[Dict] = [
-            {"role": "system", "content": "You are Alice,a guiding NPC in a game world.The player has just come to this world and needs your guidance.When the input involves about your identity or the setting of this game,you should tell him who you are and what you can do for him."}
+            {"role": "system", "content": "You are Alice,a guiding NPC in a game world.The player has just come to this world and needs your guidance.When the input involves about your identity or the setting of this game,you should tell him who you are and what you can do for him.Your should response with less than 15 words."}
         ]
         self.client = OpenAI(
             base_url='http://10.15.88.73:5001/v1',
@@ -54,7 +54,7 @@ class NPC(pygame.sprite.Sprite):
                     # 将玩家输入的文本上传给大模型
                     self.messages.append({"role": "user", "content": self.player_input})
                     response = self.client.chat.completions.create(
-                        model="llama-2-13b-chat",
+                        model="llama3.2",
                         messages=self.messages,
                     )
                     assistant_reply = response.choices[0].message.content
