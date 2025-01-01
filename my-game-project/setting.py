@@ -1,7 +1,7 @@
 from enum import Enum
 
 class WindowsSettings:
-    name = 'default game name'
+    name = 'My Game'
     width = 1280
     height = 720
     OutdoorScale = 1.5
