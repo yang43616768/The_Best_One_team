@@ -60,12 +60,12 @@ def stage1(window):
 
             window.fill((0, 0, 0))
 
+            scene_manager.update_camera(player)  # 更新摄像机位置
             scene_manager.render()
             scene_manager.location(player)
+            scene_manager.location(walls)
             for npc in npcs:
                 scene_manager.location(npc)
-            scene_manager.location(walls)
-
 
             pygame.display.flip()
             for npc in npcs:
