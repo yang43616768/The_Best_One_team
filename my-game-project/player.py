@@ -49,10 +49,12 @@ class Player(pygame.sprite.Sprite):
 
     def check_interaction(self,npc):
         distance = pygame.math.Vector2(self.rect.center).distance_to(npc.rect.center)
-        if distance<=20:
-            keys = pygame.key.get_pressed()
+        keys = pygame.key.get_pressed()
+        if distance <= 20:
             if keys[pygame.K_e]:
-                npc.trigger_dialogue()
-    
+                npc.trigger_dialogue(npc.name)
+        elif distance >=50 or keys[pygame.K_ESCAPE]:
+            npc.close_dialogue()
+
     def draw(self,window):
         window.blit(self.image, self.rect)

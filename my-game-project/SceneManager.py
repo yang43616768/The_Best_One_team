@@ -23,9 +23,13 @@ class SceneManager:
     def get_height(self):
         return WindowsSettings.height * WindowsSettings.OutdoorScale
     
-    def update_camera(self, object):
-        object.draw(self.window)
-        pass
+    def update_camera(self, obj):
+        if isinstance(obj, pygame.sprite.Group):
+            obj.draw(self.window)
+        elif isinstance(obj, Player) or isinstance(obj, NPC):
+            obj.draw(self.window)
+        if isinstance(obj,NPC) and obj.dialogue_active:
+            obj.draw_dialogue(self.window)
 
     def render(self):
         for i in range(SceneSettings.tileXnum):
