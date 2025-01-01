@@ -41,13 +41,23 @@ class NPC(pygame.sprite.Sprite):
             for line in self.dialogue_history:
                 text_surface = font.render(line, True, (255, 255, 255))
                 text_rect = text_surface.get_rect(center=(window.get_width() / 2, y_offset))
-                pygame.draw.rect(window, (0, 0, 0), text_rect.inflate(20, 20))
+                
+                # 创建一个透明背景的表面
+                background_surface = pygame.Surface(text_rect.size, pygame.SRCALPHA)
+                background_surface.fill((0, 0, 0, 0))  # 透明背景
+                
+                window.blit(background_surface, text_rect.topleft)
                 window.blit(text_surface, text_rect)
                 y_offset -= 40
 
             input_surface = font.render(self.player_input, True, (255, 255, 255))
             input_rect = input_surface.get_rect(center=(window.get_width() / 2, window.get_height() - 50))
-            pygame.draw.rect(window, (0, 0, 0), input_rect.inflate(20, 20))
+            
+            # 创建一个透明背景的表面
+            background_surface = pygame.Surface(input_rect.size, pygame.SRCALPHA)
+            background_surface.fill((0, 0, 0, 0))  # 透明背景
+            
+            window.blit(background_surface, input_rect.topleft)
             window.blit(input_surface, input_rect)
 
     def handle_input(self, event):
