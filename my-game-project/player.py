@@ -41,12 +41,12 @@ class Player(pygame.sprite.Sprite):
                         self.rect.y -= self.speed
             if self.rect.x < 0:
                 self.rect.x = 0
-            if self.rect.x > WindowsSettings.width - PlayerSettings.playerWidth:
-                self.rect.x = WindowsSettings.width - PlayerSettings.playerWidth
+            if self.rect.x > WindowsSettings.width * 1.5 - PlayerSettings.playerWidth:
+                self.rect.x = WindowsSettings.width * 1.5 - PlayerSettings.playerWidth
             if self.rect.y < 0:
                 self.rect.y = 0
-            if self.rect.y > WindowsSettings.height - PlayerSettings.playerHeight:
-                self.rect.y = WindowsSettings.height - PlayerSettings.playerHeight
+            if self.rect.y > WindowsSettings.height * 1.5 - PlayerSettings.playerHeight:
+                self.rect.y = WindowsSettings.height * 1.5 - PlayerSettings.playerHeight
 
     def check_interaction(self,npc):
         distance = pygame.math.Vector2(self.rect.center).distance_to(npc.rect.center)
