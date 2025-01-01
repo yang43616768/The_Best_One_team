@@ -8,8 +8,8 @@ class WindowsSettings:
 
 class PlayerSettings:
     playerSpeed = 5
-    playerWidth = 60
-    playerHeight = 55
+    playerWidth = 63.5
+    playerHeight = 75
     playerHealth = 20
     playerAttack = 5
     PlayerDefense = 3

@@ -17,7 +17,7 @@ def draw_screen(window, background_path):
 
 def stage0(window):
     pygame.display.set_caption("Game Start")
-    draw_screen(window,r".\assets\images\grass.png")
+    draw_screen(window,r".\assets\images\grass.jpg")
     waiting = True
     while waiting:
         for event in pygame.event.get():
