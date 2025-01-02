@@ -4,7 +4,7 @@ from openai import OpenAI
 from typing import List,Dict
 
 class NPC(pygame.sprite.Sprite):
-    def __init__(self, x, y,image_path,name,setting,bg_path=None):
+    def __init__(self, x, y,image_path,name,setting,items,bg_path=None):
         super().__init__()
         self.name = name
         self.image = pygame.image.load(image_path)
@@ -18,23 +18,20 @@ class NPC(pygame.sprite.Sprite):
         self.name = name
         self.dialogue_font_size = 36
         self.dialogue_active = False
+        self.buy_active = False
         self.dialogue_text = ''
         self.player_input = ''
         self.messages: List[Dict] = [setting]
         self.dialogue_history: List[str] = []
-        self.scroll_offset = 0
         self.client = OpenAI(
             base_url='http://10.15.88.73:5001/v1',
             api_key='ollama',  # required but ignored
         )
         self.dialogue_bg = pygame.image.load(bg_path) if bg_path else None
+        self.items = items  # 示例物品及其价格
     def draw(self,window):
         window.blit(self.image, self.rect)
 
-    def trigger_dialogue(self,text):
-        self.dialogue_active = True
-        self.dialogue_text = text
-        self.player_input = ''
 
     def draw_dialogue(self, window):
         if self.dialogue_active:
@@ -82,7 +79,7 @@ class NPC(pygame.sprite.Sprite):
             window.blit(background_surface, input_rect.topleft)
             window.blit(input_surface, input_rect)
 
-    def handle_input(self, event):
+    def handle_input(self, event,player):
         if self.dialogue_active:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
@@ -98,11 +95,58 @@ class NPC(pygame.sprite.Sprite):
                     self.player_input = ""
                 elif event.key == pygame.K_BACKSPACE:
                     self.player_input = self.player_input[:-1]
+
+                elif event.key == pygame.K_ESCAPE:
+                    self.dialogue_active = False
                 else:
                     self.player_input += event.unicode
+        elif self.buy_active:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    self.buy_active = False  # 关闭购买界面
+                elif event.key in [pygame.K_1, pygame.K_2, pygame.K_3]:
+                    item_index = event.key - pygame.K_1
+                    if item_index < len(self.items):
+                        item_name, item_price = self.items[item_index]
+                        if player.currency >= item_price:
+                            player.currency -= item_price
+                            player.inventory.append(item_name)
+                            self.items.pop(item_index)  # 从商店中移除该物品
 
+        elif not self.buy_active and not self.dialogue_active:
+            distance = pygame.math.Vector2(self.rect.center).distance_to(player.rect.center)
+            if event.type == pygame.KEYDOWN and distance <= 40:
+                if event.key == pygame.K_e:
+                    self.dialogue_active = True
+                elif event.key == pygame.K_b:
+                    self.buy_active = True
     def close_dialogue(self):
         self.dialogue_active = False
         self.dialogue_text = ""
         self.player_input = ""
         self.dialogue_history = []
+
+
+
+    def draw_buy(self,window):
+        # 绘制购买界面的背景
+        buy_bg = pygame.Surface((400, 300))
+        buy_bg.fill((0, 0, 0))  # 黑色背景
+        buy_bg.set_alpha(200)  # 半透明
+        window.blit(buy_bg, (window.get_width() // 2 - 200, window.get_height() // 2 - 150))
+
+        # 绘制购买界面的文本
+        font = pygame.font.SysFont(None, 36)
+        text_surface = font.render("Buy Items", True, (255, 255, 255))
+        text_rect = text_surface.get_rect(center=(window.get_width() // 2, window.get_height() // 2 - 100))
+        window.blit(text_surface, text_rect)
+
+
+        # 绘制物品列表
+        for i, (item, price) in enumerate(self.items):
+            item_surface = font.render(f"{i+1}. {item} - {price} currency", True, (255, 255, 255))
+            item_rect = item_surface.get_rect(topleft=(window.get_width() // 2 - 150, window.get_height() // 2 - 50 + i * 40))
+            window.blit(item_surface, item_rect)
+
+
+    # def trigger_fight(self):

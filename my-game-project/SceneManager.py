@@ -32,6 +32,8 @@ class SceneManager:
             self.window.blit(obj.image, (obj.rect.x - self.camera.x, obj.rect.y - self.camera.y))
         if isinstance(obj, NPC) and obj.dialogue_active:
             obj.draw_dialogue(self.window)
+        if isinstance(obj,NPC) and obj.buy_active:
+            obj.draw_buy(self.window)
 
     def render(self):
         # 创建一个临时表面，用于渲染摄像机视角内的内容

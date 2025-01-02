@@ -17,9 +17,11 @@ class Player(pygame.sprite.Sprite):
         self.defense = PlayerSettings.PlayerDefense
         self.attack = PlayerSettings.playerAttack
         self.moves = PlayerSettings.PlayerMoves
+        self.currency = 100
+        self.inventory = []
+    def update(self, walls,dialogue_active,buy_active):
 
-    def update(self, walls,dialogue_active):
-        if not dialogue_active:
+        if not dialogue_active and not buy_active:
             keys = pygame.key.get_pressed()
             if keys[pygame.K_a]:
                 self.rect.x -= self.speed
@@ -29,6 +31,7 @@ class Player(pygame.sprite.Sprite):
                 self.rect.y -= self.speed
             if keys[pygame.K_s]:
                 self.rect.y += self.speed
+
             for wall in walls:
                 if self.rect.colliderect(wall.rect):
                     if keys[pygame.K_a]:
@@ -48,14 +51,9 @@ class Player(pygame.sprite.Sprite):
             if self.rect.y > WindowsSettings.height - PlayerSettings.playerHeight:
                 self.rect.y = WindowsSettings.height - PlayerSettings.playerHeight
 
-    def check_interaction(self,npc):
-        distance = pygame.math.Vector2(self.rect.center).distance_to(npc.rect.center)
-        keys = pygame.key.get_pressed()
+    def Armo_detect(self):
+        pass
 
-        if distance <= 20:
-            if keys[pygame.K_e] and not npc.dialogue_active:
-                npc.trigger_dialogue(npc.name)
-        elif distance >=50 or keys[pygame.K_ESCAPE]:
-            npc.close_dialogue()
+
     def draw(self,window):
         window.blit(self.image, self.rect)

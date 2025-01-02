@@ -31,7 +31,7 @@ def stage1(window):
     player = Player(150,150)
     walls = pygame.sprite.Group()
     walls.add(Wall(100,100,2,2))
-    npc1 = NPC(200,200,r".\assets\images\npc1.1.png",'Alice',{"role": "system", "content": NpcSettings.Task_Alice},r".\assets\images\npc1.2.png")
+    npc1 = NPC(200,200,NpcSettings.photopath1_1,'Alice',{"role": "system", "content": NpcSettings.Task_Alice},NpcSettings.items1,NpcSettings.photopath1_2)
     npcs = [npc1]
 
     pygame.display.set_caption("Learn To Start")
@@ -52,11 +52,11 @@ def stage1(window):
                 if event.key == pygame.K_ESCAPE:
                     for npc in npcs:
                         npc.close_dialogue()
+                        npc.buy_active = False
                 else:
                     for npc in npcs:
-                        npc.handle_input(event)
-
-            player.update(walls,npc1.dialogue_active)
+                        npc.handle_input(event,player)
+            player.update(walls, any(npc.dialogue_active for npc in npcs),any(npc.buy_active for npc in npcs))
 
             window.fill((0, 0, 0))
 
@@ -68,5 +68,4 @@ def stage1(window):
                 scene_manager.location(npc)
 
             pygame.display.flip()
-            for npc in npcs:
-                player.check_interaction(npc)
+
