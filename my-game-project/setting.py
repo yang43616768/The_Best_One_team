@@ -7,7 +7,7 @@ class WindowsSettings:
     OutdoorScale = 2
 
 class PlayerSettings:
-    playerSpeed = 2.5
+    playerSpeed = 6
     playerWidth = 63.5
     playerHeight = 75
     playerHealth = 20
