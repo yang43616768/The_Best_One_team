@@ -36,6 +36,8 @@ class SceneManager:
             obj.draw_dialogue(self.window)
         if isinstance(obj,NPC) and obj.buy_active:
             obj.draw_buy(self.window)
+        if isinstance(obj,NPC) and obj.fight_active:
+            obj.draw_fight(self.window)
 
     # def location(self, obj):
     #     if isinstance(obj, pygame.sprite.Group):

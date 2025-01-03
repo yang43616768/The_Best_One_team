@@ -4,10 +4,10 @@ from openai import OpenAI
 from typing import List,Dict
 
 class NPC(pygame.sprite.Sprite):
-    def __init__(self, x, y,image_path,name,setting,items,bg_path=None):
+    def __init__(self, x, y,name):
         super().__init__()
         self.name = name
-        self.image = pygame.image.load(image_path)
+        self.image = pygame.image.load(name[2])
         self.image = pygame.transform.scale(
             self.image, (PlayerSettings.playerWidth, PlayerSettings.playerHeight)
         )
@@ -19,16 +19,30 @@ class NPC(pygame.sprite.Sprite):
         self.dialogue_font_size = 36
         self.dialogue_active = False
         self.buy_active = False
+        self.fight_active = False
         self.dialogue_text = ''
         self.player_input = ''
-        self.messages: List[Dict] = [setting]
+        self.messages: List[Dict] = [name[0]]
         self.dialogue_history: List[str] = []
         self.client = OpenAI(
             base_url='http://10.15.88.73:5001/v1',
             api_key='ollama',  # required but ignored
         )
-        self.dialogue_bg = pygame.image.load(bg_path) if bg_path else None
-        self.items = items  # 示例物品及其价格
+        self.dialogue_bg = pygame.image.load(name[3]) if name[3] else None
+        self.items = name[1]  # 示例物品及其价格
+        self.defeated = False
+        self.round = 0
+        self.damage_to_npc = 0
+        self.damage_to_player = 0
+        self.key_counts = {
+            pygame.K_e: 0,
+            pygame.K_q: 0
+        }
+        self.reward = name[4]
+        self.currency = name[5]
+        self.health = name[6]
+        self.attack = name[7]
+        self.player_health = 100
     def draw(self,window):
         window.blit(self.image, self.rect)
 
@@ -81,6 +95,7 @@ class NPC(pygame.sprite.Sprite):
 
     def handle_input(self, event,player):
         if self.dialogue_active:
+            #对话窗口交互
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     self.messages.append({"role": "user", "content": self.player_input})
@@ -98,9 +113,11 @@ class NPC(pygame.sprite.Sprite):
 
                 elif event.key == pygame.K_ESCAPE:
                     self.dialogue_active = False
+
                 else:
                     self.player_input += event.unicode
         elif self.buy_active:
+            #商店窗口交互
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.buy_active = False  # 关闭购买界面
@@ -112,14 +129,27 @@ class NPC(pygame.sprite.Sprite):
                             player.currency -= item_price
                             player.inventory.append(item_name)
                             self.items.pop(item_index)  # 从商店中移除该物品
-
-        elif not self.buy_active and not self.dialogue_active:
+        elif self.fight_active:
+            #战斗窗口交互
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    self.fight_active = False
+                elif event.key in [pygame.K_q,pygame.K_e]:
+                    while (self.key_counts[pygame.K_q] + self.key_counts[pygame.K_e]) < player.moves:
+                        self.key_counts[event.key] += 1  # 记录按键次数
+                    if (self.key_counts[pygame.K_q] + self.key_counts[pygame.K_e]) == player.moves:
+                        self.fight_calculate(player)
+                    
+                    
+        elif not self.buy_active and not self.dialogue_active and not self.fight_active:
             distance = pygame.math.Vector2(self.rect.center).distance_to(player.rect.center)
             if event.type == pygame.KEYDOWN and distance <= 40:
                 if event.key == pygame.K_e:
                     self.dialogue_active = True
                 elif event.key == pygame.K_b:
                     self.buy_active = True
+                elif event.key == pygame.K_f and not self.defeated:
+                    self.fight_active = True
     def close_dialogue(self):
         self.dialogue_active = False
         self.dialogue_text = ""
@@ -149,4 +179,47 @@ class NPC(pygame.sprite.Sprite):
             window.blit(item_surface, item_rect)
 
 
-    # def trigger_fight(self):
+    def fight_calculate(self,player):
+        self.player_health = player.health
+        self.round +=1
+        self.damage_to_npc += self.key_counts[pygame.K_e] * player.attack
+        if self.attack-self.key_counts[pygame.K_q] *player.defense >= 0:
+            self.damage_to_player += self.attack-self.key_counts[pygame.K_q] *player.defense 
+
+        # 重置按键计数
+        self.key_counts[pygame.K_e] = 0
+        self.key_counts[pygame.K_q] = 0
+
+        if player.health - self.damage_to_player <= 0:
+            self.fight_failed()
+        elif self.health - self.damage_to_npc <= 0:
+            self.fight_succeeded(player)
+
+
+
+    def fight_failed(self):
+        self.round = 0
+        self.damage_to_npc = 0
+        self.damage_to_player = 0
+        self.fight_active = False
+
+    def fight_succeeded(self,player):
+        self.round = 0
+        self.damage_to_npc = 0
+        self.damage_to_player = 0
+        self.fight_active = False
+        self.defeated = True
+        player.inventory.append(self.reward)
+        player.currency += self.currency
+
+    def draw_fight(self,window):
+        font = pygame.font.Font(None, 36)
+        window.fill((0, 0, 0))  # 清空窗口
+
+        # 绘制玩家血量
+        player_health_text = font.render(f"Player Health: {self.player_health-self.damage_to_player}", True, (255, 255, 255))
+        window.blit(player_health_text, (50, 50))
+        # 绘制NPC血量
+        npc_health_text = font.render(f"NPC Health: {self.health-self.damage_to_npc}", True, (255, 255, 255))
+        window.blit(npc_health_text, (50, 100)) 
+        pygame.display.flip()

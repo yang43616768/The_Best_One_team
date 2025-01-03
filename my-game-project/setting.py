@@ -10,7 +10,7 @@ class PlayerSettings:
     playerSpeed = 6
     playerWidth = 63.5
     playerHeight = 75
-    playerHealth = 20
+    playerHealth = 200
     playerAttack = 5
     PlayerDefense = 3
     PlayerMoves = 3
@@ -32,6 +32,11 @@ class NpcSettings:
     items1 = [("Item 1", 10), ("Item 2", 20), ("Item 3", 30)]
     photopath1_1 = r".\assets\images\npc1.1.png"
     photopath1_2 = r".\assets\images\npc1.2.png"
+    reward1 = 'The lengendary Sword'
+    currency1 = 100
+    health1 = 50
+    attack1 = 20
+    Alice = [Task_Alice,items1,photopath1_1,photopath1_2,reward1,currency1,health1,attack1]
 class SceneSettings:
     tileXnum = 60
     tileYnum = 36

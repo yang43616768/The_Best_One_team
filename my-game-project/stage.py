@@ -31,7 +31,7 @@ def stage1(window):
     player = Player(150,150)
     walls = pygame.sprite.Group()
     walls.add(Wall(100,100,2,2))
-    npc1 = NPC(200,200,NpcSettings.photopath1_1,'Alice',{"role": "system", "content": NpcSettings.Task_Alice},NpcSettings.items1,NpcSettings.photopath1_2)
+    npc1 = NPC(200,200,NpcSettings.Alice)
     npcs = [npc1]
 
     pygame.display.set_caption("Learn To Start")
