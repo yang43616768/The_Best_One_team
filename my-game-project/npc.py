@@ -43,6 +43,8 @@ class NPC(pygame.sprite.Sprite):
         self.health = name[6]
         self.attack = name[7]
         self.player_health = 100
+        self.attack_image = pygame.image.load(r".\assets\images\attack.png")
+        self.defence_image = pygame.image.load(r".\assets\images\defence.png")
     def draw(self,window):
         window.blit(self.image, self.rect)
 
@@ -195,6 +197,14 @@ class NPC(pygame.sprite.Sprite):
         elif self.health - self.damage_to_npc <= 0:
             self.fight_succeeded(player)
 
+    def draw_cards(self, window, y_offset):
+        # 绘制攻击牌
+        for i in range(self.key_counts[pygame.K_e]):
+            window.blit(self.attack_image, (50 + i * 60, y_offset))
+
+        # 绘制防御牌
+        for i in range(self.key_counts[pygame.K_q]):
+            window.blit(self.defence_image, (50 + i * 60, y_offset + 60))
 
 
     def fight_failed(self):
@@ -213,13 +223,35 @@ class NPC(pygame.sprite.Sprite):
         player.currency += self.currency
 
     def draw_fight(self,window):
+
         font = pygame.font.Font(None, 36)
         window.fill((0, 0, 0))  # 清空窗口
 
+        # 绘制玩家图像和npc图像
+        player_image = pygame.image.load(Gamepath.player)
+        player_image = pygame.transform.scale(player_image, (150,150))
+        player_image_rect = player_image.get_rect(topleft=(50, 200))
+        window.blit(player_image, player_image_rect)
+
+        npc_fight_image = pygame.transform.scale(self.image, (150,150))
+        npc_image_rect = npc_fight_image.get_rect(topright=(window.get_width() - 50, 200))
+        window.blit(npc_fight_image, npc_image_rect)
+
         # 绘制玩家血量
-        player_health_text = font.render(f"Player Health: {self.player_health-self.damage_to_player}", True, (255, 255, 255))
-        window.blit(player_health_text, (50, 50))
+        player_health_text = font.render(f"Player Health: {self.player_health - self.damage_to_player}", True, (255, 255, 255))
+        player_health_rect = player_health_text.get_rect(midtop=(player_image_rect.centerx, player_image_rect.bottom + 10))
+        window.blit(player_health_text, player_health_rect)
+        
         # 绘制NPC血量
-        npc_health_text = font.render(f"NPC Health: {self.health-self.damage_to_npc}", True, (255, 255, 255))
-        window.blit(npc_health_text, (50, 100)) 
+        npc_health_text = font.render(f"NPC Health: {self.health - self.damage_to_npc}", True, (255, 255, 255))
+        npc_health_rect = npc_health_text.get_rect(midtop=(npc_image_rect.centerx, npc_image_rect.bottom + 10))
+        window.blit(npc_health_text, npc_health_rect)
+
+        # 绘制回合数
+        round_text = font.render(f"Round: {self.round}", True, (255, 255, 255))
+        round_rect = round_text.get_rect(center=(window.get_width() / 2, 50))
+        window.blit(round_text, round_rect)
+
+        self.draw_cards(window, player_health_rect.bottom + 20)
+
         pygame.display.flip()
