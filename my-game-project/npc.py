@@ -139,12 +139,16 @@ class NPC(pygame.sprite.Sprite):
                 if event.key == pygame.K_ESCAPE:
                     self.fight_active = False
                 elif event.key in [pygame.K_q,pygame.K_e]:
-                    if (self.key_counts[pygame.K_q] + self.key_counts[pygame.K_e]) <= player.moves:
+                    if (self.key_counts[pygame.K_q] + self.key_counts[pygame.K_e]) < (player.moves-1):
                         self.key_counts[event.key] += 1  # 记录按键次数
-                    if (self.key_counts[pygame.K_q] + self.key_counts[pygame.K_e]) > player.moves:
-                        self.fight_calculate(player)
+
+                    elif (self.key_counts[pygame.K_q] + self.key_counts[pygame.K_e]) == (player.moves-1):
                         self.key_counts[event.key] += 1
-                        self.round +=1
+                        self.fight_calculate(player)
+                    elif (self.key_counts[pygame.K_q] + self.key_counts[pygame.K_e]) == player.moves:
+                        self.round += 1
+                        self.key_counts[pygame.K_q] = 0
+                        self.key_counts[pygame.K_e] = 0
                     
         elif not self.buy_active and not self.dialogue_active and not self.fight_active:
             distance = pygame.math.Vector2(self.rect.center).distance_to(player.rect.center)
@@ -190,9 +194,7 @@ class NPC(pygame.sprite.Sprite):
         if self.attack-self.key_counts[pygame.K_q] *player.defense >= 0:
             self.damage_to_player += self.attack-self.key_counts[pygame.K_q] *player.defense 
 
-        # 重置按键计数
-        self.key_counts[pygame.K_e] = 0
-        self.key_counts[pygame.K_q] = 0
+
 
         if player.health - self.damage_to_player <= 0:
             self.fight_failed()
@@ -228,9 +230,6 @@ class NPC(pygame.sprite.Sprite):
 
         font = pygame.font.Font(None, 36)
         window.fill((0, 0, 0))  # 清空窗口
-
-        window_width, window_height = window.get_size()
-
 
         # 绘制玩家图像和npc图像
         player_image = pygame.image.load(Gamepath.player)
