@@ -45,6 +45,8 @@ class NPC(pygame.sprite.Sprite):
         self.player_health = 100
         self.attack_image = pygame.image.load(r".\assets\images\attack.png")
         self.defence_image = pygame.image.load(r".\assets\images\defence.png")
+        self.attack_image = pygame.transform.scale(self.attack_image, (34, 45))
+        self.defence_image = pygame.transform.scale(self.defence_image, (34, 45))
     def draw(self,window):
         window.blit(self.image, self.rect)
 
@@ -137,11 +139,12 @@ class NPC(pygame.sprite.Sprite):
                 if event.key == pygame.K_ESCAPE:
                     self.fight_active = False
                 elif event.key in [pygame.K_q,pygame.K_e]:
-                    if (self.key_counts[pygame.K_q] + self.key_counts[pygame.K_e]) < player.moves:
+                    if (self.key_counts[pygame.K_q] + self.key_counts[pygame.K_e]) <= player.moves:
                         self.key_counts[event.key] += 1  # 记录按键次数
-                    if (self.key_counts[pygame.K_q] + self.key_counts[pygame.K_e]) == player.moves:
+                    if (self.key_counts[pygame.K_q] + self.key_counts[pygame.K_e]) > player.moves:
                         self.fight_calculate(player)
-                    
+                        self.key_counts[event.key] += 1
+                        self.round +=1
                     
         elif not self.buy_active and not self.dialogue_active and not self.fight_active:
             distance = pygame.math.Vector2(self.rect.center).distance_to(player.rect.center)
@@ -183,7 +186,6 @@ class NPC(pygame.sprite.Sprite):
 
     def fight_calculate(self,player):
         self.player_health = player.health
-        self.round +=1
         self.damage_to_npc += self.key_counts[pygame.K_e] * player.attack
         if self.attack-self.key_counts[pygame.K_q] *player.defense >= 0:
             self.damage_to_player += self.attack-self.key_counts[pygame.K_q] *player.defense 
@@ -227,13 +229,17 @@ class NPC(pygame.sprite.Sprite):
         font = pygame.font.Font(None, 36)
         window.fill((0, 0, 0))  # 清空窗口
 
+        window_width, window_height = window.get_size()
+
+
         # 绘制玩家图像和npc图像
         player_image = pygame.image.load(Gamepath.player)
-        player_image = pygame.transform.scale(player_image, (150,150))
-        player_image_rect = player_image.get_rect(topleft=(50, 200))
-        window.blit(player_image, player_image_rect)
+        player_image_scaled = pygame.transform.scale(player_image, (250, 300))
 
-        npc_fight_image = pygame.transform.scale(self.image, (150,150))
+        player_image_rect = player_image_scaled.get_rect(topleft=(50, 200))
+        window.blit(player_image_scaled, player_image_rect)
+
+        npc_fight_image = pygame.transform.scale(self.image, (250, 300))
         npc_image_rect = npc_fight_image.get_rect(topright=(window.get_width() - 50, 200))
         window.blit(npc_fight_image, npc_image_rect)
 
