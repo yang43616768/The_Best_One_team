@@ -33,8 +33,9 @@ def stage1(window):
     player = Player(150,150)
     walls = pygame.sprite.Group()
     walls.add(Wall(100,100,2,2))
-    npc1 = NPC(200,200,NpcSettings.Alice)
-    npcs = [npc1]
+    npc1 = NPC(200,200,NpcSettings.Lilia)
+    npc2 = NPC(300,300,NpcSettings.Berries)
+    npcs = [npc1,npc2]
 
     pygame.display.set_caption("Learn To Start")
 
@@ -69,6 +70,7 @@ def stage1(window):
             scene_manager.render()
             scene_manager.location(player)
             scene_manager.location(walls)
-            scene_manager.location(npc)
+            for npc in npcs:
+                scene_manager.location(npc)
             pygame.display.flip()
 
