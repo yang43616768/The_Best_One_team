@@ -135,7 +135,7 @@ class NPC(pygame.sprite.Sprite):
                 if event.key == pygame.K_ESCAPE:
                     self.fight_active = False
                 elif event.key in [pygame.K_q,pygame.K_e]:
-                    while (self.key_counts[pygame.K_q] + self.key_counts[pygame.K_e]) < player.moves:
+                    if (self.key_counts[pygame.K_q] + self.key_counts[pygame.K_e]) < player.moves:
                         self.key_counts[event.key] += 1  # 记录按键次数
                     if (self.key_counts[pygame.K_q] + self.key_counts[pygame.K_e]) == player.moves:
                         self.fight_calculate(player)
