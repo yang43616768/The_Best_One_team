@@ -2,6 +2,7 @@ import pygame
 from setting import *
 from openai import OpenAI
 from typing import List,Dict
+import sys
 
 class NPC(pygame.sprite.Sprite):
     def __init__(self, x, y,name):
@@ -241,7 +242,6 @@ class NPC(pygame.sprite.Sprite):
         self.defeated = True
         player.inventory.append(self.reward)
         player.currency += self.currency
-
     def draw_fight(self,window):
 
         font = pygame.font.Font(None, 36)
@@ -262,18 +262,20 @@ class NPC(pygame.sprite.Sprite):
         player_health_text = font.render(f"Player Health: {self.player_health - self.damage_to_player}", True, (255, 255, 255))
         player_health_rect = player_health_text.get_rect(midtop=(player_image_rect.centerx, player_image_rect.bottom + 10))
         window.blit(player_health_text, player_health_rect)
+        self.draw_health_bar(window, player_image_rect.centerx, player_image_rect.bottom + 40, self.player_health-self.damage_to_player, self.player_health)
         
         # 绘制NPC血量
         npc_health_text = font.render(f"NPC Health: {self.health - self.damage_to_npc}", True, (255, 255, 255))
         npc_health_rect = npc_health_text.get_rect(midtop=(npc_image_rect.centerx, npc_image_rect.bottom + 10))
         window.blit(npc_health_text, npc_health_rect)
+        self.draw_health_bar(window, npc_image_rect.centerx, npc_image_rect.bottom + 40, self.health-self.damage_to_npc, self.health)
 
         # 绘制回合数
         round_text = font.render(f"Round: {self.round}", True, (255, 255, 255))
         round_rect = round_text.get_rect(center=(window.get_width() / 2, 50))
         window.blit(round_text, round_rect)
 
-        self.draw_cards(window, player_health_rect.bottom + 20)
+        self.draw_cards(window, player_image_rect.bottom + 70)
 
     def draw_bubble(self, window):
         font = pygame.font.Font(None, 24)
@@ -288,3 +290,15 @@ class NPC(pygame.sprite.Sprite):
         window.blit(bubble_surface, bubble_rect)
 
         pygame.display.flip()
+
+    def draw_health_bar(self, window, x, y, current_health, max_health):
+        bar_width = 200
+        bar_height = 20
+        health_ratio = current_health / max_health
+
+        # 绘制白色背景条
+        pygame.draw.rect(window, (255, 255, 255), (x - bar_width // 2, y, bar_width, bar_height))
+
+        # 绘制红色血条
+        pygame.draw.rect(window, (255, 0, 0), (x - bar_width // 2, y, bar_width * health_ratio, bar_height))
+

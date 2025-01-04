@@ -6,6 +6,8 @@ from wall import *
 from SceneManager import *
 from npc import *
 
+
+
 def draw_screen(window, background_path):
     background = pygame.image.load(background_path)
     window.blit(background, (0, 0))

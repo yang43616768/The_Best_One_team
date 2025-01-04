@@ -57,3 +57,4 @@ class Gamepath:
     ]
 
     tree = r".\assets\tiles\tree.png"
+

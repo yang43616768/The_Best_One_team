@@ -40,7 +40,7 @@ class SceneManager:
             obj.draw_buy(self.window)
         if isinstance(obj,NPC) and obj.fight_active:
             obj.draw_fight(self.window)
-        if isinstance(obj,NPC) and obj.quest_active:
+        if isinstance(obj,NPC) and obj.quest_active and not obj.dialogue_active and not obj.buy_active and not obj.fight_active:
             obj.draw_bubble(self.window)
 
 
