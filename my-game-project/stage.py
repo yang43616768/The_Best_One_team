@@ -44,6 +44,9 @@ def stage1(window):
 
     waiting = True
     while waiting:
+        for npc in npcs:
+            npc.switch_bubble()
+            scene_manager.location(npc)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -64,8 +67,6 @@ def stage1(window):
             scene_manager.render()
             scene_manager.location(player)
             scene_manager.location(walls)
-            for npc in npcs:
-                scene_manager.location(npc)
-
+            scene_manager.location(npc)
             pygame.display.flip()
 

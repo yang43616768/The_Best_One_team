@@ -18,6 +18,7 @@ class NPC(pygame.sprite.Sprite):
         self.name = name
         self.dialogue_font_size = 36
         self.dialogue_active = False
+        self.quest_active = False
         self.buy_active = False
         self.fight_active = False
         self.dialogue_text = ''
@@ -47,6 +48,12 @@ class NPC(pygame.sprite.Sprite):
         self.defence_image = pygame.image.load(r".\assets\images\defence.png")
         self.attack_image = pygame.transform.scale(self.attack_image, (34, 45))
         self.defence_image = pygame.transform.scale(self.defence_image, (34, 45))
+        self.bubble_text1 = 'Press "E" to talk to me.'
+        self.bubble_text2 = 'Press "B" to buy items.'
+        self.bubble_text3 = 'Press "F" to fight with me.'
+        self.bubble_texts = [self.bubble_text1,self.bubble_text2,self.bubble_text3]  # 气泡显示的文本列表
+        self.current_bubble_index = 0
+        self.last_bubble_switch_frame = 0  # 上次切换气泡的时间
     def draw(self,window):
         window.blit(self.image, self.rect)
 
@@ -153,19 +160,26 @@ class NPC(pygame.sprite.Sprite):
         elif not self.buy_active and not self.dialogue_active and not self.fight_active:
             distance = pygame.math.Vector2(self.rect.center).distance_to(player.rect.center)
             if event.type == pygame.KEYDOWN and distance <= 40:
+                self.quest_active = True
                 if event.key == pygame.K_e:
                     self.dialogue_active = True
                 elif event.key == pygame.K_b:
                     self.buy_active = True
                 elif event.key == pygame.K_f and not self.defeated:
-                    self.fight_active = True
+                    self.fight_active = True           
+            elif distance > 40:
+                self.quest_active = False
     def close_dialogue(self):
         self.dialogue_active = False
         self.dialogue_text = ""
         self.player_input = ""
         self.dialogue_history = []
 
-
+    def switch_bubble(self):
+            current_frame = pygame.time.get_ticks() // (1000 // 60)  # 获取当前帧数
+            if current_frame - self.last_bubble_switch_frame > 90:  # 每隔90帧切换一次气泡
+                self.current_bubble_index = (self.current_bubble_index + 1) % len(self.bubble_texts)
+                self.last_bubble_switch_frame = current_frame
 
     def draw_buy(self,window):
         # 绘制购买界面的背景
@@ -216,6 +230,8 @@ class NPC(pygame.sprite.Sprite):
         self.damage_to_npc = 0
         self.damage_to_player = 0
         self.fight_active = False
+        self.key_counts[pygame.K_q] = 0
+        self.key_counts[pygame.K_e] = 0
 
     def fight_succeeded(self,player):
         self.round = 0
@@ -258,5 +274,17 @@ class NPC(pygame.sprite.Sprite):
         window.blit(round_text, round_rect)
 
         self.draw_cards(window, player_health_rect.bottom + 20)
+
+    def draw_bubble(self, window):
+        font = pygame.font.Font(None, 24)
+        bubble_surface = pygame.Surface((200, 50), pygame.SRCALPHA)
+        bubble_surface.fill((255, 255, 255, 200))  # 半透明白色背景
+
+        text_surface = font.render(self.bubble_texts[self.current_bubble_index], True, (0, 0, 0))
+        text_rect = text_surface.get_rect(center=(100, 25))
+        bubble_surface.blit(text_surface, text_rect)
+
+        bubble_rect = bubble_surface.get_rect(midbottom=(self.rect.centerx, self.rect.top - 10))
+        window.blit(bubble_surface, bubble_rect)
 
         pygame.display.flip()

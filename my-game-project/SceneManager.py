@@ -40,6 +40,8 @@ class SceneManager:
             obj.draw_buy(self.window)
         if isinstance(obj,NPC) and obj.fight_active:
             obj.draw_fight(self.window)
+        if isinstance(obj,NPC) and obj.quest_active:
+            obj.draw_bubble(self.window)
 
 
     def render(self):
