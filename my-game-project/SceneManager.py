@@ -27,7 +27,7 @@ class SceneManager:
     def location(self, obj):
         if isinstance(obj, pygame.sprite.Group):
             for sprite in obj:
-                self.window.blit(sprite.image, (sprite.rect.x - self.camera.x, sprite.rect.y - self.camera.y))
+                self.window.blit(sprite.image, (sprite.rect.x - WindowsSettings.OutdoorScale * self.camera.x, sprite.rect.y - WindowsSettings.OutdoorScale * self.camera.y))
         elif isinstance(obj, Player) :
             self.window.blit(obj.image, (obj.rect.x - self.camera.x, obj.rect.y - self.camera.y))
         elif isinstance(obj, NPC):
