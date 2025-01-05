@@ -184,10 +184,10 @@ class NPC(pygame.sprite.Sprite):
 
     def draw_buy(self,window):
         # 绘制购买界面的背景
-        buy_bg = pygame.Surface((400, 300))
+        buy_bg = pygame.Surface((600, 300))
         buy_bg.fill((0, 0, 0))  # 黑色背景
         buy_bg.set_alpha(200)  # 半透明
-        window.blit(buy_bg, (window.get_width() // 2 - 200, window.get_height() // 2 - 150))
+        window.blit(buy_bg, (window.get_width() // 2 - 300, window.get_height() // 2 - 150))
 
         # 绘制购买界面的文本
         font = pygame.font.SysFont(None, 36)
@@ -199,7 +199,7 @@ class NPC(pygame.sprite.Sprite):
         # 绘制物品列表
         for i, (item, price) in enumerate(self.items):
             item_surface = font.render(f"{i+1}. {item} - {price} currency", True, (255, 255, 255))
-            item_rect = item_surface.get_rect(topleft=(window.get_width() // 2 - 150, window.get_height() // 2 - 50 + i * 40))
+            item_rect = item_surface.get_rect(topleft=(window.get_width() // 2 - 200, window.get_height() // 2 - 50 + i * 40))
             window.blit(item_surface, item_rect)
 
 

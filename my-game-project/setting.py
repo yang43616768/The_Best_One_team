@@ -109,12 +109,17 @@ class Gamepath:
     player = r".\assets\images\player.png"
 
     groundTiles = [
-        r".\assets\tiles\ground1.png",
-        r".\assets\tiles\ground2.png",
-        r".\assets\tiles\ground3.png",
-        r".\assets\tiles\ground4.png",
-        r".\assets\tiles\ground5.png",
-        r".\assets\tiles\ground6.png",
+        r".\assets\tiles\grass12.png",
+        r".\assets\tiles\grass13.png",
+        r".\assets\tiles\grass14.png",
+        r".\assets\tiles\grass15.png",
+        r".\assets\tiles\grass16.png",
+        r".\assets\tiles\grass17.png",
+        r".\assets\tiles\grass18.png",
+        r".\assets\tiles\grass19.png",
+        r".\assets\tiles\grass20.png",
+        r".\assets\tiles\grass21.png",
+        r".\assets\tiles\grass22.png",
     ]
 
     tree = r".\assets\tiles\tree.png"

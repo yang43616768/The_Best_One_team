@@ -118,8 +118,8 @@ def stage1(window,player):
                 scene_manager.location(npc,npcs)
             player.show_inventory(scene_manager.window)
             pygame.display.flip()
-            if Portal1.tp_succeed:
+            if Portal2.tp_succeed:
                 waiting = False
-                
+
     def stage3(window,player):
         pass
