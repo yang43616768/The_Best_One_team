@@ -5,7 +5,7 @@ from player import *
 from wall import *
 from SceneManager import *
 from npc import *
-
+from portal import *
 
 
 def draw_screen(window, background_path):
@@ -32,10 +32,11 @@ def stage0(window):
 def stage1(window):
     player = Player(150,150)
     walls = pygame.sprite.Group()
-    walls.add(Wall(100,100,2,2))
+    walls.add(Wall(2000,1200,100,100))
     npc1 = NPC(200,200,NpcSettings.Lilia)
     npc2 = NPC(300,300,NpcSettings.Berries)
     npcs = [npc1,npc2]
+    Portal1 = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield"], 100, 100)
 
     pygame.display.set_caption("Learn To Start")
 
@@ -49,7 +50,7 @@ def stage1(window):
     while waiting:
         for npc in npcs:
             npc.switch_bubble()
-            scene_manager.location(npc)
+            scene_manager.location(npc,npcs)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -62,15 +63,17 @@ def stage1(window):
                 else:
                     for npc in npcs:
                         npc.handle_input(event,player)
-            player.update(walls, any(npc.dialogue_active for npc in npcs),any(npc.buy_active for npc in npcs))
-
+            player.update(walls, any(npc.dialogue_active for npc in npcs),any(npc.buy_active for npc in npcs),scene_manager)
+            Portal1.check_telepotation(player,event)
             window.fill((0, 0, 0))
 
             scene_manager.update_camera(player)  # 更新摄像机位置
             scene_manager.render()
-            scene_manager.location(player)
-            scene_manager.location(walls)
+            scene_manager.location(player,npcs)
+            scene_manager.location(walls,npcs)
             for npc in npcs:
-                scene_manager.location(npc)
+                scene_manager.location(npc,npcs)
             pygame.display.flip()
+            if Portal1.tp_succeed:
+                waiting = False
 

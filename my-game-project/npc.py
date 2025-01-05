@@ -139,7 +139,7 @@ class NPC(pygame.sprite.Sprite):
                         item_name, item_price = self.items[item_index]
                         if player.currency >= item_price:
                             player.currency -= item_price
-                            player.inventory.append(item_name)
+                            player.add_item(item_name)
                             self.items.pop(item_index)  # 从商店中移除该物品
         elif self.fight_active:
             #战斗窗口交互
@@ -240,7 +240,7 @@ class NPC(pygame.sprite.Sprite):
         self.damage_to_player = 0
         self.fight_active = False
         self.defeated = True
-        player.inventory.append(self.reward)
+        player.add_item(self.reward)
         player.currency += self.currency
     def draw_fight(self,window):
 

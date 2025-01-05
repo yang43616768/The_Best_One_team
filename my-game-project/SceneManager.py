@@ -24,13 +24,13 @@ class SceneManager:
     def get_height(self):
         return WindowsSettings.height * WindowsSettings.OutdoorScale
     
-    def location(self, obj):
+    def location(self, obj,npcs):
         if isinstance(obj, pygame.sprite.Group):
             for sprite in obj:
                 self.window.blit(sprite.image, (sprite.rect.x - WindowsSettings.OutdoorScale * self.camera.x, sprite.rect.y - WindowsSettings.OutdoorScale * self.camera.y))
         elif isinstance(obj, Player) :
             self.window.blit(obj.image, (obj.rect.x - self.camera.x, obj.rect.y - self.camera.y))
-        elif isinstance(obj, NPC):
+        elif isinstance(obj, NPC) and not any(npc.dialogue_active for npc in npcs) and not any(npc.buy_active for npc in npcs) and not any(npc.fight_active for npc in npcs):
             self.window.blit(obj.image, (obj.rect.x - WindowsSettings.OutdoorScale * self.camera.x, obj.rect.y - WindowsSettings.OutdoorScale * self.camera.y))
         else:
             pass

@@ -1,4 +1,5 @@
 from enum import Enum
+from items import *
 
 class WindowsSettings:
     name = 'Card battle revolution'
@@ -36,7 +37,7 @@ class NpcSettings:
     items1 = [("A worn-out helmet", 10), ("A worn-out armor", 20), ("A worn-out short sword", 30)]
     photopath1_1 = r".\assets\images\npc1.1.png"
     photopath1_2 = r".\assets\images\npc1.2.png"
-    reward1 = 'The lengendary Sword'
+    reward1 = 'The Lengendary Sword'
     currency1 = 100
     health1 = 50
     attack1 = 20
@@ -62,7 +63,7 @@ class NpcSettings:
     items2 = [("Tears of the Dragon", 10), ("Dragon Soul", 20), ("Dragon bone", 30)]
     photopath2_1 = r".\assets\images\npc2.1.png"
     photopath2_2 = r".\assets\images\npc2.2.png"
-    reward2 = 'The lengendary shield'
+    reward2 = 'The Lengendary Shield'
     currency2 = 100
     health2 = 50
     attack2 = 20
@@ -87,3 +88,23 @@ class Gamepath:
 
     tree = r".\assets\tiles\tree.png"
 
+class Item_List:
+#   物品名 = Items([攻击力,防御力,生命值,步数])
+    The_Lengendary_Sword = Items([10,0,0,0])
+    The_Lengendary_Shield = Items([0,10,0,0])
+    A_worn_out_helmet = Items([0,1,0,0])
+    A_worn_out_armor = Items([0,0,2,0])
+    A_worn_out_short_sword = Items([3,0,0,0])
+    Tears_of_the_Dragon = Items([0,1,0,1])
+    Dragon_Soul = Items([0,0,2,0])
+    Dragon_bone = Items([3,0,0,0])
+    items = {
+        "The Lengendary Sword": The_Lengendary_Sword,
+        "The Lengendary Shield": The_Lengendary_Shield,
+        "A worn-out helmet": A_worn_out_helmet,
+        "A worn-out armor": A_worn_out_armor,
+        "A worn-out short sword": A_worn_out_short_sword,
+        "Tears of the Dragon": Tears_of_the_Dragon,
+        "Dragon Soul": Dragon_Soul,
+        "Dragon bone": Dragon_bone,
+    }

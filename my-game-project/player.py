@@ -19,7 +19,7 @@ class Player(pygame.sprite.Sprite):
         self.moves = PlayerSettings.PlayerMoves
         self.currency = 100
         self.inventory = []
-    def update(self, walls,dialogue_active,buy_active):
+    def update(self, walls,dialogue_active,buy_active, scene_manager):
 
         if not dialogue_active and not buy_active:
             keys = pygame.key.get_pressed()
@@ -32,6 +32,7 @@ class Player(pygame.sprite.Sprite):
             if keys[pygame.K_s]:
                 self.rect.y += self.speed
 
+            # 检测与墙壁的碰撞
             for wall in walls:
                 if self.rect.colliderect(wall.rect):
                     if keys[pygame.K_a]:
@@ -51,9 +52,11 @@ class Player(pygame.sprite.Sprite):
             if self.rect.y > WindowsSettings.height * 1.5 - PlayerSettings.playerHeight:
                 self.rect.y = WindowsSettings.height * 1.5 - PlayerSettings.playerHeight
 
-    def Armo_detect(self):
-        pass
 
 
     def draw(self,window):
         window.blit(self.image, self.rect)
+
+    def add_item(self, item):
+        self.inventory.append(item)
+        Item_List.items[item].statistics_adding(self)
