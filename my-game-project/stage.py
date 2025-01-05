@@ -29,8 +29,8 @@ def stage0(window):
                 pygame.quit()
                 sys.exit()
 
-def stage1(window):
-    player = Player(150,150)
+def stage1(window,player):
+
     walls = pygame.sprite.Group()
     walls.add(Wall(2000,1200,100,100))
     npc1 = NPC(200,200,NpcSettings.Lilia)
@@ -77,3 +77,17 @@ def stage1(window):
             if Portal1.tp_succeed:
                 waiting = False
 
+    def stage2(window,player):
+        pygame.display.set_caption("We are getting deeper!")
+        
+        waiting = True
+        while waiting:
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    waiting = False
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+    def stage3(window,player):
+        pass
