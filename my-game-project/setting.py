@@ -30,6 +30,7 @@ class NpcSettings:
     7.The player can purchase resources from the NPCs by pressing the "B" key.
     8.In each fight, the player can play a card to attack or defend by pressing "Q"and"E". The player can play up to 3 cards in each round initially.
     9.Some efficient tools can be purchased in the NPC shop to increase the number of cards played in each round.
+    10.The player can press the "I" key to check the inventory and his current ability values.
     '''
 
     # Lilia 莉莉娅
@@ -120,14 +121,14 @@ class Gamepath:
 
 class Item_List:
 #   物品名 = Items([攻击力,防御力,生命值,步数])
-    The_Lengendary_Sword = Items([10,0,0,0])
-    The_Lengendary_Shield = Items([0,10,0,0])
-    A_worn_out_helmet = Items([0,1,0,0])
-    A_worn_out_armor = Items([0,0,2,0])
-    A_worn_out_short_sword = Items([3,0,0,0])
-    Tears_of_the_Dragon = Items([0,1,0,1])
-    Dragon_Soul = Items([0,0,2,0])
-    Dragon_bone = Items([3,0,0,0])
+    The_Lengendary_Sword = Items([10,0,0,0],'A peerless sword in the world')
+    The_Lengendary_Shield = Items([0,10,0,0],'A peerless shield in the world')
+    A_worn_out_helmet = Items([0,1,0,0],"It's a bit worn out...But it can still be used")
+    A_worn_out_armor = Items([0,0,2,0],"It's a bit worn out...But it can still be used")
+    A_worn_out_short_sword = Items([3,0,0,0],"It's a bit worn out...But it can still be used")
+    Tears_of_the_Dragon = Items([0,5,0,1],'Do you hear the dragon crying?')
+    Dragon_Soul = Items([0,0,20,0],'The soul of the dragon')
+    Dragon_bone = Items([4,0,10,0],'A bit horrible...Do you want to hear the story behind it?')
     items = {
         "The Lengendary Sword": The_Lengendary_Sword,
         "The Lengendary Shield": The_Lengendary_Shield,
@@ -138,3 +139,4 @@ class Item_List:
         "Dragon Soul": Dragon_Soul,
         "Dragon bone": Dragon_bone,
     }
+    keys = items.keys()

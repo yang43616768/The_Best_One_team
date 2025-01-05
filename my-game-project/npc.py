@@ -131,7 +131,7 @@ class NPC(pygame.sprite.Sprite):
         elif self.buy_active:
             #商店窗口交互
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
+                if event.key == pygame.K_ESCAPE or event.key == pygame.K_b:
                     self.buy_active = False  # 关闭购买界面
                 elif event.key in [pygame.K_1, pygame.K_2, pygame.K_3]:
                     item_index = event.key - pygame.K_1

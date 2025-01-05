@@ -19,6 +19,7 @@ class Player(pygame.sprite.Sprite):
         self.moves = PlayerSettings.PlayerMoves
         self.currency = 100
         self.inventory = []
+        self.bag_active = False
     def update(self, walls,dialogue_active,buy_active, scene_manager):
 
         if not dialogue_active and not buy_active:
@@ -59,4 +60,39 @@ class Player(pygame.sprite.Sprite):
 
     def add_item(self, item):
         self.inventory.append(item)
-        Item_List.items[item].statistics_adding(self)
+        if item in Item_List.keys:
+            Item_List.items[item].statistics_adding(self)
+
+
+
+    def show_inventory(self, window):
+        if self.bag_active:
+            font = pygame.font.Font(None, 36)
+            inventory_surface = pygame.Surface((1000, 500), pygame.SRCALPHA)
+            inventory_surface.fill((255, 255, 255, 180))  # 半透明白色背景
+            y_offset = 10
+
+
+            # 显示玩家属性
+            attributes = [
+                f"Health: {self.health}",
+                f"Defense: {self.defense}",
+                f"Attack: {self.attack}",
+                f"Moves: {self.moves}",
+                f"Currency: {self.currency}"
+            ]
+            for attribute in attributes:
+                text_surface = font.render(attribute, True, (255, 255, 255))
+                inventory_surface.blit(text_surface, (10, y_offset))
+                y_offset += 30
+
+            # 显示背包中的物品
+            y_offset += 10
+            for item in self.inventory:
+                item_text = f'''{item} - {Item_List.items[item].discription} '''
+                text_surface = font.render(item_text, True, (255, 255, 255))
+                inventory_surface.blit(text_surface, (10, y_offset))
+                y_offset += 30
+
+            window.blit(inventory_surface, (50, 50))
+        pygame.display.flip()
