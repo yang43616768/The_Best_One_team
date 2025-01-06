@@ -65,13 +65,13 @@ class NpcSettings:
     attack2 = 20
     Berries = [dialogue2,items2,photopath2_1,photopath2_2,reward2,currency2,health2,attack2]
 
-    #Irin 璃音
-    Task_Irin = '''You are Irin, a hostile NPC in a game world.You are evil and you are trying to make a scene.
+    #Irin_Evil 璃音
+    Task_Irin_Evil = '''You are Irin, a hostile NPC in a game world.You are evil and you are trying to make a scene.
     You are determined to stop the player here at any cost.
     When the input involves about your identity or the setting of this game,
     you should express your contemptuous attitude.
     '''+CommonSense 
-    dialogue3 = {"role": "system", "content":Task_Irin}
+    dialogue3 = {"role": "system", "content":Task_Irin_Evil}
     items3 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
     photopath3_1 = r".\assets\images\npc3.1.png"
     photopath3_2 = r".\assets\images\npc3.2.png"
@@ -79,7 +79,7 @@ class NpcSettings:
     currency3 = 100
     health3 = 250
     attack3 = 40
-    Irin = [dialogue3,items3,photopath3_1,photopath3_2,reward3,currency3,health3,attack3]
+    Irin_Evil = [dialogue3,items3,photopath3_1,photopath3_2,reward3,currency3,health3,attack3]
     
     #Sakura 樱
     Task_Sakura = '''You are Sakura,a NPC with senior status in a game world.
@@ -99,6 +99,131 @@ class NpcSettings:
     attack4 = 30
     Sakura = [dialogue4,items4,photopath4_1,photopath4_2,reward4,currency4,health4,attack4]
 
+    #Nyakori 喵可莉
+    Task_Nyakori = '''You are Nyakori,a NPC with senior status in a game world.
+    You are wise and have a high level of combat power.
+    You are afraid of the player's strength and want to test the player's strength.
+    You want to see if the player is qualified to defeat the final boss.
+    When the input involves about your identity or the setting of this game,
+    you should persuade the player not to move forward anymore.
+    '''+CommonSense
+    dialogue5 = {"role": "system", "content":Task_Nyakori}
+    items5 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
+    photopath5_1 = r".\assets\images\npc5.1.png"
+    photopath5_2 = r".\assets\images\npc5.2.png"
+    reward5 = "The philosopher's stone"
+    currency5 = 100
+    health5 = 700
+    attack5 = 30
+    Nyakori = [dialogue5,items5,photopath5_1,photopath5_2,reward5,currency5,health5,attack5]
+
+    #Eliza 心渊
+    Task_Eliza = '''You are Eliza,a NPC with senior status in a game world.
+    You are wise and have a high level of combat power.
+    You are afraid of the player's strength and want to test the player's strength.
+    You want to see if the player is qualified to defeat the final boss.
+    When the input involves about your identity or the setting of this game,
+    you should persuade the player not to move forward anymore.
+    '''+CommonSense
+    dialogue6 = {"role": "system", "content":Task_Eliza}
+    items6 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
+    photopath6_1 = r".\assets\images\npc6.1.png"
+    photopath6_2 = r".\assets\images\npc6.2.png"
+    reward6 = "The philosopher's stone"
+    currency6 = 100
+    health6 = 700
+    attack6 = 30
+    Eliza = [dialogue6,items6,photopath6_1,photopath6_2,reward6,currency6,health6,attack6]
+
+    #Erin 璃音
+    Task_Erin = '''You are Erin,a NPC with senior status in a game world.
+    You are wise and have a high level of combat power.
+    You are afraid of the player's strength and want to test the player's strength.
+    You want to see if the player is qualified to defeat the final boss.
+    When the input involves about your identity or the setting of this game,
+    you should persuade the player not to move forward anymore.
+    '''+CommonSense
+    dialogue7 = {"role": "system", "content":Task_Erin}
+    items7 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
+    photopath7_1 = r".\assets\images\npc7.1.png"
+    photopath7_2 = r".\assets\images\npc7.2.png"
+    reward7 = "The philosopher's stone"
+    currency7 = 100
+    health7 = 700
+    attack7 = 30
+    Erin = [dialogue7,items7,photopath7_1,photopath7_2,reward7,currency7,health7,attack7]
+
+    #Lianne 莲
+    Task_Lianne = '''You are Lianne,a NPC with senior status in a game world.
+    You are wise and have a high level of combat power.
+    You are afraid of the player's strength and want to test the player's strength.
+    You want to see if the player is qualified to defeat the final boss.
+    When the input involves about your identity or the setting of this game,
+    you should persuade the player not to move forward anymore.
+    '''+CommonSense
+    dialogue8 = {"role": "system", "content":Task_Lianne}
+    items8 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
+    photopath8_1 = r".\assets\images\npc8.1.png"
+    photopath8_2 = r".\assets\images\npc8.2.png"
+    reward8 = "The philosopher's stone"
+    currency8 = 100
+    health8 = 700
+    attack8 = 30
+    Lianne = [dialogue8,items8,photopath8_1,photopath8_2,reward8,currency8,health8,attack8]
+
+    #Theia 缇娅
+    Task_Theia = '''You are Theia,a NPC with senior status in a game world.
+    You are wise and have a high level of combat power.
+    You are afraid of the player's strength and want to test the player's strength.
+    You want to see if the player is qualified to defeat the final boss.
+    When the input involves about your identity or the setting of this game,
+    you should persuade the player not to move forward anymore.
+    '''+CommonSense
+    dialogue9 = {"role": "system", "content":Task_Theia}
+    items9 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
+    photopath9_1 = r".\assets\images\npc9.1.png"
+    photopath9_2 = r".\assets\images\npc9.2.png"
+    reward9 = "The philosopher's stone"
+    currency9 = 100
+    health9 = 700
+    attack9 = 30
+    Theia = [dialogue9,items9,photopath9_1,photopath9_2,reward9,currency9,health9,attack9]
+
+    #Drakura 德古拉
+    Task_Drakura = '''You are Drakura,a NPC with senior status in a game world.
+    You are wise and have a high level of combat power.
+    You are afraid of the player's strength and want to test the player's strength.
+    You want to see if the player is qualified to defeat the final boss.
+    When the input involves about your identity or the setting of this game,
+    you should persuade the player not to move forward anymore.
+    '''+CommonSense
+    dialogue10 = {"role": "system", "content":Task_Drakura}
+    items10 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
+    photopath10_1 = r".\assets\images\npc10.1.png"
+    photopath10_2 = r".\assets\images\npc10.2.png"
+    reward10 = "The philosopher's stone"
+    currency10 = 100
+    health10 = 700
+    attack10 = 30
+    Sakura = [dialogue10,items10,photopath10_1,photopath10_2,reward10,currency10,health10,attack10]
+
+    #Nyarutoru 喵露朵露薇
+    Task_Nyarutoru = '''You are Nyarutoru,a NPC with senior status in a game world.
+    You are wise and have a high level of combat power.
+    You are afraid of the player's strength and want to test the player's strength.
+    You want to see if the player is qualified to defeat the final boss.
+    When the input involves about your identity or the setting of this game,
+    you should persuade the player not to move forward anymore.
+    '''+CommonSense
+    dialogue11 = {"role": "system", "content":Task_Nyarutoru}
+    items11 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
+    photopath11_1 = r".\assets\images\npc11.1.png"
+    photopath11_2 = r".\assets\images\npc11.2.png"
+    reward11 = "The philosopher's stone"
+    currency11 = 100
+    health11 = 700
+    attack11 = 30
+    Nyarutoru = [dialogue11,items11,photopath11_1,photopath11_2,reward11,currency11,health11,attack11]
 class SceneSettings:
     tileXnum = 120
     tileYnum = 72
