@@ -49,6 +49,8 @@ def stage_common(npcs,player,walls,transparents,portal,scene_manager,window):
             scene_manager.render(npcs)
             scene_manager.location(player,npcs)
             scene_manager.location(walls,npcs)
+            for transparent in transparents:
+                scene_manager.location(transparent,npcs)
             for npc in npcs:
                 scene_manager.location(npc,npcs)
             player.show_inventory(scene_manager.window)
