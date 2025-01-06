@@ -4,14 +4,14 @@ class Transparent:
         self.image = pygame.image.load(image_path)
         self.image = pygame.transform.scale(self.image, (length, width))
         self.surface = pygame.Surface((length, width), pygame.SRCALPHA)
-        self.alpha = 0
+        self.alpha = 255
         self.rect = self.image.get_rect()
-        self.x = x
-        self.y = y
+        self.rect.x = x
+        self.rect.y = y
 
     def check_transparent(self,player):
         if self.rect.colliderect(player.rect):
             self.alpha = 100
         else:
-            self.alpha = 0
+            self.alpha = 255
 

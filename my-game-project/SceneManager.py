@@ -57,9 +57,9 @@ class SceneManager:
             self.window.blit(obj.image, (obj.rect.x - self.camera.x, obj.rect.y - self.camera.y))
         elif isinstance(obj, Transparent):
             # 如果对象是 Transparent 类的实例，则渲染透明对象
-            obj.surface.blit(obj.image, (0, 0))
-            obj.surface.set_alpha(obj.alpha)
-            self.window.blit(obj.surface, (obj.x - self.camera.x, obj.y - self.camera.y))
+            temp_surface = obj.image.copy()
+            temp_surface.set_alpha(obj.alpha)
+            self.window.blit(temp_surface, (obj.rect.x - self.camera.x, obj.rect.y - self.camera.y))
         else:
             pass
         

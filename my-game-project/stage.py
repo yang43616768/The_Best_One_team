@@ -82,7 +82,7 @@ def stage1(window,player):
     npc2 = NPC(300,300,NpcSettings.Berries)
     npcs = [npc1,npc2]
     portal = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield"], 100, 100)
-    transparent_roof = Transparent(r".\assets\images\roof.png",200,200,100,100)
+    transparent_roof = Transparent(r".\assets\images\roof.png",500,500,100,100)
     transparents = [transparent_roof]
 
     pygame.display.set_caption("Learn To Start")
