@@ -33,7 +33,7 @@ def stage1(window,player):
 
     walls = pygame.sprite.Group()
     walls.add(Wall(0,200,50,50))
-    walls.add(Wall(200, 980, 100, 100))
+    walls.add(Wall(200, 850, 100, 100))
     walls.add(Wall(1450, 850, 100, 100))
     walls.add(Wall(0, 1100, 50, 50))
     walls.add(Wall(2950, 1750, 50, 50))

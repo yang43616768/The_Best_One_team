@@ -1,28 +1,32 @@
 from setting import *
 import pygame
 from map import *
+from setting import Gamepath, SceneSettings # 从setting.py中导入Gamepath和SceneSettings
 from player import *
-from npc import *
+from npc import *   
 from wall import *
 
 class SceneManager:
     def __init__(self, window):
         self.map = Map()
+        self.tiles = self.map.gen_map()
+        self.tile_images = [pygame.image.load(tile) for tile in Gamepath.groundTiles]
+        self.tile_images = [pygame.transform.scale(image, (SceneSettings.tileWidth, SceneSettings.tileHeight)) for image in self.tile_images]
         self.window = window
         self.clock = pygame.time.Clock()
         self.cameraX = 0
         self.cameraY = 0
         # 调整摄像机的宽度和高度为地图的1/4
-        self.camera = pygame.Rect(self.cameraX, self.cameraY, WindowsSettings.width // 2, WindowsSettings.height // 2)
+        self.camera = pygame.Rect(self.cameraX, self.cameraY, WindowsSettings.width , WindowsSettings.height)
 
     def tick(self, fps):
         self.clock.tick(fps)
-
+    
     def get_width(self):
-        return WindowsSettings.width * WindowsSettings.OutdoorScale
+        return WindowsSettings.width
     
     def get_height(self):
-        return WindowsSettings.height * WindowsSettings.OutdoorScale
+        return WindowsSettings.height
     
     def location(self, obj, npcs):
         # 根据对象类型将其绘制到窗口上
@@ -51,48 +55,32 @@ class SceneManager:
         # 如果NPC处于任务状态，并且不处于对话、购买或战斗状态，则绘制任务气泡
         if isinstance(obj, NPC) and obj.quest_active and not obj.dialogue_active and not obj.buy_active and not obj.fight_active:
             obj.draw_bubble(self.window)
-
-
+        
     def render(self):
         # 创建一个临时表面，用于渲染摄像机视角内的内容
-        temp_surface = pygame.Surface((self.camera.width, self.camera.height))
-        
+        temp_surface = pygame.Surface((self.camera.width, self.camera.height)) 
         # 渲染地图
         for i in range(SceneSettings.tileXnum):
             for j in range(SceneSettings.tileYnum):
-                tile = self.map.map[i][j]
-                tile_rect = tile.get_rect(topleft=(SceneSettings.tileWidth * i, SceneSettings.tileHeight * j))
+                tile_type = self.tiles[i][j]
+                tile_image = self.tile_images[tile_type]
+                tile_rect = tile_image.get_rect(topleft=(SceneSettings.tileWidth * i, SceneSettings.tileHeight * j))
                 if self.camera.colliderect(tile_rect):
-                    temp_surface.blit(tile, (tile_rect.x - self.camera.x, tile_rect.y - self.camera.y))
-        # # 渲染墙(红色色块)
-        # walls = [
-        #     Wall(2000, 1200, 100, 100),
-        #     Wall(200, 1200, 100, 100)
+                    temp_surface.blit(tile_image, (tile_rect.x - self.camera.x, tile_rect.y - self.camera.y))
+            
+        # # 渲染红色色块（固定在地图上）
+        # red_blocks = [
+        #     (1000, 800, 50, 50),
+        #     (100, 800, 50, 50)
         # ]
-        # for wall in walls:
-        #     if self.camera.colliderect(wall.rect):
-        #         temp_surface.blit(wall.image, (wall.rect.x - self.camera.x, wall.rect.y - self.camera.y))
-
-        # 渲染红色色块（固定在地图上）
-        red_blocks = [
-            (1000, 800, 50, 50),
-            (100, 800, 50, 50)
-        ]
-        for block in red_blocks:
-            block_rect = pygame.Rect(block)
-            if self.camera.colliderect(block_rect):
-                pygame.draw.rect(temp_surface, (255, 0, 0), (block_rect.x - self.camera.x, block_rect.y - self.camera.y, block_rect.width, block_rect.height))
+        # for block in red_blocks:
+        #     block_rect = pygame.Rect(block)
+        #     if self.camera.colliderect(block_rect):
+        #         pygame.draw.rect(temp_surface, (255, 0, 0), (block_rect.x - self.camera.x, block_rect.y - self.camera.y, block_rect.width, block_rect.height))
         
-        # # # 渲染(贴纸图片)
-        
-        
-        # # 渲染玩家
-        # temp_surface.blit(player.image, (player.rect.x - self.camera.x, player.rect.y - self.camera.y))
-        # ##############################################################################################################
-        # # 将临时表面缩放到窗口大小，并渲染到窗口上
-        # scaled_surface = pygame.transform.scale(temp_surface, (WindowsSettings.width, WindowsSettings.height))
-        # self.window.blit(scaled_surface, (0, 0))
-
+        # 将临时表面渲染到窗口上
+        self.window.blit(temp_surface, (0, 0))
+        pygame.display.flip()
 
     def update_camera(self, player):
         # 计算摄像机的新位置
