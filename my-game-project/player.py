@@ -69,7 +69,7 @@ class Player(pygame.sprite.Sprite):
         if self.bag_active:
             font = pygame.font.Font(None, 36)
             inventory_surface = pygame.Surface((1000, 500), pygame.SRCALPHA)
-            inventory_surface.fill((255, 255, 255, 180))  # 半透明白色背景
+            inventory_surface.fill((173, 216, 230, 180))  # 半透明淡蓝色背景
             y_offset = 10
 
 

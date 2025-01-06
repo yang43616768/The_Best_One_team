@@ -61,7 +61,7 @@ def stage1(window,player):
                         npc.close_dialogue()
                         npc.buy_active = False
                     player.bag_active = False
-                elif event.key == pygame.K_i:
+                elif event.key == pygame.K_i and not any(npc.dialogue_active for npc in npcs):  # 按下i键打开背包
                     player.bag_active = not player.bag_active
                 else:
                     for npc in npcs:
@@ -101,7 +101,7 @@ def stage1(window,player):
                         npc.close_dialogue()
                         npc.buy_active = False
                     player.bag_active = False
-                elif event.key == pygame.K_i:
+                elif event.key == pygame.K_i and not any(npc.dialogue_active for npc in npcs):  # 按下i键打开背包
                     player.bag_active = not player.bag_active
                 else:
                     for npc in npcs:
