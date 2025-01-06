@@ -32,7 +32,11 @@ def stage0(window):
 def stage1(window,player):
 
     walls = pygame.sprite.Group()
-    walls.add(Wall(2000,1200,100,100))
+    walls.add(Wall(0,200,50,50))
+    walls.add(Wall(200, 850, 100, 100))
+    walls.add(Wall(1450, 850, 100, 100))
+    walls.add(Wall(0, 1100, 50, 50))
+    walls.add(Wall(2950, 1750, 50, 50))
     npc1 = NPC(200,200,NpcSettings.Lilia)
     npc2 = NPC(300,300,NpcSettings.Berries)
     npcs = [npc1,npc2]
@@ -42,7 +46,7 @@ def stage1(window,player):
 
     scene_manager = SceneManager(window)
     scene_manager.tick(30)
-    scene_manager.render()
+    scene_manager.render(npcs)
     pygame.display.flip()
 
 
@@ -50,7 +54,6 @@ def stage1(window,player):
     while waiting:
         for npc in npcs:
             npc.switch_bubble()
-            scene_manager.location(npc,npcs)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -71,7 +74,7 @@ def stage1(window,player):
             window.fill((0, 0, 0))
 
             scene_manager.update_camera(player)  # 更新摄像机位置
-            scene_manager.render()
+            scene_manager.render(npcs)
             scene_manager.location(player,npcs)
             scene_manager.location(walls,npcs)
             for npc in npcs:
@@ -88,7 +91,7 @@ def stage1(window,player):
         npc2 = NPC(300,300,NpcSettings.Irin)
         npcs = [npc1,npc2]
         Portal2 = Portal(r".\assets\images\portal.png",['The Evil Black Mandala',"The philosopher's stone"], 100, 100)
-
+        scene_manager = SceneManager(window)
         pygame.display.set_caption("We are getting deeper!")
         waiting = True
         while waiting:
@@ -101,7 +104,7 @@ def stage1(window,player):
                         npc.close_dialogue()
                         npc.buy_active = False
                     player.bag_active = False
-                elif event.key == pygame.K_i and not any(npc.dialogue_active for npc in npcs):  # 按下i键打开背包
+                elif event.key == pygame.K_i:
                     player.bag_active = not player.bag_active
                 else:
                     for npc in npcs:

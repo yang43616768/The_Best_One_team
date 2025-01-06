@@ -8,7 +8,7 @@ class WindowsSettings:
     OutdoorScale = 2
 
 class PlayerSettings:
-    playerSpeed = 6
+    playerSpeed = 20
     playerWidth = 63.5
     playerHeight = 75
     playerHealth = 200
@@ -100,8 +100,8 @@ class NpcSettings:
     Sakura = [dialogue4,items4,photopath4_1,photopath4_2,reward4,currency4,health4,attack4]
 
 class SceneSettings:
-    tileXnum = 60
-    tileYnum = 36
+    tileXnum = 120
+    tileYnum = 72
     tileWidth = tileHeight = 25
 
 
