@@ -5,6 +5,8 @@ from setting import Gamepath, SceneSettings # 从setting.py中导入Gamepath和S
 from player import *
 from npc import *   
 from wall import *
+from portal import *
+from transparent import *
 
 class SceneManager:
     def __init__(self, window):
@@ -18,6 +20,7 @@ class SceneManager:
         self.cameraY = 0
         # 调整摄像机的宽度和高度为地图的1/4
         self.camera = pygame.Rect(self.cameraX, self.cameraY, WindowsSettings.width , WindowsSettings.height)
+        # self.transparent_objects = [] # 存储透明对象
 
     def tick(self, fps):
         self.clock.tick(fps)
@@ -28,6 +31,15 @@ class SceneManager:
     def get_height(self):
         return WindowsSettings.height
     
+    # def add_transparent_object(self, transparent_object):
+    #     self.transparent_objects.append(transparent_object)
+    
+    # def render_transparent(self):
+    #     for obj in self.transparent_objects:
+    #         obj.surface.blit(obj.image, (0, 0))
+    #         obj.surface.set_alpha(obj.alpha)
+    #         self.screen.blit(obj.surface, (obj.x, obj.y))
+
     def location(self, obj, npcs):
         # 根据对象类型将其绘制到窗口上
         if isinstance(obj, pygame.sprite.Group):
@@ -40,6 +52,14 @@ class SceneManager:
         elif isinstance(obj, NPC) and not any(npc.dialogue_active for npc in npcs) and not any(npc.buy_active for npc in npcs) and not any(npc.fight_active for npc in npcs):
             # 如果对象是NPC，并且没有任何NPC处于对话、购买或战斗状态，则绘制NPC图像
             self.window.blit(obj.image, (obj.rect.x - self.camera.x, obj.rect.y - self.camera.y))
+        elif isinstance(obj,Portal):
+            # 如果对象是Portal，则绘制Portal图像
+            self.window.blit(obj.image, (obj.rect.x - self.camera.x, obj.rect.y - self.camera.y))
+        elif isinstance(obj, Transparent):
+            # 如果对象是 Transparent 类的实例，则渲染透明对象
+            obj.surface.blit(obj.image, (0, 0))
+            obj.surface.set_alpha(obj.alpha)
+            self.window.blit(obj.surface, (obj.x - self.camera.x, obj.y - self.camera.y))
         else:
             pass
         
