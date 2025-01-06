@@ -7,17 +7,17 @@ from wall import *
 
 class SceneManager:
     def __init__(self, window):
-        self.map = map.gen_map()
+        self.map = Map()
         self.window = window
         self.clock = pygame.time.Clock()
         self.cameraX = 0
         self.cameraY = 0
         # 调整摄像机的宽度和高度为地图的1/4
-        self.camera = pygame.Rect(self.cameraX, self.cameraY, WindowsSettings.width / WindowsSettings.OutdoorScale, WindowsSettings.height / WindowsSettings.OutdoorScale)
+        self.camera = pygame.Rect(self.cameraX, self.cameraY, WindowsSettings.width // 2, WindowsSettings.height // 2)
 
     def tick(self, fps):
         self.clock.tick(fps)
-    
+
     def get_width(self):
         return WindowsSettings.width * WindowsSettings.OutdoorScale
     
@@ -38,13 +38,18 @@ class SceneManager:
             self.window.blit(obj.image, (obj.rect.x - self.camera.x, obj.rect.y - self.camera.y))
         else:
             pass
+        
+        # 如果NPC处于对话状态，则绘制对话框
         if isinstance(obj, NPC) and obj.dialogue_active:
             obj.draw_dialogue(self.window)
-        if isinstance(obj,NPC) and obj.buy_active:
+        # 如果NPC处于购买状态，则绘制购买界面
+        if isinstance(obj, NPC) and obj.buy_active:
             obj.draw_buy(self.window)
-        if isinstance(obj,NPC) and obj.fight_active:
+        # 如果NPC处于战斗状态，则绘制战斗界面
+        if isinstance(obj, NPC) and obj.fight_active:
             obj.draw_fight(self.window)
-        if isinstance(obj,NPC) and obj.quest_active and not obj.dialogue_active and not obj.buy_active and not obj.fight_active:
+        # 如果NPC处于任务状态，并且不处于对话、购买或战斗状态，则绘制任务气泡
+        if isinstance(obj, NPC) and obj.quest_active and not obj.dialogue_active and not obj.buy_active and not obj.fight_active:
             obj.draw_bubble(self.window)
 
 
@@ -84,9 +89,9 @@ class SceneManager:
         # # 渲染玩家
         # temp_surface.blit(player.image, (player.rect.x - self.camera.x, player.rect.y - self.camera.y))
         # ##############################################################################################################
-        # 将临时表面缩放到窗口大小，并渲染到窗口上
-        scaled_surface = pygame.transform.scale(temp_surface, (WindowsSettings.width, WindowsSettings.height))
-        self.window.blit(scaled_surface, (0, 0))
+        # # 将临时表面缩放到窗口大小，并渲染到窗口上
+        # scaled_surface = pygame.transform.scale(temp_surface, (WindowsSettings.width, WindowsSettings.height))
+        # self.window.blit(scaled_surface, (0, 0))
 
 
     def update_camera(self, player):

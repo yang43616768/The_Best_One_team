@@ -100,8 +100,8 @@ class NpcSettings:
     Sakura = [dialogue4,items4,photopath4_1,photopath4_2,reward4,currency4,health4,attack4]
 
 class SceneSettings:
-    tileXnum = 60
-    tileYnum = 36
+    tileXnum = 120
+    tileYnum = 72
     tileWidth = tileHeight = 25
 
 
