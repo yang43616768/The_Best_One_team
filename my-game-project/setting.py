@@ -56,7 +56,7 @@ class NpcSettings:
     you should tell him who you are and what you can do for him.
     '''+CommonSense
     dialogue2 = {"role": "system", "content":Task_Berries}
-    items2 = [("Tears of the Dragon", 10), ("Dragon Soul", 20), ("Dragon bone", 30)]
+    items2 = [("Tears of the Dragon", 100), ("Dragon Soul", 40), ("Dragon bone", 60)]
     photopath2_1 = r".\assets\images\npc2.1.png"
     photopath2_2 = r".\assets\images\npc2.2.png"
     reward2 = 'The Lengendary Shield'
@@ -93,7 +93,7 @@ class NpcSettings:
     items4 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
     photopath4_1 = r".\assets\images\npc4.1.png"
     photopath4_2 = r".\assets\images\npc4.2.png"
-    reward4 = "The philosopher's stone"
+    reward4 = "The Lengendary Armor"
     currency4 = 100
     health4 = 700
     attack4 = 30
@@ -111,7 +111,7 @@ class NpcSettings:
     items5 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
     photopath5_1 = r".\assets\images\npc5.1.png"
     photopath5_2 = r".\assets\images\npc5.2.png"
-    reward5 = "The philosopher's stone"
+    reward5 = "The Lengendary Armor"
     currency5 = 100
     health5 = 700
     attack5 = 30
@@ -253,15 +253,20 @@ class Item_List:
 #   物品名 = Items([攻击力,防御力,生命值,步数])
     The_Lengendary_Sword = Items([10,0,0,0],'A peerless sword in the world')
     The_Lengendary_Shield = Items([0,10,0,0],'A peerless shield in the world')
+    The_Evil_Black_Mandala = Items([-5,0,40,0],'A black mandala that brings evil')
+    The_Lengendary_Armor = Items([-5,0,100,0],'An ancient armor')
     A_worn_out_helmet = Items([0,1,0,0],"It's a bit worn out...But it can still be used")
     A_worn_out_armor = Items([0,0,2,0],"It's a bit worn out...But it can still be used")
     A_worn_out_short_sword = Items([3,0,0,0],"It's a bit worn out...But it can still be used")
     Tears_of_the_Dragon = Items([0,5,0,1],'Do you hear the dragon crying?')
     Dragon_Soul = Items([0,0,20,0],'The soul of the dragon')
     Dragon_bone = Items([4,0,10,0],'A bit horrible...Do you want to hear the story behind it?')
+    
     items = {
         "The Lengendary Sword": The_Lengendary_Sword,
         "The Lengendary Shield": The_Lengendary_Shield,
+        "The Evil Black Mandala": The_Evil_Black_Mandala,
+        "The Lengendary Armor": The_Lengendary_Armor,
         "A worn-out helmet": A_worn_out_helmet,
         "A worn-out armor": A_worn_out_armor,
         "A worn-out short sword": A_worn_out_short_sword,
