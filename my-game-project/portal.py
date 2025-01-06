@@ -16,7 +16,7 @@ class Portal:
                 if self.check_item(player):
                     self.tp_succeed = True
                 else:
-                    self.tp_failed()
+                    self.tp_failed(player)
                 return True
 
     def check_item(self,player):
@@ -26,6 +26,22 @@ class Portal:
         return True
 
 
-    def tp_failed(self):
+    def tp_failed(self,player):
+        window = pygame.display.get_surface()
+        font = pygame.font.Font(None, 36)
+        missing_items = ', '.join([f"'{item}'" for item in self.item_needed if item not in player.inventory])
+        message = f"Teleportation failed, you need {missing_items}"
 
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                    return
+
+            window.fill((255, 255, 255))  # 渲染全白窗口
+            text_surface = font.render(message, True, (0, 0, 0))
+            text_rect = text_surface.get_rect(center=(window.get_width() // 2, window.get_height() // 2))
+            window.blit(text_surface, text_rect)
         pass    
