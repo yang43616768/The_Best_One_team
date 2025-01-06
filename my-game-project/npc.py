@@ -55,6 +55,8 @@ class NPC(pygame.sprite.Sprite):
         self.bubble_texts = [self.bubble_text1,self.bubble_text2,self.bubble_text3]  # 气泡显示的文本列表
         self.current_bubble_index = 0
         self.last_bubble_switch_frame = 0  # 上次切换气泡的时间
+        if self.name == 'Irin':
+            self.bubble_texts = []
     def draw(self,window):
         window.blit(self.image, self.rect)
 
