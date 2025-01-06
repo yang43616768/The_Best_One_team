@@ -1,4 +1,5 @@
 import pygame
+import sys
 
 class Portal:
     def __init__(self, image_path,item_needed,x,y):
@@ -26,11 +27,17 @@ class Portal:
         return True
 
 
-    def tp_failed(self,player):
+    def tp_failed(self, player):
+
         window = pygame.display.get_surface()
         font = pygame.font.Font(None, 36)
         missing_items = ', '.join([f"'{item}'" for item in self.item_needed if item not in player.inventory])
         message = f"Teleportation failed, you need {missing_items}"
+        message0 = "Press 'ESC' to continue your adventure!"
+
+        # 创建一个半透明白色背景
+        background_surface = pygame.Surface(window.get_size(), pygame.SRCALPHA)
+        background_surface.fill((255, 255, 255, 40))  # 半透明白色
 
         while True:
             for event in pygame.event.get():
@@ -40,8 +47,12 @@ class Portal:
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                     return
 
-            window.fill((255, 255, 255))  # 渲染全白窗口
+            window.blit(background_surface, (0, 0))  # 渲染半透明白色背景
             text_surface = font.render(message, True, (0, 0, 0))
             text_rect = text_surface.get_rect(center=(window.get_width() // 2, window.get_height() // 2))
             window.blit(text_surface, text_rect)
-        pass    
+            text_surface = font.render(message0, True, (0, 0, 0))
+            text_rect = text_surface.get_rect(center=(window.get_width() // 2, window.get_height() // 2 + 40))
+            window.blit(text_surface, text_rect)
+            pygame.display.flip()
+

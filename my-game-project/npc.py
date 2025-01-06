@@ -3,6 +3,7 @@ from setting import *
 from openai import OpenAI
 from typing import List,Dict
 import sys
+from bubble import *
 
 class NPC(pygame.sprite.Sprite):
     def __init__(self, x, y,name):
@@ -55,6 +56,7 @@ class NPC(pygame.sprite.Sprite):
         self.bubble_texts = [self.bubble_text1,self.bubble_text2,self.bubble_text3]  # 气泡显示的文本列表
         self.current_bubble_index = 0
         self.last_bubble_switch_frame = 0  # 上次切换气泡的时间
+        self.bubble = Bubble(self)
         if self.name == 'Irin':
             self.bubble_texts = []
     def draw(self,window):
@@ -183,7 +185,7 @@ class NPC(pygame.sprite.Sprite):
             if current_frame - self.last_bubble_switch_frame > 90:  # 每隔90帧切换一次气泡
                 self.current_bubble_index = (self.current_bubble_index + 1) % len(self.bubble_texts)
                 self.last_bubble_switch_frame = current_frame
-
+                self.bubble.update_text()
     def draw_buy(self,window):
         # 绘制购买界面的背景
         buy_bg = pygame.Surface((600, 300))
@@ -279,19 +281,7 @@ class NPC(pygame.sprite.Sprite):
 
         self.draw_cards(window, player_image_rect.bottom + 70)
 
-    def draw_bubble(self, window):
-        font = pygame.font.Font(None, 24)
-        bubble_surface = pygame.Surface((200, 50), pygame.SRCALPHA)
-        bubble_surface.fill((255, 255, 255, 200))  # 半透明白色背景
 
-        text_surface = font.render(self.bubble_texts[self.current_bubble_index], True, (0, 0, 0))
-        text_rect = text_surface.get_rect(center=(100, 25))
-        bubble_surface.blit(text_surface, text_rect)
-
-        bubble_rect = bubble_surface.get_rect(midbottom=(self.rect.centerx, self.rect.top - 10))
-        window.blit(bubble_surface, bubble_rect)
-
-        pygame.display.flip()
 
     def draw_health_bar(self, window, x, y, current_health, max_health):
         bar_width = 200

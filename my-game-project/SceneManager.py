@@ -41,6 +41,7 @@ class SceneManager:
     #         self.screen.blit(obj.surface, (obj.x, obj.y))
 
     def location(self, obj, npcs):
+        npcs_not_active = not any(npc.dialogue_active for npc in npcs) and not any(npc.buy_active for npc in npcs) and not any(npc.fight_active for npc in npcs)
         # 根据对象类型将其绘制到窗口上
         if isinstance(obj, pygame.sprite.Group):
             # 如果对象是精灵组，则遍历每个精灵并绘制
@@ -49,13 +50,13 @@ class SceneManager:
         elif isinstance(obj, Player):
             # 如果对象是玩家，则绘制玩家图像
             self.window.blit(obj.image, (obj.rect.x - self.camera.x, obj.rect.y - self.camera.y))
-        elif isinstance(obj, NPC) and not any(npc.dialogue_active for npc in npcs) and not any(npc.buy_active for npc in npcs) and not any(npc.fight_active for npc in npcs):
+        elif isinstance(obj, NPC) and npcs_not_active:
             # 如果对象是NPC，并且没有任何NPC处于对话、购买或战斗状态，则绘制NPC图像
             self.window.blit(obj.image, (obj.rect.x - self.camera.x, obj.rect.y - self.camera.y))
-        elif isinstance(obj,Portal):
+        elif isinstance(obj,Portal) and npcs_not_active:
             # 如果对象是Portal，则绘制Portal图像
             self.window.blit(obj.image, (obj.rect.x - self.camera.x, obj.rect.y - self.camera.y))
-        elif isinstance(obj, Transparent):
+        elif isinstance(obj, Transparent) and npcs_not_active:
             # 如果对象是 Transparent 类的实例，则渲染透明对象
             temp_surface = obj.image.copy()
             temp_surface.set_alpha(obj.alpha)
@@ -76,8 +77,8 @@ class SceneManager:
             obj.draw_fight(self.window)
 
         # 如果NPC处于任务状态，并且不处于对话、购买或战斗状态，则绘制任务气泡
-        if isinstance(obj, NPC) and obj.quest_active and not obj.dialogue_active and not obj.buy_active and not obj.fight_active:
-            obj.draw_bubble(self.window)
+        if isinstance(obj, Bubble) and obj.npc.quest_active and npcs_not_active:
+            self.window.blit(obj.image, (obj.rect.x - self.camera.x, obj.rect.y - self.camera.y))
 
     def render(self,npcs):
         # 创建一个临时表面，用于渲染摄像机视角内的内容
