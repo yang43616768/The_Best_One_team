@@ -6,6 +6,7 @@ from wall import *
 from SceneManager import *
 from npc import *
 from portal import *
+from transparent import *
 
 
 def draw_screen(window, background_path):
@@ -41,6 +42,8 @@ def stage1(window,player):
     npc2 = NPC(300,300,NpcSettings.Berries)
     npcs = [npc1,npc2]
     Portal1 = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield"], 100, 100)
+    TransparentRoof = Transparent(r".\assets\tiles\tree.png",200,200,100,100)
+    Transparents = [TransparentRoof]
 
     pygame.display.set_caption("Learn To Start")
 
@@ -70,6 +73,9 @@ def stage1(window,player):
                     for npc in npcs:
                         npc.handle_input(event,player)
             player.update(walls, any(npc.dialogue_active for npc in npcs),any(npc.buy_active for npc in npcs),scene_manager)
+            for transparent in Transparents:
+                transparent.check_transparent(player)
+
             Portal1.check_telepotation(player,event)
             window.fill((0, 0, 0))
 
