@@ -49,13 +49,18 @@ class NPC(pygame.sprite.Sprite):
         self.defence_image = pygame.image.load(r".\assets\images\defence.png")
         self.attack_image = pygame.transform.scale(self.attack_image, (34, 45))
         self.defence_image = pygame.transform.scale(self.defence_image, (34, 45))
-        self.bubble_text1 = 'Press "E" to talk to me.'
-        self.bubble_text2 = 'Press "B" to buy items.'
-        self.bubble_text3 = 'Press "F" to fight with me.'
+        self.bubble_text1 = name[9][0]
+        self.bubble_text2 = name[9][1]
+        self.bubble_text3 = name[9][2]
+
+
+
+
         self.bubble_texts = [self.bubble_text1,self.bubble_text2,self.bubble_text3]  # 气泡显示的文本列表
         self.current_bubble_index = 0
         self.last_bubble_switch_frame = 0  # 上次切换气泡的时间
         self.bubble = Bubble(self)
+
 
     def draw(self,window):
         window.blit(self.image, self.rect)
@@ -186,7 +191,7 @@ class NPC(pygame.sprite.Sprite):
 
     def switch_bubble(self):
             current_frame = pygame.time.get_ticks() // (1000 // 60)  # 获取当前帧数
-            if current_frame - self.last_bubble_switch_frame > 90:  # 每隔90帧切换一次气泡
+            if current_frame - self.last_bubble_switch_frame > 120:  # 每隔120帧切换一次气泡
                 self.current_bubble_index = (self.current_bubble_index + 1) % len(self.bubble_texts)
                 self.last_bubble_switch_frame = current_frame
                 self.bubble.update_text()
