@@ -76,22 +76,54 @@ def stage0(window):
 def stage1(window,player):
 
     walls = pygame.sprite.Group()
-    walls.add(Wall(0,200,50,50))
-    walls.add(Wall(200, 850, 100, 100))
-    walls.add(Wall(0, 1100, 50, 50))
-    walls.add(Wall(2950, 1750, 50, 50))
-    walls.add(Wall(0,550,50,650))#1450 10 -- 0 550    -1450 +540
-    walls.add(Wall(50,550,1000,50))
-    walls.add(Wall(1050,550,50,600))
-    walls.add(Wall(50,1150,400,50))
-    walls.add(Wall(650,1150,450,50))
+    # walls.add(Wall(0,200,50,50))
+    # walls.add(Wall(200, 850, 100, 100))
+    # walls.add(Wall(0, 1100, 50, 50))
+    # walls.add(Wall(2950, 1750, 50, 50))
+    # walls.add(Wall(0,550,50,650))#1450 10 -- 0 550    -1450 +540
+    # walls.add(Wall(50,550,1000,50))
+    # walls.add(Wall(1050,550,50,600))
+    # walls.add(Wall(50,1150,400,50))
+    # walls.add(Wall(650,1150,450,50))
 
-    npc1 = NPC(350,880,NpcSettings.Lilia)
-    npc2 = NPC(300,300,NpcSettings.Berries)
-    npcs = [npc1,npc2]
-    portal = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield","The Lengendary Armor","The philosopher's stone"], 100, 100)
-    transparent_roof = Transparent(r".\assets\images\roof.png",50,550,1000,600)
-    transparents = [transparent_roof]
+    # npc1 = NPC(350,880,NpcSettings.Lilia)
+    # npc2 = NPC(300,300,NpcSettings.Berries)
+    # npcs = [npc1,npc2]
+    # portal = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield","The Lengendary Armor","The philosopher's stone"], 100, 100)
+    # transparent_roof = Transparent(r".\assets\images\roof.png",50,550,1000,600)
+    # transparents = [transparent_roof]
+    walls.add(Wall(0,490,800,20))
+    walls.add(Wall(0,1290,800,20))
+    walls.add(Wall(780,510,20,290))
+    walls.add(Wall(780,1000,20,290))
+    walls.add(Wall(1080,300,20,1200))
+
+    walls.add(Wall(1390,0,20,700))
+    walls.add(Wall(1390,1100,20,700))
+    walls.add(Wall(2090,0,20,700))
+    walls.add(Wall(2090,1100,20,700))
+    walls.add(Wall(1410,680,680,20))
+    walls.add(Wall(1410,1100,680,20))
+
+    walls.add(Wall(2110,390,890,20))
+    walls.add(Wall(2110,1390,890,20))
+
+    npc1 = NPC(575,875,NpcSettings.Lilia)
+    npc2 = NPC(1375,875,NpcSettings.Berries)
+    npc3 = NPC(275,225,NpcSettings.Irin_Evil)
+    npc4 = NPC(275,1475,NpcSettings.Sakura)
+    npc5 = NPC(2675,875,NpcSettings.Nyakori)
+    npcs = [npc1,npc2,npc3,npc4,npc5]
+    portal = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield","The Lengendary Armor"], 100, 100)
+    
+    transparent_roof1 = Transparent(r".\assets\images\roof.png",0,500,800,800)
+    transparent_roof2 = Transparent(r".\assets\images\roof.png",0,0,600,500)
+    transparent_roof3 = Transparent(r".\assets\images\roof.png",0,1300,600,500)
+    transparent_roof4 = Transparent(r".\assets\images\roof.png",1400,0,700,700)
+    transparent_roof5 = Transparent(r".\assets\images\roof.png",1400,1110,700,700)
+    transparent_roof6 = Transparent(r".\assets\images\roof.png",2100,0,900,400)
+    transparent_roof7 = Transparent(r".\assets\images\roof.png",2100,1400,900,400)
+    transparents = [transparent_roof1,transparent_roof2,transparent_roof3,transparent_roof4,transparent_roof5,transparent_roof6,transparent_roof7]
 
     pygame.display.set_caption("Learn To Start")
 
