@@ -47,7 +47,7 @@ class NpcSettings:
     currency1 = 100
     health1 = 50
     attack1 = 20
-    Lilia = [dialogue1,items1,photopath1_1,photopath1_2,reward1,currency1,health1,attack1]
+    Lilia = [dialogue1,items1,photopath1_1,photopath1_2,reward1,currency1,health1,attack1,"Lilia"]
 
     #Berries 果酱
     Task_Berries = '''You are Berries, a merchant NPC in a game world.You are a little greedy and you like to tease the player.
@@ -59,14 +59,15 @@ class NpcSettings:
     items2 = [("Tears of the Dragon", 100), ("Dragon Soul", 40), ("Dragon bone", 60)]
     photopath2_1 = r".\assets\images\npc2.1.png"
     photopath2_2 = r".\assets\images\npc2.2.png"
-    reward2 = 'The Lengendary Shield'
+    reward2 = "The Lengendary Armor"
     currency2 = 100
     health2 = 50
     attack2 = 20
-    Berries = [dialogue2,items2,photopath2_1,photopath2_2,reward2,currency2,health2,attack2]
+    Berries = [dialogue2,items2,photopath2_1,photopath2_2,reward2,currency2,health2,attack2,"Berries"]
 
     #Irin_Evil 璃音
-    Task_Irin_Evil = '''You are Irin, a hostile NPC in a game world.You are evil and you are trying to make a scene.
+    Task_Irin_Evil = '''You are Irin, a hostile NPC in a game world.
+    You are evil and you are trying to make a scene.
     You are determined to stop the player here at any cost.
     When the input involves about your identity or the setting of this game,
     you should express your contemptuous attitude.
@@ -75,11 +76,11 @@ class NpcSettings:
     items3 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
     photopath3_1 = r".\assets\images\npc3.1.png"
     photopath3_2 = r".\assets\images\npc3.2.png"
-    reward3 = 'The Evil Black Mandala'
+    reward3 = "The Evil Black Mandala"
     currency3 = 100
     health3 = 250
     attack3 = 40
-    Irin_Evil = [dialogue3,items3,photopath3_1,photopath3_2,reward3,currency3,health3,attack3]
+    Irin_Evil = [dialogue3,items3,photopath3_1,photopath3_2,reward3,currency3,health3,attack3,"Evil Irin"]
     
     #Sakura 樱
     Task_Sakura = '''You are Sakura,a NPC with senior status in a game world.
@@ -93,19 +94,18 @@ class NpcSettings:
     items4 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
     photopath4_1 = r".\assets\images\npc4.1.png"
     photopath4_2 = r".\assets\images\npc4.2.png"
-    reward4 = "The Lengendary Armor"
+    reward4 = "The philosopher's stone"
     currency4 = 100
     health4 = 700
     attack4 = 30
-    Sakura = [dialogue4,items4,photopath4_1,photopath4_2,reward4,currency4,health4,attack4]
+    Sakura = [dialogue4,items4,photopath4_1,photopath4_2,reward4,currency4,health4,attack4,"Sakura"]
 
     #Nyakori 喵可莉
-    Task_Nyakori = '''You are Nyakori,a NPC with senior status in a game world.
-    You are wise and have a high level of combat power.
-    You are afraid of the player's strength and want to test the player's strength.
-    You want to see if the player is qualified to defeat the final boss.
+    Task_Nyakori = '''You are Nyakori,a NPC.
+    You are a foodie who likes to eat snacks. 
+    You were once a friend of the player, but now the player has lost his memory and doesn't know you.
     When the input involves about your identity or the setting of this game,
-    you should persuade the player not to move forward anymore.
+    You should encourage players to move forward bravely.
     '''+CommonSense
     dialogue5 = {"role": "system", "content":Task_Nyakori}
     items5 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
@@ -115,13 +115,13 @@ class NpcSettings:
     currency5 = 100
     health5 = 700
     attack5 = 30
-    Nyakori = [dialogue5,items5,photopath5_1,photopath5_2,reward5,currency5,health5,attack5]
+    Nyakori = [dialogue5,items5,photopath5_1,photopath5_2,reward5,currency5,health5,attack5,"Nyakori"]
 
     #Eliza 心渊
-    Task_Eliza = '''You are Eliza,a NPC with senior status in a game world.
-    You are wise and have a high level of combat power.
-    You are afraid of the player's strength and want to test the player's strength.
-    You want to see if the player is qualified to defeat the final boss.
+    Task_Eliza = '''You are Eliza,a NPC.
+    You are timid and socially anxious, and don't like to socialize,
+    but you and Berries are good friends. 
+    You guard the magical forest and prevent outsiders from entering danger.
     When the input involves about your identity or the setting of this game,
     you should persuade the player not to move forward anymore.
     '''+CommonSense
@@ -129,83 +129,72 @@ class NpcSettings:
     items6 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
     photopath6_1 = r".\assets\images\npc6.1.png"
     photopath6_2 = r".\assets\images\npc6.2.png"
-    reward6 = "The philosopher's stone"
+    reward6 = 'The Legendary Shield'
     currency6 = 100
     health6 = 700
     attack6 = 30
-    Eliza = [dialogue6,items6,photopath6_1,photopath6_2,reward6,currency6,health6,attack6]
+    Eliza = [dialogue6,items6,photopath6_1,photopath6_2,reward6,currency6,health6,attack6,"Eliza"]
 
     #Irin 璃音
-    Task_Irin = '''You are Irin,a NPC with senior status in a game world.
-    You are wise and have a high level of combat power.
-    You are afraid of the player's strength and want to test the player's strength.
-    You want to see if the player is qualified to defeat the final boss.
-    When the input involves about your identity or the setting of this game,
-    you should persuade the player not to move forward anymore.
+    Task_Irin = '''You are Irin,a friendly NPC in a game world.
+    You were deceived and used as a container to seal evil.
+    You hope that players can break the sealed evil replica of yourself, go deep into the altar, and find the truth.
     '''+CommonSense
     dialogue7 = {"role": "system", "content":Task_Irin}
     items7 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
     photopath7_1 = r".\assets\images\npc7.1.png"
     photopath7_2 = r".\assets\images\npc7.2.png"
-    reward7 = "The philosopher's stone"
+    reward7 = "The Container"
     currency7 = 100
     health7 = 700
     attack7 = 30
-    Irin = [dialogue7,items7,photopath7_1,photopath7_2,reward7,currency7,health7,attack7]
+    Irin = [dialogue7,items7,photopath7_1,photopath7_2,reward7,currency7,health7,attack7,"Irin"]
 
     #Lianne 莲
-    Task_Lianne = '''You are Lianne,a NPC with senior status in a game world.
-    You are wise and have a high level of combat power.
-    You are afraid of the player's strength and want to test the player's strength.
-    You want to see if the player is qualified to defeat the final boss.
-    When the input involves about your identity or the setting of this game,
-    you should persuade the player not to move forward anymore.
+    Task_Lianne = '''You are Lianne,a NPC.
+    You are the mysterious librarian in the tower, and you have a deep affection for the ancient knowledge in books. 
+    To protect this tower, you hope to prevent players from breaking the seal.
+    You should persuade the player not to move forward anymore.
     '''+CommonSense
     dialogue8 = {"role": "system", "content":Task_Lianne}
     items8 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
     photopath8_1 = r".\assets\images\npc8.1.png"
     photopath8_2 = r".\assets\images\npc8.2.png"
-    reward8 = "The philosopher's stone"
+    reward8 = "The Book of All Things"
     currency8 = 100
     health8 = 700
     attack8 = 30
-    Lianne = [dialogue8,items8,photopath8_1,photopath8_2,reward8,currency8,health8,attack8]
+    Lianne = [dialogue8,items8,photopath8_1,photopath8_2,reward8,currency8,health8,attack8,"Lianne"]
 
     #Theia 缇娅
-    Task_Theia = '''You are Theia,a NPC with senior status in a game world.
-    You are wise and have a high level of combat power.
-    You are afraid of the player's strength and want to test the player's strength.
-    You want to see if the player is qualified to defeat the final boss.
-    When the input involves about your identity or the setting of this game,
-    you should persuade the player not to move forward anymore.
+    Task_Theia = '''You enjoy conducting experiments and using your own developed robots to make decisions. 
+    You have a lot of knowledge.
+    You don't care about the essence of the world, 
+    but you are curious about the sincere player and willing to provide help.
     '''+CommonSense
     dialogue9 = {"role": "system", "content":Task_Theia}
     items9 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
     photopath9_1 = r".\assets\images\npc9.1.png"
     photopath9_2 = r".\assets\images\npc9.2.png"
-    reward9 = "The philosopher's stone"
+    reward9 = "A Faulty Robot"
     currency9 = 100
     health9 = 700
     attack9 = 30
-    Theia = [dialogue9,items9,photopath9_1,photopath9_2,reward9,currency9,health9,attack9]
+    Theia = [dialogue9,items9,photopath9_1,photopath9_2,reward9,currency9,health9,attack9,"Theia"]
 
     #Drakura 德古拉
-    Task_Drakura = '''You are Drakura,a NPC with senior status in a game world.
-    You are wise and have a high level of combat power.
-    You are afraid of the player's strength and want to test the player's strength.
-    You want to see if the player is qualified to defeat the final boss.
-    When the input involves about your identity or the setting of this game,
-    you should persuade the player not to move forward anymore.
+    Task_Drakura = '''You are a vampire duke with powerful bloodline power. 
+    You want to compete with powerful players out of curiosity.
     '''+CommonSense
     dialogue10 = {"role": "system", "content":Task_Drakura}
     items10 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
     photopath10_1 = r".\assets\images\npc10.1.png"
     photopath10_2 = r".\assets\images\npc10.2.png"
-    reward10 = "The philosopher's stone"
+    reward10 = "The Vessel of Blood"
     currency10 = 100
     health10 = 700
     attack10 = 30
-    Sakura = [dialogue10,items10,photopath10_1,photopath10_2,reward10,currency10,health10,attack10]
+    Drakura = [dialogue10,items10,photopath10_1,photopath10_2,reward10,currency10,health10,attack10,"Drakura"]
 
     #Nyarutoru 喵露朵露薇
     Task_Nyarutoru = '''You are Nyarutoru,a NPC with senior status in a game world.
@@ -223,7 +212,7 @@ class NpcSettings:
     currency11 = 100
     health11 = 700
     attack11 = 30
-    Nyarutoru = [dialogue11,items11,photopath11_1,photopath11_2,reward11,currency11,health11,attack11]
+    Nyarutoru = [dialogue11,items11,photopath11_1,photopath11_2,reward11,currency11,health11,attack11,"Nyarutoru"]
     
 class SceneSettings:
     tileXnum = 120
@@ -234,18 +223,26 @@ class SceneSettings:
 class Gamepath:
     player = r".\assets\images\player.png"
 
+    # groundTiles = [
+    #     r".\assets\tiles\grass12.png",
+    #     r".\assets\tiles\grass13.png",
+    #     r".\assets\tiles\grass14.png",
+    #     r".\assets\tiles\grass15.png",
+    #     r".\assets\tiles\grass16.png",
+    #     r".\assets\tiles\grass17.png",
+    #     r".\assets\tiles\grass18.png",
+    #     r".\assets\tiles\grass19.png",
+    #     r".\assets\tiles\grass20.png",
+    #     r".\assets\tiles\grass21.png",
+    #     r".\assets\tiles\grass22.png",
+    # ]
     groundTiles = [
-        r".\assets\tiles\grass12.png",
-        r".\assets\tiles\grass13.png",
-        r".\assets\tiles\grass14.png",
-        r".\assets\tiles\grass15.png",
-        r".\assets\tiles\grass16.png",
-        r".\assets\tiles\grass17.png",
-        r".\assets\tiles\grass18.png",
-        r".\assets\tiles\grass19.png",
-        r".\assets\tiles\grass20.png",
-        r".\assets\tiles\grass21.png",
-        r".\assets\tiles\grass22.png",
+        r".\assets\tiles\stage2-1.png",
+        r".\assets\tiles\stage2-2.png",
+        r".\assets\tiles\stage2-3.png",
+        r".\assets\tiles\stage2-4.png",
+        r".\assets\tiles\stage2-5.png",
+        r".\assets\tiles\stage2-6.png",
     ]
 
     tree = r".\assets\tiles\tree.png"
@@ -262,6 +259,7 @@ class Item_List:
     Tears_of_the_Dragon = Items([0,5,0,1],'Do you hear the dragon crying?')
     Dragon_Soul = Items([0,0,20,0],'The soul of the dragon')
     Dragon_bone = Items([4,0,10,0],'A bit horrible...Do you want to hear the story behind it?')
+    The_philosophers_stone = Items([4,2,10,1],'Pure Legend——Only the highest hero can become the holder')
     
     items = {
         "The Lengendary Sword": The_Lengendary_Sword,
@@ -274,5 +272,6 @@ class Item_List:
         "Tears of the Dragon": Tears_of_the_Dragon,
         "Dragon Soul": Dragon_Soul,
         "Dragon bone": Dragon_bone,
+        "The philosopher's stone":The_philosophers_stone
     }
     keys = items.keys()

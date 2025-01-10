@@ -8,7 +8,7 @@ from bubble import *
 class NPC(pygame.sprite.Sprite):
     def __init__(self, x, y,name):
         super().__init__()
-        self.name = name
+        self.name = str(name[8])
         self.image = pygame.image.load(name[2])
         self.image = pygame.transform.scale(
             self.image, (PlayerSettings.playerWidth, PlayerSettings.playerHeight)
@@ -17,7 +17,6 @@ class NPC(pygame.sprite.Sprite):
         self.y = y
         self.rect = self.image.get_rect()
         self.rect.topleft = (x,y)
-        self.name = name
         self.dialogue_font_size = 36
         self.dialogue_active = False
         self.quest_active = False
@@ -57,8 +56,7 @@ class NPC(pygame.sprite.Sprite):
         self.current_bubble_index = 0
         self.last_bubble_switch_frame = 0  # 上次切换气泡的时间
         self.bubble = Bubble(self)
-        if self.name == 'Irin':
-            self.bubble_texts = []
+
     def draw(self,window):
         window.blit(self.image, self.rect)
 
@@ -108,6 +106,12 @@ class NPC(pygame.sprite.Sprite):
             
             window.blit(background_surface, input_rect.topleft)
             window.blit(input_surface, input_rect)
+
+            # 绘制 NPC 名字，使用更大的字体
+            name_font = pygame.font.SysFont(None, 108)  # 更大的字体大小
+            name_surface = name_font.render(self.name, True, (255, 255, 255))
+            name_rect = name_surface.get_rect(topright=(window_width - 320, 320))
+            window.blit(name_surface, name_rect)
 
     def handle_input(self, event,player):
         if self.dialogue_active:

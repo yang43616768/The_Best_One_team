@@ -89,7 +89,7 @@ def stage1(window,player):
     npc1 = NPC(350,880,NpcSettings.Lilia)
     npc2 = NPC(300,300,NpcSettings.Berries)
     npcs = [npc1,npc2]
-    portal = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield","The Lengendary Armor"], 100, 100)
+    portal = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield","The Lengendary Armor","The philosopher's stone"], 100, 100)
     transparent_roof = Transparent(r".\assets\images\roof.png",50,550,1000,600)
     transparents = [transparent_roof]
 
