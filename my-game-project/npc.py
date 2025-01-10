@@ -52,10 +52,7 @@ class NPC(pygame.sprite.Sprite):
         self.bubble_text1 = name[9][0]
         self.bubble_text2 = name[9][1]
         self.bubble_text3 = name[9][2]
-
-
-
-
+        self.scroll_offset = 0
         self.bubble_texts = [self.bubble_text1,self.bubble_text2,self.bubble_text3]  # 气泡显示的文本列表
         self.current_bubble_index = 0
         self.last_bubble_switch_frame = 0  # 上次切换气泡的时间
@@ -88,7 +85,7 @@ class NPC(pygame.sprite.Sprite):
                 window.blit(bg_surface, (bg_x, bg_y))
 
             font = pygame.font.SysFont(None, self.dialogue_font_size)
-            y_offset = 50  # 从顶部开始绘制
+            y_offset = 50-self.scroll_offset  # 从顶部开始绘制
             for i in range(0, len(self.dialogue_history), 2):
                 if i < len(self.dialogue_history):
                     question_surface = font.render(self.dialogue_history[i], True, (255, 255, 255))
@@ -138,6 +135,10 @@ class NPC(pygame.sprite.Sprite):
 
                 elif event.key == pygame.K_ESCAPE:
                     self.dialogue_active = False
+                elif event.key == pygame.K_PAGEDOWN:
+                    self.scroll_offset += 30
+                elif event.key == pygame.K_PAGEUP:
+                    self.scroll_offset = max(self.scroll_offset - 30, 0)
 
                 else:
                     self.player_input += event.unicode

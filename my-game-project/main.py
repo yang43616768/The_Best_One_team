@@ -20,6 +20,6 @@ def main():
     stage1(window,player)
 
 
-
 if __name__ == "__main__":
     main()
+

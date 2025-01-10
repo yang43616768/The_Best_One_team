@@ -37,7 +37,11 @@ def stage_common(npcs,player,walls,transparents,portal,scene_manager,window):
                     player.bag_active = False
                 elif event.key == pygame.K_i and not any(npc.dialogue_active for npc in npcs):  # 按下i键打开背包
                     player.bag_active = not player.bag_active
-
+                elif event.key == pygame.K_PAGEDOWN or event.key == pygame.K_PAGEUP:
+                    if event.key == pygame.K_PAGEUP:  # 向上
+                        player.scroll_offset = max(player.scroll_offset - 30, 0)
+                    elif event.key == pygame.K_PAGEDOWN:  # 向下
+                        player.scroll_offset += 30
                 else:
                     for npc in npcs:
                         npc.handle_input(event,player)
