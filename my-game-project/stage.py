@@ -102,8 +102,9 @@ def stage1(window,player):
     scene_manager = SceneManager(window)
     scene_manager.tick(30)
     scene_manager.render(npcs)
-    for item in Item_List.keys:
-        player.inventory.append(item)
+    #全物品指令
+    # for item in Item_List.keys:   
+    #     player.inventory.append(item)
     stage_common(npcs,player,walls,transparents,portal,scene_manager,window)
 
 
