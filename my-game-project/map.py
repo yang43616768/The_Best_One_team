@@ -2,9 +2,9 @@ from random import randint
 import pygame
 from setting import *
 
-class Map:
+class Map1:
     def __init__(self):
-        self.images = [pygame.image.load(tile) for tile in Gamepath.groundTiles]
+        self.images = [pygame.image.load(tile) for tile in Gamepath.groundTiles1]
         self.images = [pygame.transform.scale(image, (SceneSettings.tileWidth, SceneSettings.tileHeight)) for image in self.images]
         self.map = self.gen_map()
 
@@ -17,15 +17,17 @@ class Map:
             maporigin.append(tmp)
         return maporigin
 
-# def gen_map():
-#     images = [pygame.image.load(tile) for tile in Gamepath.groundTiles]
-#     images = [pygame.transform.scale(image, (SceneSettings.tileWidth, SceneSettings.tileHeight)) for image in images]
+class Map2:
+    def __init__(self):
+        self.images = [pygame.image.load(tile) for tile in Gamepath.groundTiles2]
+        self.images = [pygame.transform.scale(image, (SceneSettings.tileWidth, SceneSettings.tileHeight)) for image in self.images]
+        self.map = self.gen_map()
 
-#     maporigin = []
-#     for  i in range(SceneSettings.tileXnum):
-#         tmp = []
-#         for j in range(SceneSettings.tileYnum):
-#             tmp.append(images[randint(0,len(images)-1)])
-#         maporigin.append(tmp)
-
-#     return maporigin
+    def gen_map(self):
+        maporigin = []
+        for i in range(SceneSettings.tileXnum):
+            tmp = []
+            for j in range(SceneSettings.tileYnum):
+                tmp.append(randint(0, len(self.images) - 1))  # 使用索引而不是图像
+            maporigin.append(tmp)
+        return maporigin

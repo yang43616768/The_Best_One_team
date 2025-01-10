@@ -254,20 +254,20 @@ class SceneSettings:
 class Gamepath:
     player = r".\assets\images\player.png"
 
-    # groundTiles = [
-    #     r".\assets\tiles\grass12.png",
-    #     r".\assets\tiles\grass13.png",
-    #     r".\assets\tiles\grass14.png",
-    #     r".\assets\tiles\grass15.png",
-    #     r".\assets\tiles\grass16.png",
-    #     r".\assets\tiles\grass17.png",
-    #     r".\assets\tiles\grass18.png",
-    #     r".\assets\tiles\grass19.png",
-    #     r".\assets\tiles\grass20.png",
-    #     r".\assets\tiles\grass21.png",
-    #     r".\assets\tiles\grass22.png",
-    # ]
-    groundTiles = [
+    groundTiles1 = [
+        r".\assets\tiles\grass12.png",
+        r".\assets\tiles\grass13.png",
+        r".\assets\tiles\grass14.png",
+        r".\assets\tiles\grass15.png",
+        r".\assets\tiles\grass16.png",
+        r".\assets\tiles\grass17.png",
+        r".\assets\tiles\grass18.png",
+        r".\assets\tiles\grass19.png",
+        r".\assets\tiles\grass20.png",
+        r".\assets\tiles\grass21.png",
+        r".\assets\tiles\grass22.png",
+    ]
+    groundTiles2 = [
         r".\assets\tiles\stage2-1.png",
         r".\assets\tiles\stage2-2.png",
         r".\assets\tiles\stage2-3.png",

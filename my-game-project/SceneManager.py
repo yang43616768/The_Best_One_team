@@ -10,10 +10,14 @@ from transparent import *
 
 class SceneManager:
     def __init__(self, window):
-        self.map = Map()
-        self.tiles = self.map.gen_map()
-        self.tile_images = [pygame.image.load(tile) for tile in Gamepath.groundTiles]
-        self.tile_images = [pygame.transform.scale(image, (SceneSettings.tileWidth, SceneSettings.tileHeight)) for image in self.tile_images]
+        self.map1 = Map1()
+        self.map2 = Map2()
+        self.tiles1 = self.map1.gen_map()
+        self.tile_images1 = [pygame.image.load(tile) for tile in Gamepath.groundTiles1]
+        self.tile_images1 = [pygame.transform.scale(image, (SceneSettings.tileWidth, SceneSettings.tileHeight)) for image in self.tile_images1]
+        self.tiles = self.map2.gen_map()
+        self.tile_images2 = [pygame.image.load(tile) for tile in Gamepath.groundTiles2]
+        self.tile_images2 = [pygame.transform.scale(image, (SceneSettings.tileWidth, SceneSettings.tileHeight)) for image in self.tile_images2]
         self.window = window
         self.clock = pygame.time.Clock()
         self.cameraX = 0
@@ -80,7 +84,7 @@ class SceneManager:
         if isinstance(obj, Bubble) and obj.npc.quest_active and npcs_not_active:
             self.window.blit(obj.image, (obj.rect.x - self.camera.x, obj.rect.y - self.camera.y))
 
-    def render(self,npcs):
+    def render1(self,npcs):
         # 创建一个临时表面，用于渲染摄像机视角内的内容
         temp_surface = pygame.Surface((self.camera.width, self.camera.height)) 
         if not any (npc.dialogue_active for npc in npcs) and not any (npc.buy_active for npc in npcs) and not any (npc.fight_active for npc in npcs):
@@ -88,21 +92,11 @@ class SceneManager:
             for i in range(SceneSettings.tileXnum):
                 for j in range(SceneSettings.tileYnum):
                     tile_type = self.tiles[i][j]
-                    tile_image = self.tile_images[tile_type]
+                    tile_image = self.tile_images1[tile_type]
                     tile_rect = tile_image.get_rect(topleft=(SceneSettings.tileWidth * i, SceneSettings.tileHeight * j))
                     if self.camera.colliderect(tile_rect):
                         temp_surface.blit(tile_image, (tile_rect.x - self.camera.x, tile_rect.y - self.camera.y))
 
-        # # 渲染红色色块（固定在地图上）
-        # red_blocks = [
-        #     (1000, 800, 50, 50),
-        #     (100, 800, 50, 50)
-        # ]
-        # for block in red_blocks:
-        #     block_rect = pygame.Rect(block)
-        #     if self.camera.colliderect(block_rect):
-        #         pygame.draw.rect(temp_surface, (255, 0, 0), (block_rect.x - self.camera.x, block_rect.y - self.camera.y, block_rect.width, block_rect.height))
-        
         # 将临时表面渲染到窗口上
             self.window.blit(temp_surface, (0, 0))
 
@@ -111,7 +105,34 @@ class SceneManager:
             for i in range(SceneSettings.tileXnum):
                 for j in range(SceneSettings.tileYnum):
                     tile_type = self.tiles[i][j]
-                    tile_image = self.tile_images[tile_type]
+                    tile_image = self.tile_images1[tile_type]
+                    tile_rect = tile_image.get_rect(topleft=(SceneSettings.tileWidth * i, SceneSettings.tileHeight * j))
+                    if self.camera.colliderect(tile_rect):
+                        temp_surface.blit(tile_image, (tile_rect.x - self.camera.x, tile_rect.y - self.camera.y))
+            self.window.blit(temp_surface, (0, 0))
+
+    def render2(self,npcs):
+        # 创建一个临时表面，用于渲染摄像机视角内的内容
+        temp_surface = pygame.Surface((self.camera.width, self.camera.height)) 
+        if not any (npc.dialogue_active for npc in npcs) and not any (npc.buy_active for npc in npcs) and not any (npc.fight_active for npc in npcs):
+            # 渲染地图
+            for i in range(SceneSettings.tileXnum):
+                for j in range(SceneSettings.tileYnum):
+                    tile_type = self.tiles[i][j]
+                    tile_image = self.tile_images2[tile_type]
+                    tile_rect = tile_image.get_rect(topleft=(SceneSettings.tileWidth * i, SceneSettings.tileHeight * j))
+                    if self.camera.colliderect(tile_rect):
+                        temp_surface.blit(tile_image, (tile_rect.x - self.camera.x, tile_rect.y - self.camera.y))
+
+        # 将临时表面渲染到窗口上
+            self.window.blit(temp_surface, (0, 0))
+
+        else:
+            # 渲染地图
+            for i in range(SceneSettings.tileXnum):
+                for j in range(SceneSettings.tileYnum):
+                    tile_type = self.tiles[i][j]
+                    tile_image = self.tile_images2[tile_type]
                     tile_rect = tile_image.get_rect(topleft=(SceneSettings.tileWidth * i, SceneSettings.tileHeight * j))
                     if self.camera.colliderect(tile_rect):
                         temp_surface.blit(tile_image, (tile_rect.x - self.camera.x, tile_rect.y - self.camera.y))
