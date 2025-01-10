@@ -135,15 +135,15 @@ class NpcSettings:
     attack6 = 30
     Eliza = [dialogue6,items6,photopath6_1,photopath6_2,reward6,currency6,health6,attack6]
 
-    #Erin 璃音
-    Task_Erin = '''You are Erin,a NPC with senior status in a game world.
+    #Irin 璃音
+    Task_Irin = '''You are Irin,a NPC with senior status in a game world.
     You are wise and have a high level of combat power.
     You are afraid of the player's strength and want to test the player's strength.
     You want to see if the player is qualified to defeat the final boss.
     When the input involves about your identity or the setting of this game,
     you should persuade the player not to move forward anymore.
     '''+CommonSense
-    dialogue7 = {"role": "system", "content":Task_Erin}
+    dialogue7 = {"role": "system", "content":Task_Irin}
     items7 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
     photopath7_1 = r".\assets\images\npc7.1.png"
     photopath7_2 = r".\assets\images\npc7.2.png"
@@ -151,7 +151,7 @@ class NpcSettings:
     currency7 = 100
     health7 = 700
     attack7 = 30
-    Erin = [dialogue7,items7,photopath7_1,photopath7_2,reward7,currency7,health7,attack7]
+    Irin = [dialogue7,items7,photopath7_1,photopath7_2,reward7,currency7,health7,attack7]
 
     #Lianne 莲
     Task_Lianne = '''You are Lianne,a NPC with senior status in a game world.
@@ -224,6 +224,7 @@ class NpcSettings:
     health11 = 700
     attack11 = 30
     Nyarutoru = [dialogue11,items11,photopath11_1,photopath11_2,reward11,currency11,health11,attack11]
+    
 class SceneSettings:
     tileXnum = 120
     tileYnum = 72

@@ -89,7 +89,7 @@ def stage1(window,player):
     npc1 = NPC(350,880,NpcSettings.Lilia)
     npc2 = NPC(300,300,NpcSettings.Berries)
     npcs = [npc1,npc2]
-    portal = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield"], 100, 100)
+    portal = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield","The Lengendary Armor"], 100, 100)
     transparent_roof = Transparent(r".\assets\images\roof.png",50,550,1000,600)
     transparents = [transparent_roof]
 
@@ -99,14 +99,14 @@ def stage1(window,player):
     scene_manager.tick(30)
     scene_manager.render(npcs)
 
-
     stage_common(npcs,player,walls,transparents,portal,scene_manager,window)
+
 
     def stage2(window,player):
         walls = pygame.sprite.Group()
         walls.add(Wall(2000,1200,100,100))
         npc1 = NPC(200,200,NpcSettings.Sakura)
-        npc2 = NPC(300,300,NpcSettings.Irin)
+        npc2 = NPC(300,300,NpcSettings.Irin_Evil)
         npcs = [npc1,npc2]
         portal = Portal(r".\assets\images\portal.png",['The Evil Black Mandala',"The philosopher's stone"], 100, 100)
         scene_manager = SceneManager(window)
