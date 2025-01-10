@@ -63,7 +63,7 @@ class NpcSettings:
     photopath2_1 = r".\assets\images\npc2.1.png"
     photopath2_2 = r".\assets\images\npc2.2.png"
     reward2 = "The Lengendary Armor"
-    currency2 = 100
+    currency2 = 150
     health2 = 50
     attack2 = 20
     bubble_text2_1 = "I like your dress!It's pretty."
@@ -79,7 +79,7 @@ class NpcSettings:
     you should express your contemptuous attitude.
     '''+CommonSense 
     dialogue3 = {"role": "system", "content":Task_Irin_Evil}
-    items3 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
+    items3 = [("Undifined1", 9999), ("Undifined2", 9999), ("Undifined3", 9999)]
     photopath3_1 = r".\assets\images\npc3.1.png"
     photopath3_2 = r".\assets\images\npc3.2.png"
     reward3 = "The Evil Black Mandala"
@@ -100,7 +100,7 @@ class NpcSettings:
     you should persuade the player not to move forward anymore.
     '''+CommonSense
     dialogue4 = {"role": "system", "content":Task_Sakura}
-    items4 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
+    items4 = [("The Principal's Pcepter", 150), ("Undifined2", 9999), ("Undifined3", 9999)]
     photopath4_1 = r".\assets\images\npc4.1.png"
     photopath4_2 = r".\assets\images\npc4.2.png"
     reward4 = "The philosopher's stone"
@@ -120,13 +120,13 @@ class NpcSettings:
     You should encourage players to move forward bravely.
     '''+CommonSense
     dialogue5 = {"role": "system", "content":Task_Nyakori}
-    items5 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
+    items5 = [("A bag of crisps", 15), ("Friendship necklace", 75), ("Kitties Cookies", 20)]
     photopath5_1 = r".\assets\images\npc5.1.png"
     photopath5_2 = r".\assets\images\npc5.2.png"
     reward5 = "The Lengendary Armor"
-    currency5 = 100
-    health5 = 700
-    attack5 = 30
+    currency5 = 150
+    health5 = 500
+    attack5 = 20
     bubble_text5_1 = 'Have you seen my potato chips?'
     bubble_text5_2 = "Don't you remember me?"
     bubble_text5_3 = "We were best friends before you lost your memory..."
@@ -141,13 +141,13 @@ class NpcSettings:
     you should persuade the player not to move forward anymore.
     '''+CommonSense
     dialogue6 = {"role": "system", "content":Task_Eliza}
-    items6 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
+    items6 = [("The Hat of the Forest Guardian", 40), ("The Coat of the Forest Guardian", 30), ("The Boots of the Forest Guardian", 20)]
     photopath6_1 = r".\assets\images\npc6.1.png"
     photopath6_2 = r".\assets\images\npc6.2.png"
     reward6 = 'The Legendary Shield'
-    currency6 = 100
-    health6 = 700
-    attack6 = 30
+    currency6 = 150
+    health6 = 400
+    attack6 = 20
     bubble_text6_1 = 'I like wondering around with Berries...Have you seen her?'
     bubble_text6_2 = 'You shall not...enter the magical forest.'
     bubble_text6_3 = 'I will take everyone seriously and protect them.'
@@ -159,11 +159,11 @@ class NpcSettings:
     You hope that players can break the sealed evil replica of yourself, go deep into the altar, and find the truth.
     '''+CommonSense
     dialogue7 = {"role": "system", "content":Task_Irin}
-    items7 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
+    items7 = [("A Pure Heart", 100), ("Undifined2", 9999), ("Undifined3", 9999)]
     photopath7_1 = r".\assets\images\npc7.1.png"
     photopath7_2 = r".\assets\images\npc7.2.png"
     reward7 = "The Container"
-    currency7 = 100
+    currency7 = 200
     health7 = 700
     attack7 = 30
     bubble_text7_1 = 'I bear the mission of becoming The Container.'
@@ -178,11 +178,11 @@ class NpcSettings:
     You should persuade the player not to move forward anymore.
     '''+CommonSense
     dialogue8 = {"role": "system", "content":Task_Lianne}
-    items8 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
+    items8 = [("The Gloves of the Librarian", 50), ("The Magnifying Glass of the Librarian", 50), ("Undefined3", 9999)]
     photopath8_1 = r".\assets\images\npc8.1.png"
     photopath8_2 = r".\assets\images\npc8.2.png"
     reward8 = "The Book of All Things"
-    currency8 = 100
+    currency8 = 200
     health8 = 700
     attack8 = 30
     bubble_text8_1 = 'I like to smell the pages of the book.'
@@ -197,11 +197,11 @@ class NpcSettings:
     but you are curious about the sincere player and willing to provide help.
     '''+CommonSense
     dialogue9 = {"role": "system", "content":Task_Theia}
-    items9 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
+    items9 = [("A Hard Wrench", 999), ("The Star Ring", 999), ("The Robot Fortifier", 999)]
     photopath9_1 = r".\assets\images\npc9.1.png"
     photopath9_2 = r".\assets\images\npc9.2.png"
     reward9 = "A Faulty Robot"
-    currency9 = 100
+    currency9 = 200
     health9 = 700
     attack9 = 30
     bubble_text9_1 = "Hello, let's say hello to the little robot"
@@ -214,7 +214,7 @@ class NpcSettings:
     You want to compete with powerful players out of curiosity.
     '''+CommonSense
     dialogue10 = {"role": "system", "content":Task_Drakura}
-    items10 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
+    items10 = [("Undifined1", 9999), ("Undifined2", 9999), ("Undifined3", 9999)]
     photopath10_1 = r".\assets\images\npc10.1.png"
     photopath10_2 = r".\assets\images\npc10.2.png"
     reward10 = "The Vessel of Blood"
@@ -233,7 +233,7 @@ class NpcSettings:
     and your mission is to defeat players and turn the entire world into the master of darkness.
     '''+CommonSense
     dialogue11 = {"role": "system", "content":Task_Nyarutoru}
-    items11 = [("Undifined1", 999), ("Undifined2", 999), ("Undifined3", 999)]
+    items11 = [("Undifined1", 9999), ("Undifined2", 9999), ("Undifined3", 9999)]
     photopath11_1 = r".\assets\images\npc11.1.png"
     photopath11_2 = r".\assets\images\npc11.2.png"
     reward11 = "The Bow Tie of Nyarutoru"
@@ -296,6 +296,20 @@ class Item_List:
     A_Faulty_Robot = Items([0,6,20,0],"An intelligent robot...It may be able to protect you")
     The_Vessel_of_Blood = Items([10,0,15,0],"The blood inside is still steaming hot...")
     The_Bow_Tie_of_Nyarutoru = Items([5,5,15,1],"I am the PAST of you")
+    The_Principals_Pcepter = Items([5,0,20,0],"The symbol of the principal's supreme power")
+    A_bag_of_crisps = Items([0,0,10,0],"Yummy!")
+    Friendship_necklace = Items([0,4,0,0],"The symbol of our friendship")
+    Kitty_Cookies = Items([0,0,15,0],"Yummy!")
+    The_Hat_of_the_Forest_Guardian = Items([0,2,0,0],"Old styles never go out of style")
+    The_Coat_of_the_Forest_Guardian = Items([0,2,0,0],"Old styles never go out of style")
+    The_Boots_of_the_Forest_Guardian = Items([0,2,0,0],"Old styles never go out of style")
+    A_Pure_Heart = Items([0,3,20,0],"It's still beating")
+    The_Gloves_of_the_Librarian = Items([0,2,5,0],"You will need this...Perhaps")
+    The_Magnifying_Glass_of_the_Librarian = Items([0,2,5,0],"You will need this...Perhaps")
+    A_Hard_Wrench = Items([5,0,0,0],"It hurts!")
+    The_Star_Ring = Items([0,0,0,1],"It's shining")
+    The_Robot_Fortifier = Items([2,2,0,0],"It improve the performance of robots")
+
     items = {
         "The Lengendary Sword": The_Lengendary_Sword,
         "The Lengendary Shield": The_Lengendary_Shield,
@@ -312,6 +326,19 @@ class Item_List:
         "The Book of All Things":The_Book_of_All_Things,
         "A Faulty Robot":A_Faulty_Robot,
         "The Vessel of Blood":The_Vessel_of_Blood,
-        "The Bow Tie of Nyarutoru":The_Bow_Tie_of_Nyarutoru
+        "The Bow Tie of Nyarutoru":The_Bow_Tie_of_Nyarutoru,
+        "The Principal's Pcepter":The_Principals_Pcepter,
+        "A bag of crisps":A_bag_of_crisps,
+        "Friendship necklace":Friendship_necklace,
+        "Kitties Cookies":Kitty_Cookies,
+        "The Hat of the Forest Guardian":The_Hat_of_the_Forest_Guardian,
+        "The Coat of the Forest Guardian":The_Coat_of_the_Forest_Guardian,
+        "The Boots of the Forest Guardian":The_Boots_of_the_Forest_Guardian,
+        "A Pure Heart":A_Pure_Heart,
+        "The Gloves of the Librarian":The_Gloves_of_the_Librarian,
+        "The Magnifying Glass of the Librarian":The_Magnifying_Glass_of_the_Librarian,
+        "A Hard Wrench":A_Hard_Wrench,
+        "The Star Ring":The_Star_Ring,
+        "The Robot Fortifier":The_Robot_Fortifier,
     }
     keys = items.keys()

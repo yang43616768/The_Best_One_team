@@ -20,6 +20,8 @@ class Player(pygame.sprite.Sprite):
         self.currency = 100
         self.inventory = []
         self.bag_active = False
+        self.scroll_offset = 0  # 初始化滚动偏移量
+
     def update(self, walls,dialogue_active,buy_active, scene_manager):
 
         if not dialogue_active and not buy_active:
@@ -68,9 +70,10 @@ class Player(pygame.sprite.Sprite):
     def show_inventory(self, window):
         if self.bag_active:
             font = pygame.font.Font(None, 36)
-            inventory_surface = pygame.Surface((1000, 500), pygame.SRCALPHA)
+            inventory_surface = pygame.Surface((1600, 900), pygame.SRCALPHA)
             inventory_surface.fill((173, 216, 230, 180))  # 半透明淡蓝色背景
-            y_offset = 10
+            y_offset = 10 - self.scroll_offset  # 根据滚动偏移量调整 y_offset
+
 
 
             # 显示玩家属性

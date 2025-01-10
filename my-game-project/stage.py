@@ -37,6 +37,7 @@ def stage_common(npcs,player,walls,transparents,portal,scene_manager,window):
                     player.bag_active = False
                 elif event.key == pygame.K_i and not any(npc.dialogue_active for npc in npcs):  # 按下i键打开背包
                     player.bag_active = not player.bag_active
+
                 else:
                     for npc in npcs:
                         npc.handle_input(event,player)
@@ -87,9 +88,12 @@ def stage1(window,player):
     walls.add(Wall(650,1150,450,50))
 
     npc1 = NPC(350,880,NpcSettings.Lilia)
-    npc2 = NPC(300,300,NpcSettings.Berries)
-    npcs = [npc1,npc2]
-    portal = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield","The Lengendary Armor","The philosopher's stone"], 100, 100)
+    npc2 = NPC(350,300,NpcSettings.Berries)
+    npc3 = NPC(350,1460,NpcSettings.Nyakori)
+    npc4 = NPC(800,880,NpcSettings.Eliza)
+    npc5 = NPC(1200,880,NpcSettings.Sakura)
+    npcs = [npc1,npc2,npc3,npc4,npc5]
+    portal = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield","The Lengendary Armor","The philosopher's stone"], 1250, 880)
     transparent_roof = Transparent(r".\assets\images\roof.png",50,550,1000,600)
     transparents = [transparent_roof]
 
@@ -98,21 +102,54 @@ def stage1(window,player):
     scene_manager = SceneManager(window)
     scene_manager.tick(30)
     scene_manager.render(npcs)
-
+    for item in Item_List.keys:
+        player.inventory.append(item)
     stage_common(npcs,player,walls,transparents,portal,scene_manager,window)
 
 
-    def stage2(window,player):
-        walls = pygame.sprite.Group()
-        walls.add(Wall(2000,1200,100,100))
-        npc1 = NPC(200,200,NpcSettings.Sakura)
-        npc2 = NPC(300,300,NpcSettings.Irin_Evil)
-        npcs = [npc1,npc2]
-        portal = Portal(r".\assets\images\portal.png",['The Evil Black Mandala',"The philosopher's stone"], 100, 100)
-        scene_manager = SceneManager(window)
-        transparents = []
-        pygame.display.set_caption("We are getting deeper!")
-        stage_common(npcs,player,walls,transparents,portal,scene_manager,window)
+def stage2(window,player):
+    player.rect.x = 1600
+    player.rect.y = 900
+    walls = pygame.sprite.Group()
+    walls.add(Wall(0,200,50,50))
 
-    def stage3(window,player):
-        pass
+
+    npc1 = NPC(350,880,NpcSettings.Theia)
+    npc2 = NPC(350,300,NpcSettings.Lianne)
+    npc3 = NPC(800,880,NpcSettings.Irin)
+    npc4 = NPC(1200,880,NpcSettings.Irin_Evil)
+    npcs = [npc1,npc2,npc3,npc4]
+    portal = Portal(r".\assets\images\portal.png",["The Evil Black Mandala","The Container"], 1250, 880)
+    transparent_roof1 = Transparent(r".\assets\images\roof.png",50,550,1000,600)
+    transparents = [transparent_roof1]
+
+    pygame.display.set_caption("We are getting deeper...into the Truth")
+
+    scene_manager = SceneManager(window)
+    scene_manager.tick(30)
+    scene_manager.render(npcs)
+
+    stage_common(npcs,player,walls,transparents,portal,scene_manager,window)
+
+def stage3(window,player):
+    player.rect.x = 1600
+    player.rect.y = 900
+    walls = pygame.sprite.Group()
+    walls.add(Wall(0,200,50,50))
+
+
+    npc1 = NPC(350,880,NpcSettings.Drakura)
+    npc2 = NPC(350,300,NpcSettings.Nyarutoru)
+
+    npcs = [npc1,npc2]
+    portal = Portal(r".\assets\images\portal.png",["The Vessel of Blood","The Bow Tie of Nyarutoru"], 1250, 880)
+    transparent_roof1 = Transparent(r".\assets\images\roof.png",50,550,1000,600)
+    transparents = [transparent_roof1]
+
+    pygame.display.set_caption("The Final Chapter.")
+
+    scene_manager = SceneManager(window)
+    scene_manager.tick(30)
+    scene_manager.render(npcs)
+
+    stage_common(npcs,player,walls,transparents,portal,scene_manager,window)
