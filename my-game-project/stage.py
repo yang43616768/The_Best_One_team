@@ -47,7 +47,7 @@ def stage_common(npcs,player,walls,transparents,portal,scene_manager,window):
             window.fill((0, 0, 0))
 
             scene_manager.update_camera(player)  # 更新摄像机位置
-            scene_manager.render(npcs)
+            scene_manager.render2(npcs)
             scene_manager.location(player,npcs)
             scene_manager.location(walls,npcs)
             for npc in npcs:
@@ -76,22 +76,6 @@ def stage0(window):
 def stage1(window,player):
 
     walls = pygame.sprite.Group()
-    # walls.add(Wall(0,200,50,50))
-    # walls.add(Wall(200, 850, 100, 100))
-    # walls.add(Wall(0, 1100, 50, 50))
-    # walls.add(Wall(2950, 1750, 50, 50))
-    # walls.add(Wall(0,550,50,650))#1450 10 -- 0 550    -1450 +540
-    # walls.add(Wall(50,550,1000,50))
-    # walls.add(Wall(1050,550,50,600))
-    # walls.add(Wall(50,1150,400,50))
-    # walls.add(Wall(650,1150,450,50))
-
-    # npc1 = NPC(350,880,NpcSettings.Lilia)
-    # npc2 = NPC(300,300,NpcSettings.Berries)
-    # npcs = [npc1,npc2]
-    # portal = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield","The Lengendary Armor","The philosopher's stone"], 100, 100)
-    # transparent_roof = Transparent(r".\assets\images\roof.png",50,550,1000,600)
-    # transparents = [transparent_roof]
     walls.add(Wall(0,490,800,20))
     walls.add(Wall(0,1290,800,20))
     walls.add(Wall(780,510,20,290))
@@ -129,7 +113,7 @@ def stage1(window,player):
 
     scene_manager = SceneManager(window)
     scene_manager.tick(30)
-    scene_manager.render(npcs)
+    scene_manager.render2(npcs)
 
     stage_common(npcs,player,walls,transparents,portal,scene_manager,window)
 
