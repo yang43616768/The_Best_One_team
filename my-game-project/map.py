@@ -31,3 +31,4 @@ class Map2:
                 tmp.append(randint(0, len(self.images) - 1))  # 使用索引而不是图像
             maporigin.append(tmp)
         return maporigin
+    

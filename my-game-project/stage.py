@@ -18,7 +18,7 @@ def draw_screen(window, background_path):
     window.blit(text, text_rect)
     pygame.display.flip()
 
-def stage_common(npcs,player,walls,transparents,portal,scene_manager,window):
+def stage_common(npcs,player,walls,transparents,portal,scene_manager,window,i):
     waiting = True
     while waiting:
         for npc in npcs:
@@ -52,7 +52,12 @@ def stage_common(npcs,player,walls,transparents,portal,scene_manager,window):
             window.fill((0, 0, 0))
 
             scene_manager.update_camera(player)  # 更新摄像机位置
-            scene_manager.render2(npcs)
+            if i == 1:
+                scene_manager.render1(npcs)
+            if i == 2:
+                scene_manager.render2(npcs)
+            if i == 3:
+                scene_manager.render3(npcs)
             scene_manager.location(player,npcs)
             scene_manager.location(walls,npcs)
             for npc in npcs:
@@ -61,7 +66,7 @@ def stage_common(npcs,player,walls,transparents,portal,scene_manager,window):
             for transparent in transparents:
                 scene_manager.location(transparent,npcs)
             player.show_inventory(scene_manager.window)
-            portal.check_telepotation(player,event)
+            portal.check_telepotation(player,event,npcs)
             pygame.display.flip()
             if portal.tp_succeed:
                 waiting = False
@@ -89,7 +94,7 @@ def stage1(window,player):
     npc4 = NPC(800,880,NpcSettings.Eliza)
     npc5 = NPC(1200,880,NpcSettings.Sakura)
     npcs = [npc1,npc2,npc3,npc4,npc5]
-    portal = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield","The Lengendary Armor","The philosopher's stone"], 1250, 880)
+    portal = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield","The Legendary Armor","The philosopher's stone"], 1250, 880)
 
     walls.add(Wall(1390,0,20,700))
     walls.add(Wall(1390,1100,20,700))
@@ -118,12 +123,13 @@ def stage1(window,player):
     scene_manager = SceneManager(window)
     scene_manager.tick(30)
 
-    #全物品指令
+    # 全物品指令
+
     # for item in Item_List.keys:   
     #     player.inventory.append(item)
-    scene_manager.render2(npcs)
 
-    stage_common(npcs,player,walls,transparents,portal,scene_manager,window)
+    scene_manager.render1(npcs)
+    stage_common(npcs,player,walls,transparents,portal,scene_manager,window,1)
 
 
 def stage2(window,player):
@@ -146,9 +152,9 @@ def stage2(window,player):
 
     scene_manager = SceneManager(window)
     scene_manager.tick(30)
-    scene_manager.render1(npcs)
+    scene_manager.render2(npcs)
 
-    stage_common(npcs,player,walls,transparents,portal,scene_manager,window)
+    stage_common(npcs,player,walls,transparents,portal,scene_manager,window,2)
 
 def stage3(window,player):
     player.rect.x = 1600
@@ -169,6 +175,6 @@ def stage3(window,player):
 
     scene_manager = SceneManager(window)
     scene_manager.tick(30)
-    scene_manager.render1(npcs)
+    scene_manager.render3(npcs)
 
-    stage_common(npcs,player,walls,transparents,portal,scene_manager,window)
+    stage_common(npcs,player,walls,transparents,portal,scene_manager,window,3)

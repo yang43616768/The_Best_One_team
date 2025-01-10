@@ -18,8 +18,10 @@ def main():
     player = Player(25,875)
     # Stage 1 - Teaching Section
     stage1(window,player)
-
-
+    # Stage 2 - In the Tower
+    stage2(window,player)
+    # Stage 3 - The Final Battle
+    stage3(window,player)
 if __name__ == "__main__":
     main()
 

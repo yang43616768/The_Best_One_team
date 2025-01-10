@@ -18,6 +18,7 @@ class SceneManager:
         self.tiles = self.map2.gen_map()
         self.tile_images2 = [pygame.image.load(tile) for tile in Gamepath.groundTiles2]
         self.tile_images2 = [pygame.transform.scale(image, (SceneSettings.tileWidth, SceneSettings.tileHeight)) for image in self.tile_images2]
+
         self.window = window
         self.clock = pygame.time.Clock()
         self.cameraX = 0
@@ -137,6 +138,18 @@ class SceneManager:
                     if self.camera.colliderect(tile_rect):
                         temp_surface.blit(tile_image, (tile_rect.x - self.camera.x, tile_rect.y - self.camera.y))
             self.window.blit(temp_surface, (0, 0))
+
+    def render3(self,npcs):
+        temp_surface = pygame.Surface((self.camera.width, self.camera.height)) 
+
+        background_image = pygame.image.load(r".\assets\images\stage2background.png")
+        background_image = pygame.transform.scale(background_image, (2*WindowsSettings.width, 2*WindowsSettings.height))
+        temp_surface.blit(background_image,(-self.camera.x, -self.camera.y))
+        # 绘制背景图片，根据 camera 偏移值
+        self.window.blit(temp_surface, (0, 0))
+        
+
+
 
     def update_camera(self, player):
         # 计算摄像机的新位置

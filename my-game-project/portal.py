@@ -11,14 +11,15 @@ class Portal:
         self.item_needed = item_needed
         self.tp_succeed = False
 
-    def check_telepotation(self,player,event):
-        if event.type == pygame.KEYDOWN:
-            if self.rect.colliderect(player.rect) and event.key == pygame.K_e:
-                if self.check_item(player):
-                    self.tp_succeed = True
-                else:
-                    self.tp_failed(player)
-                return True
+    def check_telepotation(self,player,event,npcs):
+        if not any (npc.dialogue_active for npc in npcs) and not any (npc.buy_active for npc in npcs) and not any (npc.fight_active for npc in npcs):
+            if event.type == pygame.KEYDOWN:
+                if self.rect.colliderect(player.rect) and event.key == pygame.K_e:
+                    if self.check_item(player):
+                        self.tp_succeed = True
+                    else:
+                        self.tp_failed(player)
+                    return True
 
     def check_item(self,player):
         for item in self.item_needed:
@@ -28,7 +29,6 @@ class Portal:
 
 
     def tp_failed(self, player):
-
         window = pygame.display.get_surface()
         font = pygame.font.Font(None, 36)
         missing_items = ', '.join([f"'{item}'" for item in self.item_needed if item not in player.inventory])

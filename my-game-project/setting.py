@@ -43,7 +43,7 @@ class NpcSettings:
     items1 = [("A worn-out helmet", 10), ("A worn-out armor", 20), ("A worn-out short sword", 30)]
     photopath1_1 = r".\assets\images\npc1.1.png"
     photopath1_2 = r".\assets\images\npc1.2.png"
-    reward1 = 'The Lengendary Sword'
+    reward1 = 'The Legendary Sword'
     currency1 = 100
     health1 = 50
     attack1 = 20
@@ -62,7 +62,7 @@ class NpcSettings:
     items2 = [("Tears of the Dragon", 100), ("Dragon Soul", 40), ("Dragon bone", 60)]
     photopath2_1 = r".\assets\images\npc2.1.png"
     photopath2_2 = r".\assets\images\npc2.2.png"
-    reward2 = "The Lengendary Armor"
+    reward2 = "The Legendary Armor"
     currency2 = 150
     health2 = 50
     attack2 = 20
@@ -123,7 +123,7 @@ class NpcSettings:
     items5 = [("A bag of crisps", 15), ("Friendship necklace", 75), ("Kitties Cookies", 20)]
     photopath5_1 = r".\assets\images\npc5.1.png"
     photopath5_2 = r".\assets\images\npc5.2.png"
-    reward5 = "The Lengendary Armor"
+    reward5 = "The Legendary Armor"
     currency5 = 150
     health5 = 500
     attack5 = 20
@@ -280,10 +280,10 @@ class Gamepath:
 
 class Item_List:
 #   物品名 = Items([攻击力,防御力,生命值,步数])
-    The_Lengendary_Sword = Items([10,0,0,0],'A peerless sword in the world')
-    The_Lengendary_Shield = Items([0,10,0,0],'A peerless shield in the world')
+    The_Legendary_Sword = Items([10,0,0,0],'A peerless sword in the world')
+    The_Legendary_Shield = Items([0,10,0,0],'A peerless shield in the world')
     The_Evil_Black_Mandala = Items([-5,0,40,0],'A black mandala that brings evil')
-    The_Lengendary_Armor = Items([-5,0,100,0],'An ancient armor')
+    The_Legendary_Armor = Items([-5,0,100,0],'An ancient armor')
     A_worn_out_helmet = Items([0,1,0,0],"It's a bit worn out...But it can still be used")
     A_worn_out_armor = Items([0,0,2,0],"It's a bit worn out...But it can still be used")
     A_worn_out_short_sword = Items([3,0,0,0],"It's a bit worn out...But it can still be used")
@@ -311,10 +311,10 @@ class Item_List:
     The_Robot_Fortifier = Items([2,2,0,0],"It improve the performance of robots")
 
     items = {
-        "The Lengendary Sword": The_Lengendary_Sword,
-        "The Lengendary Shield": The_Lengendary_Shield,
+        "The Legendary Sword": The_Legendary_Sword,
+        "The Legendary Shield": The_Legendary_Shield,
         "The Evil Black Mandala": The_Evil_Black_Mandala,
-        "The Lengendary Armor": The_Lengendary_Armor,
+        "The Legendary Armor": The_Legendary_Armor,
         "A worn-out helmet": A_worn_out_helmet,
         "A worn-out armor": A_worn_out_armor,
         "A worn-out short sword": A_worn_out_short_sword,
