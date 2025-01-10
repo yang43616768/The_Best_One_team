@@ -197,7 +197,7 @@ class NpcSettings:
     but you are curious about the sincere player and willing to provide help.
     '''+CommonSense
     dialogue9 = {"role": "system", "content":Task_Theia}
-    items9 = [("A Hard Wrench", 999), ("The Star Ring", 999), ("The Robot Fortifier", 999)]
+    items9 = [("A Hard Wrench", 30), ("The Star Ring", 50), ("The Robot Fortifier", 20)]
     photopath9_1 = r".\assets\images\npc9.1.png"
     photopath9_2 = r".\assets\images\npc9.2.png"
     reward9 = "A Faulty Robot"
@@ -221,10 +221,10 @@ class NpcSettings:
     currency10 = 100
     health10 = 700
     attack10 = 30
-    bubble_text10_1 = 'I have been endowed with the power of blood.'
-    bubble_text10_2 = 'Disputes, struggles and pains ... What a sweet taste.'
-    bubble_text10_3 = 'Interesting guy. I am longing to fight with you.'
-    Drakura = [dialogue10,items10,photopath10_1,photopath10_2,reward10,currency10,health10,attack10,"Drakura",bubble_text10_1,bubble_text10_2,bubble_text10_3]
+    bubble_text10_1 = "I have been endowed with the power of blood."
+    bubble_text10_2 = "Disputes, struggles and pains ... What a sweet taste."
+    bubble_text10_3 = "Interesting guy. I am longing to fight with you."
+    Drakura = [dialogue10,items10,photopath10_1,photopath10_2,reward10,currency10,health10,attack10,"Drakura",[bubble_text10_1,bubble_text10_2,bubble_text10_3]]
 
     #Nyarutoru 喵露朵露薇
     Task_Nyarutoru = '''You are a remnant of the player's past.
@@ -240,10 +240,10 @@ class NpcSettings:
     currency11 = 100
     health11 = 700
     attack11 = 30
-    bubble_text11_1 = 'I am the Past of you.'
-    bubble_text11_2 = 'I was born from evil.'
-    bubble_text11_3 = 'Darkness will eventually annihilate the world.'
-    Nyarutoru = [dialogue11,items11,photopath11_1,photopath11_2,reward11,currency11,health11,attack11,"Nyarutoru",bubble_text11_1,bubble_text11_2,bubble_text11_3]
+    bubble_text11_1 = "I am the Past of you."
+    bubble_text11_2 = "I was born from evil."
+    bubble_text11_3 = "Darkness will eventually annihilate the world."
+    Nyarutoru = [dialogue11,items11,photopath11_1,photopath11_2,reward11,currency11,health11,attack11,"Nyarutoru",[bubble_text11_1,bubble_text11_2,bubble_text11_3]]
     
 class SceneSettings:
     tileXnum = 120

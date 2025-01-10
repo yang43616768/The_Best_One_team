@@ -125,8 +125,8 @@ def stage1(window,player):
 
     # 全物品指令
 
-    # for item in Item_List.keys:   
-    #     player.inventory.append(item)
+    for item in Item_List.keys:   
+        player.add_item(item)
 
     scene_manager.render1(npcs)
     stage_common(npcs,player,walls,transparents,portal,scene_manager,window,1)
