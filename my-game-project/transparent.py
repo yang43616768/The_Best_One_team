@@ -11,7 +11,7 @@ class Transparent:
 
     def check_transparent(self,player):
         if self.rect.colliderect(player.rect):
-                self.alpha = 60
+            self.alpha = 60
         else:
             self.alpha = 255
 
