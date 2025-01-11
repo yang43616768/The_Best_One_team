@@ -62,7 +62,7 @@ def stage_common(npcs,player,walls,transparents,portal,scene_manager,window,i):
             scene_manager.location(portal,npcs)
             scene_manager.location(player,npcs)
             scene_manager.location(walls,npcs)
-            
+
             for npc in npcs:
                 scene_manager.location(npc, npcs)
 
@@ -176,12 +176,13 @@ def stage2(window,player):
 
 
 
+
     npc1 = NPC(1475,800,NpcSettings.Theia)
     npc2 = NPC(1600,1525,NpcSettings.Lianne)
     npc3 = NPC(375,1075,NpcSettings.Irin)
-    npc4 = NPC(1750,175,NpcSettings.Irin_Evil)
+    npc4 = NPC(1750,115,NpcSettings.Irin_Evil)
     npcs = [npc1,npc2,npc3,npc4]
-    portal = Portal(r".\assets\images\portal.png",["The Evil Black Mandala","The Container"], 2800,700)
+    portal = Portal(r".\assets\images\portal.png",["The Evil Black Mandala","The Container"], 2600,700)
     transparent_roof1 = Transparent(r".\assets\images\roof.png",1100,400,800,600)
     transparent_roof2 = Transparent(r".\assets\images\roof.png",0,1300,750,500)
     transparent_roof3 = Transparent(r".\assets\images\roof.png",750,1300,750,500)

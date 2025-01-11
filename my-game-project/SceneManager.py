@@ -163,6 +163,7 @@ class SceneManager:
             (175, 125, 50, 700),
             (175, 125, 2550, 50),
             (2675, 175 , 50, 425),
+            (2475, 1175, 50, 100),
         ]
         for block in blocks:
             block_rect = pygame.Rect(block)

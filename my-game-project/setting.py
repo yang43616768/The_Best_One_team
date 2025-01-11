@@ -13,7 +13,7 @@ class PlayerSettings:
     playerHeight = 75
     playerHealth = 200
     playerAttack = 5
-    PlayerDefense = 3
+    PlayerDefense = 5
     PlayerMoves = 3
 
 class NpcSettings:
@@ -46,7 +46,7 @@ class NpcSettings:
     reward1 = 'The Legendary Sword'
     currency1 = 100
     health1 = 50
-    attack1 = [20,15,10]
+    attack1 = [10,15,10]
     bubble_text1_1 = 'Press "E" to talk to me.'
     bubble_text1_2 = 'Press "B" to buy items.'
     bubble_text1_3 = 'Press "F" to fight with me.'
@@ -64,8 +64,8 @@ class NpcSettings:
     photopath2_2 = r".\assets\images\npc2.2.png"
     reward2 = "The Legendary Armor"
     currency2 = 150
-    health2 = 50
-    attack2 = [20]
+    health2 = 300
+    attack2 = [20,25,30]
     bubble_text2_1 = "I like your dress!It's pretty."
     bubble_text2_2 = "Do you know there's a strange guy at the end of the Magic Forest?"
     bubble_text2_3 = 'Try wandering around!'
@@ -84,8 +84,8 @@ class NpcSettings:
     photopath3_2 = r".\assets\images\npc3.2.png"
     reward3 = "The Evil Black Mandala"
     currency3 = 100
-    health3 = 250
-    attack3 = [40]
+    health3 = 700
+    attack3 = [80,100,75]
     bubble_text3_1 = 'I will stop you.'
     bubble_text3_2 = 'I am no longer her.'
     bubble_text3_3 = 'I am the embodiment of evil'
@@ -105,8 +105,8 @@ class NpcSettings:
     photopath4_2 = r".\assets\images\npc4.2.png"
     reward4 = "The philosopher's stone"
     currency4 = 100
-    health4 = 700
-    attack4 = [30]
+    health4 = 450
+    attack4 = [20,60,30]
     bubble_text4_1 = 'I have seen too many young people like you before.'
     bubble_text4_2 = 'They accidentally entered the forest and got lost in the darkness.'
     bubble_text4_3 = 'You need to be aware of the cost of delving deeper into it.'
@@ -125,8 +125,8 @@ class NpcSettings:
     photopath5_2 = r".\assets\images\npc5.2.png"
     reward5 = "The Legendary Armor"
     currency5 = 150
-    health5 = 500
-    attack5 = [20]
+    health5 = 75
+    attack5 = [50,30,70]
     bubble_text5_1 = 'Have you seen my potato chips?'
     bubble_text5_2 = "Don't you remember me?"
     bubble_text5_3 = "We were best friends before you lost your memory..."
@@ -146,8 +146,8 @@ class NpcSettings:
     photopath6_2 = r".\assets\images\npc6.2.png"
     reward6 = 'The Legendary Shield'
     currency6 = 150
-    health6 = 400
-    attack6 = [20]
+    health6 = 200
+    attack6 = [40,30,50]
     bubble_text6_1 = 'I like wondering around with Berries...Have you seen her?'
     bubble_text6_2 = 'You shall not...enter the magical forest.'
     bubble_text6_3 = 'I will take everyone seriously and protect them.'
@@ -164,8 +164,8 @@ class NpcSettings:
     photopath7_2 = r".\assets\images\npc7.2.png"
     reward7 = "The Container"
     currency7 = 200
-    health7 = 700
-    attack7 = [30]
+    health7 = 600
+    attack7 = [30,25,40]
     bubble_text7_1 = 'I bear the mission of becoming The Container.'
     bubble_text7_2 = 'Evil will be forever sealed ... until your arrival.'
     bubble_text7_3 = 'Break the seal,find the Truth.'
@@ -183,8 +183,8 @@ class NpcSettings:
     photopath8_2 = r".\assets\images\npc8.2.png"
     reward8 = "The Book of All Things"
     currency8 = 200
-    health8 = 700
-    attack8 = [30]
+    health8 = 300
+    attack8 = [70,90,50]
     bubble_text8_1 = 'I like to smell the pages of the book.'
     bubble_text8_2 = 'I manage everything in the library.'
     bubble_text8_3 = 'Sealing is necessary to protect the tower...'
@@ -202,8 +202,8 @@ class NpcSettings:
     photopath9_2 = r".\assets\images\npc9.2.png"
     reward9 = "A Faulty Robot"
     currency9 = 200
-    health9 = 700
-    attack9 = [30]
+    health9 = 240
+    attack9 = [100,30,50]
     bubble_text9_1 = "Hello, let's say hello to the little robot"
     bubble_text9_2 = "The Truth? It's nothing to do with me."
     bubble_text9_3 = "I am still busy repairing my experiment."
@@ -219,8 +219,8 @@ class NpcSettings:
     photopath10_2 = r".\assets\images\npc10.2.png"
     reward10 = "The Vessel of Blood"
     currency10 = 100
-    health10 = 700
-    attack10 = [30]
+    health10 = 800
+    attack10 = [99,120,30,20]
     bubble_text10_1 = "I have been endowed with the power of blood."
     bubble_text10_2 = "Disputes, struggles and pains ... What a sweet taste."
     bubble_text10_3 = "Interesting guy. I am longing to fight with you."
@@ -238,8 +238,8 @@ class NpcSettings:
     photopath11_2 = r".\assets\images\npc11.2.png"
     reward11 = "The Bow Tie of Nyarutoru"
     currency11 = 100
-    health11 = 700
-    attack11 = [30]
+    health11 = 1000
+    attack11 = [0,50,40,30,150,10]
     bubble_text11_1 = "I am the Past of you."
     bubble_text11_2 = "I was born from evil."
     bubble_text11_3 = "Darkness will eventually annihilate the world."
@@ -282,8 +282,8 @@ class Item_List:
 #   物品名 = Items([攻击力,防御力,生命值,步数])
     The_Legendary_Sword = Items([10,0,0,0],'A peerless sword in the world')
     The_Legendary_Shield = Items([0,10,0,0],'A peerless shield in the world')
-    The_Evil_Black_Mandala = Items([-5,0,40,0],'A black mandala that brings evil')
-    The_Legendary_Armor = Items([-5,0,100,0],'An ancient armor')
+    The_Evil_Black_Mandala = Items([2,0,40,0],'A black mandala that brings evil')
+    The_Legendary_Armor = Items([0,2,100,0],'An ancient armor')
     A_worn_out_helmet = Items([0,1,0,0],"It's a bit worn out...But it can still be used")
     A_worn_out_armor = Items([0,0,2,0],"It's a bit worn out...But it can still be used")
     A_worn_out_short_sword = Items([3,0,0,0],"It's a bit worn out...But it can still be used")
