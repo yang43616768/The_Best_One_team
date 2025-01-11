@@ -15,7 +15,6 @@ def main():
 
     # Stage 0 - Start Screen
     stage0(window)
-    # player = Player(2825,875)
     player = Player(25,875)
     # Stage 1 - Teaching Section
     stage1(window,player)

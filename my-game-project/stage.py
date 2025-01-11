@@ -104,11 +104,7 @@ def stage1(window,player):
     npc4 = NPC(1375,855,NpcSettings.Eliza)
     npc5 = NPC(2700,855,NpcSettings.Sakura)
     npcs = [npc1,npc2,npc3,npc4,npc5]
-<<<<<<< HEAD
-    portal = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield","The Legendary Armor","The philosopher's stone"], 2800, 825)
-=======
-    portal = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield","The Legendary Armor","The philosopher's stone"], 2850, 775)
->>>>>>> 900bdbad248e3a38513fd68cee7a5673a1a4d03a
+    portal = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield","The Legendary Armor","The philosopher's stone"], 2800, 815)
 
     walls.add(Wall(0,490,800,20))
     walls.add(Wall(0,1290,800,20))
@@ -146,8 +142,8 @@ def stage1(window,player):
 
     # 全物品指令
 
-    for item in Item_List.keys:   
-        player.add_item(item)
+    # for item in Item_List.keys:   
+    #     player.add_item(item)
 
     scene_manager.render1(npcs)
     stage_common(npcs,player,walls,transparents,portal,scene_manager,window,1)
@@ -158,10 +154,10 @@ def stage2(window,player):
     pygame.mixer.music.load(r".\assets\bgm\city.mp3")
     pygame.mixer.music.play(-1)  # 循环播放
 
-    # player.rect.x = 1475
-    # player.rect.y = 475
-    player.rect.x = 2800
-    player.rect.y = 700
+    player.rect.x = 1475
+    player.rect.y = 475
+    # player.rect.x = 2800
+    # player.rect.y = 700
 
     walls = pygame.sprite.Group()
     walls.add(Wall(1110,390,780,20))
@@ -216,11 +212,7 @@ def stage3(window,player):
     npc2 = NPC(1550,750,NpcSettings.Nyarutoru)
 
     npcs = [npc1,npc2]
-<<<<<<< HEAD
     portal = Portal(r".\assets\images\portal.png",["The Vessel of Blood","The Bow Tie of Nyarutoru"], 1500, 100)
-=======
-    portal = Portal(r".\assets\images\portal.png",["The Vessel of Blood","The Bow Tie of Nyarutoru"], 1500, 200)
->>>>>>> 900bdbad248e3a38513fd68cee7a5673a1a4d03a
     transparent_roof1 = Transparent(r".\assets\images\roof.png",0,0,0,0)
 
     transparents = [transparent_roof1]
