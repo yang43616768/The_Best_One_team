@@ -151,10 +151,10 @@ def stage2(window,player):
     pygame.mixer.music.load(r".\assets\bgm\city.mp3")
     pygame.mixer.music.play(-1)  # 循环播放
 
-    # player.rect.x = 1475
-    # player.rect.y = 475
-    player.rect.x = 2800
-    player.rect.y = 700
+    player.rect.x = 1475
+    player.rect.y = 475
+    # player.rect.x = 2800
+    # player.rect.y = 700
 
     walls = pygame.sprite.Group()
     walls.add(Wall(1110,390,780,20))
@@ -200,35 +200,19 @@ def stage3(window,player):
     pygame.mixer.music.load(r".\assets\bgm\HisTheme.mp3")
     pygame.mixer.music.play(-1)  # 循环播放
 
-    player.rect.x = 1600
-    player.rect.y = 900
+    player.rect.x = 1550
+    player.rect.y = 1400
     walls = pygame.sprite.Group()
     walls.add(Wall(0,390,800,20))
-    walls.add(Wall(0,1390,800,20))
-    walls.add(Wall(780,410,20,390))
-    walls.add(Wall(780,1000,20,390))
 
-    walls.add(Wall(1980,290,1020,20))
-    walls.add(Wall(1980,1490,1020,20))
-    walls.add(Wall(2000,310,20,490))
-    walls.add(Wall(2000,1000,20,490))
-
-    walls.add(Wall(800,590,1200,20))
-    walls.add(Wall(800,1210,1200,20))
-
-    npc1 = NPC(575,875,NpcSettings.Drakura)
-    npc2 = NPC(2475,875,NpcSettings.Nyarutoru)
+    npc1 = NPC(1550,1625,NpcSettings.Drakura)
+    npc2 = NPC(1550,750,NpcSettings.Nyarutoru)
 
     npcs = [npc1,npc2]
-    portal = Portal(r".\assets\images\portal.png",["The Vessel of Blood","The Bow Tie of Nyarutoru"], 2850, 875)
-    transparent_roof1 = Transparent(r".\assets\images\roof.png",0,0,800,400)
-    transparent_roof2 = Transparent(r".\assets\images\roof.png",0,1400,800,400)
-    transparent_roof3 = Transparent(r".\assets\images\roof.png",800,0,1200,600)
-    transparent_roof4 = Transparent(r".\assets\images\roof.png",800,1200,1200,600)
-    transparent_roof5 = Transparent(r".\assets\images\roof.png",2000,0,1000,300)
-    transparent_roof6 = Transparent(r".\assets\images\roof.png",2000,1500,1000,300)
-    transparent_roof7 = Transparent(r".\assets\images\roof.png",0,400,800,1000)
-    transparents = [transparent_roof1,transparent_roof2,transparent_roof3,transparent_roof4,transparent_roof5,transparent_roof6,transparent_roof7]
+    portal = Portal(r".\assets\images\portal.png",["The Vessel of Blood","The Bow Tie of Nyarutoru"], 1532, 100)
+    transparent_roof1 = Transparent(r".\assets\images\roof.png",0,0,0,0)
+
+    transparents = [transparent_roof1]
 
     pygame.display.set_caption("The Final Chapter.")
 
