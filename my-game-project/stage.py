@@ -102,7 +102,7 @@ def stage1(window,player):
     npc5 = NPC(2700,875,NpcSettings.Sakura)
     npcs = [npc1,npc2,npc3,npc4,npc5]
     portal = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield","The Legendary Armor","The philosopher's stone"], 2850, 875)
- ##
+
     walls.add(Wall(0,490,800,20))
     walls.add(Wall(0,1290,800,20))
     walls.add(Wall(780,510,20,290))
@@ -139,8 +139,8 @@ def stage1(window,player):
 
     # 全物品指令
 
-    # for item in Item_List.keys:   
-    #     player.add_item(item)
+    for item in Item_List.keys:   
+        player.add_item(item)
 
     scene_manager.render1(npcs)
     stage_common(npcs,player,walls,transparents,portal,scene_manager,window,1)
@@ -237,3 +237,72 @@ def stage3(window,player):
     scene_manager.render3(npcs)
 
     stage_common(npcs,player,walls,transparents,portal,scene_manager,window,3)
+
+def stage4(window):
+    pygame.mixer.music.load(r".\assets\bgm\LightningMoment.mp3")
+    pygame.mixer.music.play(-1)  # 循环播放
+    pygame.display.set_caption("Thanks for playing!")
+    # 加载结束界面的图片
+    end_images = [
+        pygame.image.load(r".\assets\images\ending0.png"),
+        pygame.image.load(r".\assets\images\ending1.png"),
+        pygame.image.load(r".\assets\images\ending2.png"),
+        pygame.image.load(r".\assets\images\ending3.png"),
+        pygame.image.load(r".\assets\images\ending4.png"),
+        pygame.image.load(r".\assets\images\ending5.png"),
+        pygame.image.load(r".\assets\images\ending6.png"),
+        pygame.image.load(r".\assets\images\ending7.png"),
+        pygame.image.load(r".\assets\images\ending8.png"),
+        pygame.image.load(r".\assets\images\ending9.png"),
+        pygame.image.load(r".\assets\images\ending10.png")
+    ]
+    end_images = [pygame.transform.scale(img, (WindowsSettings.width, WindowsSettings.height)) for img in end_images]
+
+    # 设置结束语
+    end_text = "Thanks for playing!"
+    font = pygame.font.SysFont(None, 72)
+    text_surface = font.render(end_text, True, (255, 255, 255))
+    text_rect = text_surface.get_rect(center=(WindowsSettings.width // 2, WindowsSettings.height // 2))
+
+    # 初始化透明度
+    alpha = 0
+    alpha_increment = 1  # 每帧增加的透明度值
+    max_alpha = 255  # 最大透明度值
+
+    # 初始化图片切换
+    current_image_index = 0
+    image_switch_time = 3000  # 每张图片显示的时间（毫秒）
+    last_switch_time = pygame.time.get_ticks()
+
+    clock = pygame.time.Clock()
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+        # 获取当前时间
+        current_time = pygame.time.get_ticks()
+
+        # 切换图片
+        if current_time - last_switch_time > image_switch_time:
+            current_image_index = (current_image_index + 1) % len(end_images)
+            last_switch_time = current_time
+
+        # 绘制当前的结束界面图片
+        window.blit(end_images[current_image_index], (0, 0))
+
+        # 更新透明度
+        if alpha < max_alpha:
+            alpha += alpha_increment
+        else:
+            alpha = max_alpha
+
+        # 创建一个带有透明度的文本表面
+        text_surface.set_alpha(alpha)
+        window.blit(text_surface, text_rect)
+
+        # 更新显示
+        pygame.display.flip()
+        clock.tick(60)

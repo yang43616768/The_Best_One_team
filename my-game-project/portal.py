@@ -4,7 +4,7 @@ import sys
 class Portal:
     def __init__(self, image_path,item_needed,x,y):
         self.image = pygame.image.load(image_path)
-        self.image = pygame.transform.scale(self.image, (100, 100))
+        self.image = pygame.transform.scale(self.image, (180, 180))
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y

@@ -22,6 +22,8 @@ def main():
     stage2(window,player)
     # Stage 3 - The Final Battle
     stage3(window,player)
+    # Stage 4 - Ending Screen
+    stage4(window)
 if __name__ == "__main__":
     main()
 
