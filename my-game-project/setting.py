@@ -46,7 +46,7 @@ class NpcSettings:
     reward1 = 'The Legendary Sword'
     currency1 = 100
     health1 = 50
-    attack1 = 20
+    attack1 = [20,15,10]
     bubble_text1_1 = 'Press "E" to talk to me.'
     bubble_text1_2 = 'Press "B" to buy items.'
     bubble_text1_3 = 'Press "F" to fight with me.'
@@ -65,7 +65,7 @@ class NpcSettings:
     reward2 = "The Legendary Armor"
     currency2 = 150
     health2 = 50
-    attack2 = 20
+    attack2 = [20]
     bubble_text2_1 = "I like your dress!It's pretty."
     bubble_text2_2 = "Do you know there's a strange guy at the end of the Magic Forest?"
     bubble_text2_3 = 'Try wandering around!'
@@ -85,7 +85,7 @@ class NpcSettings:
     reward3 = "The Evil Black Mandala"
     currency3 = 100
     health3 = 250
-    attack3 = 40
+    attack3 = [40]
     bubble_text3_1 = 'I will stop you.'
     bubble_text3_2 = 'I am no longer her.'
     bubble_text3_3 = 'I am the embodiment of evil'
@@ -106,7 +106,7 @@ class NpcSettings:
     reward4 = "The philosopher's stone"
     currency4 = 100
     health4 = 700
-    attack4 = 30
+    attack4 = [30]
     bubble_text4_1 = 'I have seen too many young people like you before.'
     bubble_text4_2 = 'They accidentally entered the forest and got lost in the darkness.'
     bubble_text4_3 = 'You need to be aware of the cost of delving deeper into it.'
@@ -126,7 +126,7 @@ class NpcSettings:
     reward5 = "The Legendary Armor"
     currency5 = 150
     health5 = 500
-    attack5 = 20
+    attack5 = [20]
     bubble_text5_1 = 'Have you seen my potato chips?'
     bubble_text5_2 = "Don't you remember me?"
     bubble_text5_3 = "We were best friends before you lost your memory..."
@@ -147,7 +147,7 @@ class NpcSettings:
     reward6 = 'The Legendary Shield'
     currency6 = 150
     health6 = 400
-    attack6 = 20
+    attack6 = [20]
     bubble_text6_1 = 'I like wondering around with Berries...Have you seen her?'
     bubble_text6_2 = 'You shall not...enter the magical forest.'
     bubble_text6_3 = 'I will take everyone seriously and protect them.'
@@ -165,7 +165,7 @@ class NpcSettings:
     reward7 = "The Container"
     currency7 = 200
     health7 = 700
-    attack7 = 30
+    attack7 = [30]
     bubble_text7_1 = 'I bear the mission of becoming The Container.'
     bubble_text7_2 = 'Evil will be forever sealed ... until your arrival.'
     bubble_text7_3 = 'Break the seal,find the Truth.'
@@ -184,7 +184,7 @@ class NpcSettings:
     reward8 = "The Book of All Things"
     currency8 = 200
     health8 = 700
-    attack8 = 30
+    attack8 = [30]
     bubble_text8_1 = 'I like to smell the pages of the book.'
     bubble_text8_2 = 'I manage everything in the library.'
     bubble_text8_3 = 'Sealing is necessary to protect the tower...'
@@ -203,7 +203,7 @@ class NpcSettings:
     reward9 = "A Faulty Robot"
     currency9 = 200
     health9 = 700
-    attack9 = 30
+    attack9 = [30]
     bubble_text9_1 = "Hello, let's say hello to the little robot"
     bubble_text9_2 = "The Truth? It's nothing to do with me."
     bubble_text9_3 = "I am still busy repairing my experiment."
@@ -220,7 +220,7 @@ class NpcSettings:
     reward10 = "The Vessel of Blood"
     currency10 = 100
     health10 = 700
-    attack10 = 30
+    attack10 = [30]
     bubble_text10_1 = "I have been endowed with the power of blood."
     bubble_text10_2 = "Disputes, struggles and pains ... What a sweet taste."
     bubble_text10_3 = "Interesting guy. I am longing to fight with you."
@@ -239,7 +239,7 @@ class NpcSettings:
     reward11 = "The Bow Tie of Nyarutoru"
     currency11 = 100
     health11 = 700
-    attack11 = 30
+    attack11 = [30]
     bubble_text11_1 = "I am the Past of you."
     bubble_text11_2 = "I was born from evil."
     bubble_text11_3 = "Darkness will eventually annihilate the world."

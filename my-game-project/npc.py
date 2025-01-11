@@ -40,10 +40,11 @@ class NPC(pygame.sprite.Sprite):
             pygame.K_e: 0,
             pygame.K_q: 0
         }
-        self.reward = name[4]
-        self.currency = name[5]
-        self.health = name[6]
-        self.attack = name[7]
+        self.reward = name[4]       #战斗掉落物
+        self.currency = name[5]     #战斗赏金
+        self.health = name[6]       #血量
+        self.attack_list = name[7]  #攻击意图
+        self.attack = self.attack_list[0]
         self.player_health = 100
         self.attack_image = pygame.image.load(r".\assets\images\attack.png")
         self.defence_image = pygame.image.load(r".\assets\images\defence.png")
@@ -223,6 +224,7 @@ class NPC(pygame.sprite.Sprite):
 
 
     def fight_calculate(self,player):
+        self.attack = self.attack_list[self.round%len(self.attack_list)]
         self.player_health = player.health
         self.damage_to_npc += self.key_counts[pygame.K_e] * player.attack
         if self.attack-self.key_counts[pygame.K_q] *player.defense >= 0:
@@ -309,6 +311,13 @@ class NPC(pygame.sprite.Sprite):
         window.blit(round_text, round_rect)
 
         self.draw_cards(window, player_image_rect.bottom + 70)
+
+        # 绘制 NPC 本回合的攻击意图
+        current_attack = self.attack_list[self.round % len(self.attack_list)]
+        font = pygame.font.SysFont(None, 36)
+        attack_text = font.render(f"NPC Attack Intent: {current_attack}", True, (255, 255, 255))
+        attack_rect = attack_text.get_rect(midtop=(npc_image_rect.centerx,npc_image_rect.bottom + 90))
+        window.blit(attack_text, attack_rect)
 
         # 添加战斗提示文字
         action_font = pygame.font.SysFont(None, 36)
