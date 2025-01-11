@@ -129,6 +129,7 @@ def stage1(window,player):
     transparent_roof5 = Transparent(r".\assets\images\roof.png",1400,1100,700,700)
     transparent_roof6 = Transparent(r".\assets\images\roof.png",2100,0,900,400)
     transparent_roof7 = Transparent(r".\assets\images\roof.png",2100,1400,900,400)
+
     transparents = [transparent_roof1,transparent_roof2,transparent_roof3,transparent_roof4,transparent_roof5,transparent_roof6,transparent_roof7]
 
     pygame.display.set_caption("Learn To Start")
@@ -183,6 +184,7 @@ def stage2(window,player):
     transparent_roof3 = Transparent(r".\assets\images\roof.png",750,1300,750,500)
     transparent_roof4 = Transparent(r".\assets\images\roof.png",1500,1300,1500,500)
     transparent_roof5 = Transparent(r".\assets\images\roof.png",0,900,800,400)
+
     transparents = [transparent_roof1,transparent_roof2,transparent_roof3,transparent_roof4,transparent_roof5]
 
     pygame.display.set_caption("We are getting deeper...into the Truth")

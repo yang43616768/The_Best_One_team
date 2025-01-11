@@ -98,8 +98,8 @@ class SceneManager:
                     if self.camera.colliderect(tile_rect):
                         temp_surface.blit(tile_image, (tile_rect.x - self.camera.x, tile_rect.y - self.camera.y))
 
-        # 将临时表面渲染到窗口上
-            self.window.blit(temp_surface, (0, 0))
+        # # 将临时表面渲染到窗口上
+        #     self.window.blit(temp_surface, (0, 0))
 
         else:
             # 渲染地图
@@ -110,7 +110,23 @@ class SceneManager:
                     tile_rect = tile_image.get_rect(topleft=(SceneSettings.tileWidth * i, SceneSettings.tileHeight * j))
                     if self.camera.colliderect(tile_rect):
                         temp_surface.blit(tile_image, (tile_rect.x - self.camera.x, tile_rect.y - self.camera.y))
-            self.window.blit(temp_surface, (0, 0))
+        
+        # 渲染黄色色块（固定在地图上）
+        red_blocks = [
+            (800, 875, 175, 50),
+            (925, 225, 50, 1350),
+            (700, 225, 575, 50),
+            (700, 1525, 575, 50),
+            (1225, 225, 50, 1350),
+            (1225, 875, 1425, 50)
+        ]
+        for block in red_blocks:
+            block_rect = pygame.Rect(block)
+            if self.camera.colliderect(block_rect):
+                pygame.draw.rect(temp_surface, (210, 180, 140), (block_rect.x - self.camera.x, block_rect.y - self.camera.y, block_rect.width, block_rect.height))
+
+        # 将临时表面渲染到窗口上
+        self.window.blit(temp_surface, (0, 0))
 
     def render2(self,npcs):
         # 创建一个临时表面，用于渲染摄像机视角内的内容
