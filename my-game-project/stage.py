@@ -59,11 +59,14 @@ def stage_common(npcs,player,walls,transparents,portal,scene_manager,window,i):
                 scene_manager.render2(npcs)
             if i == 3:
                 scene_manager.render3(npcs)
+            scene_manager.location(portal,npcs)
             scene_manager.location(player,npcs)
             scene_manager.location(walls,npcs)
+            
             for npc in npcs:
-                scene_manager.location(npc,npcs)
-            scene_manager.location(portal,npcs)
+                scene_manager.location(npc, npcs)
+
+
             for transparent in transparents:
                 scene_manager.location(transparent,npcs)
             player.show_inventory(scene_manager.window)
@@ -95,13 +98,13 @@ def stage1(window,player):
     walls = pygame.sprite.Group()
 
 
-    npc1 = NPC(575,875,NpcSettings.Lilia)
+    npc1 = NPC(555,875,NpcSettings.Lilia)
     npc2 = NPC(275,225,NpcSettings.Berries)
     npc3 = NPC(275,1525,NpcSettings.Nyakori)
-    npc4 = NPC(1375,875,NpcSettings.Eliza)
-    npc5 = NPC(2700,875,NpcSettings.Sakura)
+    npc4 = NPC(1375,855,NpcSettings.Eliza)
+    npc5 = NPC(2700,855,NpcSettings.Sakura)
     npcs = [npc1,npc2,npc3,npc4,npc5]
-    portal = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield","The Legendary Armor","The philosopher's stone"], 2850, 875)
+    portal = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield","The Legendary Armor","The philosopher's stone"], 2850, 775)
 
     walls.add(Wall(0,490,800,20))
     walls.add(Wall(0,1290,800,20))
@@ -209,7 +212,7 @@ def stage3(window,player):
     npc2 = NPC(1550,750,NpcSettings.Nyarutoru)
 
     npcs = [npc1,npc2]
-    portal = Portal(r".\assets\images\portal.png",["The Vessel of Blood","The Bow Tie of Nyarutoru"], 1532, 100)
+    portal = Portal(r".\assets\images\portal.png",["The Vessel of Blood","The Bow Tie of Nyarutoru"], 1500, 200)
     transparent_roof1 = Transparent(r".\assets\images\roof.png",0,0,0,0)
 
     transparents = [transparent_roof1]
