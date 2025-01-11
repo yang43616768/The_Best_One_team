@@ -2,3 +2,4 @@
 /my-game-project/__pycache__
 *.pyc
 /my-game-project/__pycache__
+my-game-project/path.py
