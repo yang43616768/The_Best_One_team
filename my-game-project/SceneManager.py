@@ -88,6 +88,10 @@ class SceneManager:
     def render1(self,npcs):
         # 创建一个临时表面，用于渲染摄像机视角内的内容
         temp_surface = pygame.Surface((self.camera.width, self.camera.height)) 
+        # 加载图像并调整大小
+        path_image = pygame.image.load('assets/images/path.jpg')
+        path_image = pygame.transform.scale(path_image, (25, 25))  # 调整图像大小为 25x25 像素
+
         if not any (npc.dialogue_active for npc in npcs) and not any (npc.buy_active for npc in npcs) and not any (npc.fight_active for npc in npcs):
             # 渲染地图
             for i in range(SceneSettings.tileXnum):
@@ -97,10 +101,6 @@ class SceneManager:
                     tile_rect = tile_image.get_rect(topleft=(SceneSettings.tileWidth * i, SceneSettings.tileHeight * j))
                     if self.camera.colliderect(tile_rect):
                         temp_surface.blit(tile_image, (tile_rect.x - self.camera.x, tile_rect.y - self.camera.y))
-
-        # # 将临时表面渲染到窗口上
-        #     self.window.blit(temp_surface, (0, 0))
-
         else:
             # 渲染地图
             for i in range(SceneSettings.tileXnum):
@@ -110,9 +110,8 @@ class SceneManager:
                     tile_rect = tile_image.get_rect(topleft=(SceneSettings.tileWidth * i, SceneSettings.tileHeight * j))
                     if self.camera.colliderect(tile_rect):
                         temp_surface.blit(tile_image, (tile_rect.x - self.camera.x, tile_rect.y - self.camera.y))
-        
-        # 渲染黄色色块（固定在地图上）
-        yellow_blocks = [
+        # 渲染图像色块（固定在地图上）
+        blocks = [
             (800, 875, 175, 50),
             (925, 225, 50, 1350),
             (700, 225, 575, 50),
@@ -120,10 +119,12 @@ class SceneManager:
             (1225, 225, 50, 1350),
             (1225, 875, 1425, 50)
         ]
-        for block in yellow_blocks:
+        for block in blocks:
             block_rect = pygame.Rect(block)
             if self.camera.colliderect(block_rect):
-                pygame.draw.rect(temp_surface, (210, 180, 140), (block_rect.x - self.camera.x, block_rect.y - self.camera.y, block_rect.width, block_rect.height))
+                for x in range(block_rect.x, block_rect.x + block_rect.width, path_image.get_width()):
+                    for y in range(block_rect.y, block_rect.y + block_rect.height, path_image.get_height()):
+                        temp_surface.blit(path_image, (x - self.camera.x, y - self.camera.y))
 
         # 将临时表面渲染到窗口上
         self.window.blit(temp_surface, (0, 0))
@@ -131,6 +132,9 @@ class SceneManager:
     def render2(self,npcs):
         # 创建一个临时表面，用于渲染摄像机视角内的内容
         temp_surface = pygame.Surface((self.camera.width, self.camera.height)) 
+        # 加载图像并调整大小
+        path_image = pygame.image.load('assets/images/path.jpg')
+        path_image = pygame.transform.scale(path_image, (25, 25))  # 调整图像大小为 25x25 像素
         if not any (npc.dialogue_active for npc in npcs) and not any (npc.buy_active for npc in npcs) and not any (npc.fight_active for npc in npcs):
             # 渲染地图
             for i in range(SceneSettings.tileXnum):
@@ -140,7 +144,6 @@ class SceneManager:
                     tile_rect = tile_image.get_rect(topleft=(SceneSettings.tileWidth * i, SceneSettings.tileHeight * j))
                     if self.camera.colliderect(tile_rect):
                         temp_surface.blit(tile_image, (tile_rect.x - self.camera.x, tile_rect.y - self.camera.y))
-
         else:
             # 渲染地图
             for i in range(SceneSettings.tileXnum):
@@ -150,9 +153,8 @@ class SceneManager:
                     tile_rect = tile_image.get_rect(topleft=(SceneSettings.tileWidth * i, SceneSettings.tileHeight * j))
                     if self.camera.colliderect(tile_rect):
                         temp_surface.blit(tile_image, (tile_rect.x - self.camera.x, tile_rect.y - self.camera.y))
-
-        # 渲染红色色块（固定在地图上）
-        red_blocks = [
+        # 渲染图像色块（固定在地图上）
+        blocks = [
             (1475, 1000, 50, 175),
             (925, 1125, 1600, 50),
             (925, 425, 50, 700),
@@ -162,10 +164,12 @@ class SceneManager:
             (175, 125, 2550, 50),
             (2675, 175 , 50, 425),
         ]
-        for block in red_blocks:
+        for block in blocks:
             block_rect = pygame.Rect(block)
             if self.camera.colliderect(block_rect):
-                pygame.draw.rect(temp_surface, (255, 0, 0), (block_rect.x - self.camera.x, block_rect.y - self.camera.y, block_rect.width, block_rect.height))
+                for x in range(block_rect.x, block_rect.x + block_rect.width, path_image.get_width()):
+                    for y in range(block_rect.y, block_rect.y + block_rect.height, path_image.get_height()):
+                        temp_surface.blit(path_image, (x - self.camera.x, y - self.camera.y))
 
         # 将临时表面渲染到窗口上
         self.window.blit(temp_surface, (0, 0))
