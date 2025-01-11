@@ -142,8 +142,8 @@ def stage1(window,player):
 
     # 全物品指令
 
-    # for item in Item_List.keys:   
-    #     player.add_item(item)
+    for item in Item_List.keys:   
+        player.add_item(item)
 
     scene_manager.render1(npcs)
     stage_common(npcs,player,walls,transparents,portal,scene_manager,window,1)
@@ -154,10 +154,10 @@ def stage2(window,player):
     pygame.mixer.music.load(r".\assets\bgm\city.mp3")
     pygame.mixer.music.play(-1)  # 循环播放
 
-    player.rect.x = 1475
-    player.rect.y = 475
-    # player.rect.x = 2800
-    # player.rect.y = 700
+    # player.rect.x = 1475
+    # player.rect.y = 475
+    player.rect.x = 2800
+    player.rect.y = 700
 
     walls = pygame.sprite.Group()
     walls.add(Wall(1110,390,780,20))
