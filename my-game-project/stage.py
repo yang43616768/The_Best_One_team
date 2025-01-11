@@ -22,6 +22,7 @@ def stage_common(npcs,player,walls,transparents,portal,scene_manager,window,i):
     waiting = True
     while waiting:
         for npc in npcs:
+            npc.player_health = player.health
             npc.switch_bubble()
             scene_manager.location(npc.bubble,npcs)
             pygame.display.flip()
@@ -67,12 +68,15 @@ def stage_common(npcs,player,walls,transparents,portal,scene_manager,window,i):
                 scene_manager.location(transparent,npcs)
             player.show_inventory(scene_manager.window)
             portal.check_telepotation(player,event,npcs)
+            player.draw_item_message(window)
             pygame.display.flip()
             if portal.tp_succeed:
                 waiting = False
 
 def stage0(window):
     pygame.display.set_caption("Game Start")
+    pygame.mixer.music.load(r".\assets\bgm\LightningMoment.mp3")
+    pygame.mixer.music.play(-1)  # 循环播放
     draw_screen(window,r".\assets\images\grass.jpg")
     waiting = True
     while waiting:
@@ -84,6 +88,9 @@ def stage0(window):
                 sys.exit()
 
 def stage1(window,player):
+
+    pygame.mixer.music.load(r".\assets\bgm\StartMenu.mp3")
+    pygame.mixer.music.play(-1)  # 循环播放
 
     walls = pygame.sprite.Group()
 
@@ -125,14 +132,18 @@ def stage1(window,player):
 
     # 全物品指令
 
-    for item in Item_List.keys:   
-        player.add_item(item)
+    # for item in Item_List.keys:   
+    #     player.add_item(item)
 
     scene_manager.render1(npcs)
     stage_common(npcs,player,walls,transparents,portal,scene_manager,window,1)
 
 
 def stage2(window,player):
+
+    pygame.mixer.music.load(r".\assets\bgm\city.mp3")
+    pygame.mixer.music.play(-1)  # 循环播放
+
     player.rect.x = 1600
     player.rect.y = 900
     walls = pygame.sprite.Group()
@@ -157,6 +168,10 @@ def stage2(window,player):
     stage_common(npcs,player,walls,transparents,portal,scene_manager,window,2)
 
 def stage3(window,player):
+
+    pygame.mixer.music.load(r".\assets\bgm\HisTheme.mp3")
+    pygame.mixer.music.play(-1)  # 循环播放
+
     player.rect.x = 1600
     player.rect.y = 900
     walls = pygame.sprite.Group()

@@ -17,7 +17,7 @@ class NPC(pygame.sprite.Sprite):
         self.y = y
         self.rect = self.image.get_rect()
         self.rect.topleft = (x,y)
-        self.dialogue_font_size = 36
+        self.dialogue_font_size = 72
         self.dialogue_active = False
         self.quest_active = False
         self.buy_active = False
@@ -57,7 +57,8 @@ class NPC(pygame.sprite.Sprite):
         self.current_bubble_index = 0
         self.last_bubble_switch_frame = 0  # 上次切换气泡的时间
         self.bubble = Bubble(self)
-
+        self.i = name[10]
+        self.bgm_position = 0
 
     def draw(self,window):
         window.blit(self.image, self.rect)
@@ -174,15 +175,19 @@ class NPC(pygame.sprite.Sprite):
                     
         elif not self.buy_active and not self.dialogue_active and not self.fight_active:
             distance = pygame.math.Vector2(self.rect.center).distance_to(player.rect.center)
-            if event.type == pygame.KEYDOWN and distance <= 40:
+            if distance <= 80:
                 self.quest_active = True
-                if event.key == pygame.K_e:
-                    self.dialogue_active = True
-                elif event.key == pygame.K_b:
-                    self.buy_active = True
-                elif event.key == pygame.K_f and not self.defeated:
-                    self.fight_active = True           
-            elif distance > 40:
+                if  event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_e:
+                        self.dialogue_active = True
+                    elif event.key == pygame.K_b:
+                        self.buy_active = True
+                    elif event.key == pygame.K_f and not self.defeated:
+                        self.fight_active = True
+                        self.bgm_position = pygame.mixer.music.get_pos() / 1000.0  # 获取当前背景音乐的播放位置（秒）
+                        pygame.mixer.music.load(r".\assets\bgm\boss.mp3")
+                        pygame.mixer.music.play(-1)           
+            elif distance > 80:
                 self.quest_active = False
     def close_dialogue(self):
         self.dialogue_active = False
@@ -247,7 +252,13 @@ class NPC(pygame.sprite.Sprite):
         self.fight_active = False
         self.key_counts[pygame.K_q] = 0
         self.key_counts[pygame.K_e] = 0
-
+        if self.i == 1:
+            pygame.mixer.music.load(r".\assets\bgm\StartMenu.mp3")
+        elif self.i == 2:
+            pygame.mixer.music.load(r".\assets\bgm\city.mp3")
+        elif self.i == 3:
+            pygame.mixer.music.load(r".\assets\bgm\HisTheme.mp3")
+        pygame.mixer.music.play(-1, start=self.bgm_position)  # 从记录的位置继续播放
     def fight_succeeded(self,player):
         self.round = 0
         self.damage_to_npc = 0
@@ -256,6 +267,14 @@ class NPC(pygame.sprite.Sprite):
         self.defeated = True
         player.add_item(self.reward)
         player.currency += self.currency
+        if self.i == 1:
+            pygame.mixer.music.load(r".\assets\bgm\StartMenu.mp3")
+        elif self.i == 2:
+            pygame.mixer.music.load(r".\assets\bgm\city.mp3")
+        elif self.i == 3:
+            pygame.mixer.music.load(r".\assets\bgm\HisTheme.mp3")
+        pygame.mixer.music.play(-1)
+
     def draw_fight(self,window):
 
         font = pygame.font.Font(None, 36)
@@ -291,7 +310,14 @@ class NPC(pygame.sprite.Sprite):
 
         self.draw_cards(window, player_image_rect.bottom + 70)
 
-
+        # 添加战斗提示文字
+        action_font = pygame.font.SysFont(None, 36)
+        defend_text = action_font.render("Press Q to Defend", True, (255, 255, 255))
+        attack_text = action_font.render("Press E to Attack", True, (255, 255, 255))
+        defend_rect = defend_text.get_rect(center=(window.get_width() // 2, window.get_height() - 100))
+        attack_rect = attack_text.get_rect(center=(window.get_width() // 2, window.get_height() - 60))
+        window.blit(defend_text, defend_rect)
+        window.blit(attack_text, attack_rect)
 
     def draw_health_bar(self, window, x, y, current_health, max_health):
         bar_width = 200

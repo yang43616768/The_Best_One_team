@@ -21,6 +21,8 @@ class Player(pygame.sprite.Sprite):
         self.inventory = []
         self.bag_active = False
         self.scroll_offset = 0  # 初始化滚动偏移量
+        self.item_message = None  # 用于存储获得物品的消息
+        self.message_start_time = 0  # 用于记录消息显示的开始时间
 
     def update(self, walls,dialogue_active,buy_active, scene_manager):
 
@@ -64,8 +66,23 @@ class Player(pygame.sprite.Sprite):
         self.inventory.append(item)
         if item in Item_List.keys:
             Item_List.items[item].statistics_adding(self)
+        self.item_message = f"Obtained: {item}"
+        self.message_start_time = pygame.time.get_ticks()
 
 
+    def draw_item_message(self, window):
+        if self.item_message is not None:
+            current_time = pygame.time.get_ticks()
+            if current_time - self.message_start_time < 2000:  # 显示两秒钟
+                font = pygame.font.Font(None, 36)
+                message_surface = pygame.Surface((700, 50), pygame.SRCALPHA)
+                message_surface.fill((0, 0, 0, 180))  # 半透明黑色背景
+                text_surface = font.render(self.item_message, True, (255, 255, 255))
+                text_rect = text_surface.get_rect(center=(350, 25))
+                message_surface.blit(text_surface, text_rect)
+                window.blit(message_surface, (window.get_width() // 2 - 350, window.get_height() // 2 + 225))
+            else:
+                self.item_message = None  # 超过两秒后清除消息
 
     def show_inventory(self, window):
         if self.bag_active:
