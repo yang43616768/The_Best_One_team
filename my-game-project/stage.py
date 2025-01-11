@@ -95,13 +95,19 @@ def stage1(window,player):
     walls = pygame.sprite.Group()
 
 
-    npc1 = NPC(350,880,NpcSettings.Lilia)
-    npc2 = NPC(350,300,NpcSettings.Berries)
-    npc3 = NPC(350,1460,NpcSettings.Nyakori)
-    npc4 = NPC(800,880,NpcSettings.Eliza)
-    npc5 = NPC(1200,880,NpcSettings.Sakura)
+    npc1 = NPC(575,875,NpcSettings.Lilia)
+    npc2 = NPC(275,225,NpcSettings.Berries)
+    npc3 = NPC(275,1525,NpcSettings.Nyakori)
+    npc4 = NPC(1375,875,NpcSettings.Eliza)
+    npc5 = NPC(2700,875,NpcSettings.Sakura)
     npcs = [npc1,npc2,npc3,npc4,npc5]
-    portal = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield","The Legendary Armor","The philosopher's stone"], 1250, 880)
+    portal = Portal(r".\assets\images\portal.png",["The Legendary Sword","The Legendary Shield","The Legendary Armor","The philosopher's stone"], 2850, 875)
+ ##
+    walls.add(Wall(0,490,800,20))
+    walls.add(Wall(0,1290,800,20))
+    walls.add(Wall(780,510,20,290))
+    walls.add(Wall(780,1000,20,290))
+    walls.add(Wall(1090,300,20,1200))
 
     walls.add(Wall(1390,0,20,700))
     walls.add(Wall(1390,1100,20,700))
@@ -120,7 +126,7 @@ def stage1(window,player):
     transparent_roof2 = Transparent(r".\assets\images\roof.png",0,0,600,500)
     transparent_roof3 = Transparent(r".\assets\images\roof.png",0,1300,600,500)
     transparent_roof4 = Transparent(r".\assets\images\roof.png",1400,0,700,700)
-    transparent_roof5 = Transparent(r".\assets\images\roof.png",1400,1110,700,700)
+    transparent_roof5 = Transparent(r".\assets\images\roof.png",1400,1100,700,700)
     transparent_roof6 = Transparent(r".\assets\images\roof.png",2100,0,900,400)
     transparent_roof7 = Transparent(r".\assets\images\roof.png",2100,1400,900,400)
     transparents = [transparent_roof1,transparent_roof2,transparent_roof3,transparent_roof4,transparent_roof5,transparent_roof6,transparent_roof7]
@@ -132,8 +138,8 @@ def stage1(window,player):
 
     # 全物品指令
 
-    # for item in Item_List.keys:   
-    #     player.add_item(item)
+    for item in Item_List.keys:   
+        player.add_item(item)
 
     scene_manager.render1(npcs)
     stage_common(npcs,player,walls,transparents,portal,scene_manager,window,1)
@@ -144,20 +150,40 @@ def stage2(window,player):
     pygame.mixer.music.load(r".\assets\bgm\city.mp3")
     pygame.mixer.music.play(-1)  # 循环播放
 
-    player.rect.x = 1600
-    player.rect.y = 900
+    # player.rect.x = 1475
+    # player.rect.y = 475
+    player.rect.x = 2800
+    player.rect.y = 700
+
     walls = pygame.sprite.Group()
-    walls.add(Wall(0,200,50,50))
+    walls.add(Wall(1110,390,780,20))
+    walls.add(Wall(1090,300,20,700))
+    walls.add(Wall(1890,390,20,610))
+    walls.add(Wall(1110,980,290,20))
+    walls.add(Wall(1600,980,290,20))
+    walls.add(Wall(1910,890,1090,20))
+    walls.add(Wall(400,300,690,20))
+    walls.add(Wall(400,320,20,580))
+
+    walls.add(Wall(0,1300,2400,20))
+    walls.add(Wall(2600,1300,400,20))
+    walls.add(Wall(1490,1300,20,500))
+    walls.add(Wall(790,600,20,700))
 
 
-    npc1 = NPC(350,880,NpcSettings.Theia)
-    npc2 = NPC(350,300,NpcSettings.Lianne)
-    npc3 = NPC(800,880,NpcSettings.Irin)
-    npc4 = NPC(1200,880,NpcSettings.Irin_Evil)
+
+    npc1 = NPC(1475,800,NpcSettings.Theia)
+    npc2 = NPC(1600,1525,NpcSettings.Lianne)
+    npc3 = NPC(375,1075,NpcSettings.Irin)
+    npc4 = NPC(1750,175,NpcSettings.Irin_Evil)
     npcs = [npc1,npc2,npc3,npc4]
-    portal = Portal(r".\assets\images\portal.png",["The Evil Black Mandala","The Container"], 1250, 880)
-    transparent_roof1 = Transparent(r".\assets\images\roof.png",50,550,1000,600)
-    transparents = [transparent_roof1]
+    portal = Portal(r".\assets\images\portal.png",["The Evil Black Mandala","The Container"], 2800,700)
+    transparent_roof1 = Transparent(r".\assets\images\roof.png",1100,400,800,600)
+    transparent_roof2 = Transparent(r".\assets\images\roof.png",0,1300,750,500)
+    transparent_roof3 = Transparent(r".\assets\images\roof.png",750,1300,750,500)
+    transparent_roof4 = Transparent(r".\assets\images\roof.png",1500,1300,1500,500)
+    transparent_roof5 = Transparent(r".\assets\images\roof.png",0,900,800,400)
+    transparents = [transparent_roof1,transparent_roof2,transparent_roof3,transparent_roof4,transparent_roof5]
 
     pygame.display.set_caption("We are getting deeper...into the Truth")
 
@@ -175,16 +201,32 @@ def stage3(window,player):
     player.rect.x = 1600
     player.rect.y = 900
     walls = pygame.sprite.Group()
-    walls.add(Wall(0,200,50,50))
+    walls.add(Wall(0,390,800,20))
+    walls.add(Wall(0,1390,800,20))
+    walls.add(Wall(780,410,20,390))
+    walls.add(Wall(780,1000,20,390))
 
+    walls.add(Wall(1980,290,1020,20))
+    walls.add(Wall(1980,1490,1020,20))
+    walls.add(Wall(2000,310,20,490))
+    walls.add(Wall(2000,1000,20,490))
 
-    npc1 = NPC(350,880,NpcSettings.Drakura)
-    npc2 = NPC(350,300,NpcSettings.Nyarutoru)
+    walls.add(Wall(800,590,1200,20))
+    walls.add(Wall(800,1210,1200,20))
+
+    npc1 = NPC(575,875,NpcSettings.Drakura)
+    npc2 = NPC(2475,875,NpcSettings.Nyarutoru)
 
     npcs = [npc1,npc2]
-    portal = Portal(r".\assets\images\portal.png",["The Vessel of Blood","The Bow Tie of Nyarutoru"], 1250, 880)
-    transparent_roof1 = Transparent(r".\assets\images\roof.png",50,550,1000,600)
-    transparents = [transparent_roof1]
+    portal = Portal(r".\assets\images\portal.png",["The Vessel of Blood","The Bow Tie of Nyarutoru"], 2850, 875)
+    transparent_roof1 = Transparent(r".\assets\images\roof.png",0,0,800,400)
+    transparent_roof2 = Transparent(r".\assets\images\roof.png",0,1400,800,400)
+    transparent_roof3 = Transparent(r".\assets\images\roof.png",800,0,1200,600)
+    transparent_roof4 = Transparent(r".\assets\images\roof.png",800,1200,1200,600)
+    transparent_roof5 = Transparent(r".\assets\images\roof.png",2000,0,1000,300)
+    transparent_roof6 = Transparent(r".\assets\images\roof.png",2000,1500,1000,300)
+    transparent_roof7 = Transparent(r".\assets\images\roof.png",0,400,800,1000)
+    transparents = [transparent_roof1,transparent_roof2,transparent_roof3,transparent_roof4,transparent_roof5,transparent_roof6,transparent_roof7]
 
     pygame.display.set_caption("The Final Chapter.")
 
