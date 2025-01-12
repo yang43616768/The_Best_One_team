@@ -154,10 +154,10 @@ def stage2(window,player):
     pygame.mixer.music.load(r".\assets\bgm\city.mp3")
     pygame.mixer.music.play(-1)  # 循环播放
 
-    # player.rect.x = 1475
-    # player.rect.y = 475
-    player.rect.x = 2800
-    player.rect.y = 700
+    player.rect.x = 1475
+    player.rect.y = 475
+    # player.rect.x = 2800
+    # player.rect.y = 700
 
     walls = pygame.sprite.Group()
     walls.add(Wall(1110,390,780,20))
