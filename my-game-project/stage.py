@@ -207,7 +207,7 @@ def stage3(window,player):
     player.rect.x = 1550
     player.rect.y = 1400
     walls = pygame.sprite.Group()
-    walls.add(Wall(0,390,800,20))
+    walls.add(Wall(0,0,0,0))
 
     npc1 = NPC(1550,1625,NpcSettings.Drakura)
     npc2 = NPC(1550,750,NpcSettings.Nyarutoru)
