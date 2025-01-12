@@ -17,7 +17,7 @@ class NPC(pygame.sprite.Sprite):
         self.y = y
         self.rect = self.image.get_rect()
         self.rect.topleft = (x,y)
-        self.dialogue_font_size = 36
+        self.dialogue_font_size = 30
         self.dialogue_active = False
         self.quest_active = False
         self.buy_active = False
